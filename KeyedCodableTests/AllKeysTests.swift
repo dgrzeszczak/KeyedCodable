@@ -41,14 +41,13 @@ public struct PaymentMethods: Decodable, Keyedable {
 
     public mutating func map(map: KeyMap) throws {
         try autoTopUpToken <<- map[CodingKeys.autoTopUpToken]
-        if case .decoding(let container) = map.type {
+        guard case .decoding(let container) = map.type else { return }
 
-            try container.allKeys(for: CodingKeys.vault).forEach { key in
-                var paymentMethod: PaymentMethod?
-                try paymentMethod <<- map[key]
-                if let paymentMethod = paymentMethod {
-                    userPaymentMethods.append(paymentMethod)
-                }
+        try container.allKeys(for: CodingKeys.vault).forEach { key in
+            var paymentMethod: PaymentMethod?
+            try paymentMethod <<- map[key]
+            if let paymentMethod = paymentMethod {
+                userPaymentMethods.append(paymentMethod)
             }
         }
     }
