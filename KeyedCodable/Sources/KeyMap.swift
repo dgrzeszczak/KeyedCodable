@@ -45,7 +45,6 @@ public protocol KeyMap {
     func encode<V>(object: [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable
 }
 
-
 extension KeyMap {
 
     public func decode<V>(object: inout V, with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable { }
