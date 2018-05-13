@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0823925220A50301006C45B2 /* MappingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925120A50301006C45B2 /* MappingType.swift */; };
+		0823925320A50331006C45B2 /* MappingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925120A50301006C45B2 /* MappingType.swift */; };
+		0823925520A56B6C006C45B2 /* InnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925420A56B6C006C45B2 /* InnerTests.swift */; };
+		0823925720A56CED006C45B2 /* FlatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925620A56CED006C45B2 /* FlatTests.swift */; };
+		0823925920A56DB3006C45B2 /* OptionalArrayElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */; };
+		0823925B20A56EC1006C45B2 /* KeyOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */; };
 		0889DB5E20699EA8008A0A13 /* KeyedCodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0889DB5420699EA8008A0A13 /* KeyedCodable.framework */; };
 		0889DB6320699EA8008A0A13 /* KeyedCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */; };
 		0889DB6520699EA8008A0A13 /* KeyedCodable.h in Headers */ = {isa = PBXBuildFile; fileRef = 0889DB5720699EA8008A0A13 /* KeyedCodable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,8 +24,8 @@
 		0889DB942069A1BE008A0A13 /* KeyedEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8920699FF0008A0A13 /* KeyedEncoder.swift */; };
 		0889DB972069A1D8008A0A13 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB962069A1D8008A0A13 /* Operators.swift */; };
 		0889DB982069A1D8008A0A13 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB962069A1D8008A0A13 /* Operators.swift */; };
-		0889DB9A2069A257008A0A13 /* KeyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB992069A257008A0A13 /* KeyMap.swift */; };
-		0889DB9B2069A257008A0A13 /* KeyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB992069A257008A0A13 /* KeyMap.swift */; };
+		0889DB9A2069A257008A0A13 /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB992069A257008A0A13 /* Mapping.swift */; };
+		0889DB9B2069A257008A0A13 /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB992069A257008A0A13 /* Mapping.swift */; };
 		0889DB9D2069A2F5008A0A13 /* Keyedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* Keyedable.swift */; };
 		0889DB9E2069A2F5008A0A13 /* Keyedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* Keyedable.swift */; };
 		0889DBA02069A344008A0A13 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9F2069A344008A0A13 /* Helpers.swift */; };
@@ -38,6 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0807903020A9062C0023C651 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		0823925120A50301006C45B2 /* MappingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingType.swift; sourceTree = "<group>"; };
+		0823925420A56B6C006C45B2 /* InnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerTests.swift; sourceTree = "<group>"; };
+		0823925620A56CED006C45B2 /* FlatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatTests.swift; sourceTree = "<group>"; };
+		0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalArrayElementTests.swift; sourceTree = "<group>"; };
+		0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyOptionsTests.swift; sourceTree = "<group>"; };
 		0889DB5420699EA8008A0A13 /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0889DB5720699EA8008A0A13 /* KeyedCodable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyedCodable.h; sourceTree = "<group>"; };
 		0889DB5820699EA8008A0A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,7 +60,7 @@
 		0889DB8B2069A01E008A0A13 /* KeyedDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecoder.swift; sourceTree = "<group>"; };
 		0889DB902069A1A3008A0A13 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		0889DB962069A1D8008A0A13 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
-		0889DB992069A257008A0A13 /* KeyMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyMap.swift; sourceTree = "<group>"; };
+		0889DB992069A257008A0A13 /* Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapping.swift; sourceTree = "<group>"; };
 		0889DB9C2069A2F5008A0A13 /* Keyedable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyedable.swift; sourceTree = "<group>"; };
 		0889DB9F2069A344008A0A13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		08DC29BB207BF444008B9726 /* AllKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllKeysTests.swift; sourceTree = "<group>"; };
@@ -104,8 +116,13 @@
 		0889DB6120699EA8008A0A13 /* KeyedCodableTests */ = {
 			isa = PBXGroup;
 			children = (
-				0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */,
+				0823925420A56B6C006C45B2 /* InnerTests.swift */,
+				0823925620A56CED006C45B2 /* FlatTests.swift */,
+				0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */,
 				08DC29BB207BF444008B9726 /* AllKeysTests.swift */,
+				0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */,
+				0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */,
+				0807903020A9062C0023C651 /* README.md */,
 				0889DB6420699EA8008A0A13 /* Info.plist */,
 			);
 			path = KeyedCodableTests;
@@ -115,7 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				0889DB9C2069A2F5008A0A13 /* Keyedable.swift */,
-				0889DB992069A257008A0A13 /* KeyMap.swift */,
+				0889DB992069A257008A0A13 /* Mapping.swift */,
+				0823925120A50301006C45B2 /* MappingType.swift */,
 				0889DB8920699FF0008A0A13 /* KeyedEncoder.swift */,
 				0889DB8B2069A01E008A0A13 /* KeyedDecoder.swift */,
 				0889DB962069A1D8008A0A13 /* Operators.swift */,
@@ -237,10 +255,11 @@
 			files = (
 				0889DB8C2069A01E008A0A13 /* KeyedDecoder.swift in Sources */,
 				0889DB972069A1D8008A0A13 /* Operators.swift in Sources */,
+				0823925220A50301006C45B2 /* MappingType.swift in Sources */,
 				0889DB9D2069A2F5008A0A13 /* Keyedable.swift in Sources */,
 				0889DBA02069A344008A0A13 /* Helpers.swift in Sources */,
 				0889DB912069A1A3008A0A13 /* Key.swift in Sources */,
-				0889DB9A2069A257008A0A13 /* KeyMap.swift in Sources */,
+				0889DB9A2069A257008A0A13 /* Mapping.swift in Sources */,
 				0889DB8A20699FF0008A0A13 /* KeyedEncoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,14 +268,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0823925720A56CED006C45B2 /* FlatTests.swift in Sources */,
 				0889DB9E2069A2F5008A0A13 /* Keyedable.swift in Sources */,
 				0889DB932069A1BA008A0A13 /* KeyedDecoder.swift in Sources */,
-				0889DB9B2069A257008A0A13 /* KeyMap.swift in Sources */,
+				0889DB9B2069A257008A0A13 /* Mapping.swift in Sources */,
 				0889DB6320699EA8008A0A13 /* KeyedCodableTests.swift in Sources */,
+				0823925320A50331006C45B2 /* MappingType.swift in Sources */,
+				0823925B20A56EC1006C45B2 /* KeyOptionsTests.swift in Sources */,
 				08DC29BC207BF444008B9726 /* AllKeysTests.swift in Sources */,
 				0889DBA12069A344008A0A13 /* Helpers.swift in Sources */,
+				0823925920A56DB3006C45B2 /* OptionalArrayElementTests.swift in Sources */,
 				0889DB922069A1B8008A0A13 /* Key.swift in Sources */,
 				0889DB942069A1BE008A0A13 /* KeyedEncoder.swift in Sources */,
+				0823925520A56B6C006C45B2 /* InnerTests.swift in Sources */,
 				0889DB982069A1D8008A0A13 /* Operators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

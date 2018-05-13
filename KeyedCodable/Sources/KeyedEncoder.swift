@@ -5,20 +5,20 @@
 //  Created by Dariusz Grzeszczak on 26/03/2018.
 //
 
-public final class KeyedEncoder {
+public final class KeyedEncoder<Type> where Type: Encodable, Type: Keyedable {
 
-    private let keyMap: KeyMap
+    private let keyMap: Map<Type.CodingKeys>
     public init(with encoder: Encoder) {
-        keyMap = EncoderKeyMap(with: encoder)
+        keyMap = Map(keyMap: EncoderKeyMap(with: encoder))
     }
 
-    public func encode<Type>(from object: Type) throws where Type: Encodable, Type: Keyedable {
+    public func encode(from object: Type) throws {
         var object = object
         try object.map(map: keyMap)
     }
 }
 
-final class EncoderKeyMap: KeyMap {
+private final class EncoderKeyMap: KeyMapBase {
     private let startingCodePath: [CodingKey]
     private var containerDictionary: [String: KeyedEncodingContainer<Key>] = [:]
     private var container: KeyedEncodingContainer<Key>
@@ -72,8 +72,8 @@ final class EncoderKeyMap: KeyMap {
 
         if  let optionalArrayElements = options.optionalArrayElements,
             !optionalArrayElements.isEmpty,
-            result.key.stringValue.starts(with: optionalArrayElements),
-            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) { // "optional" array
+            result.key.stringValue.starts(with: optionalArrayElements) {
+            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
 
             var unkeyedContainer = result.container.nestedUnkeyedContainer(forKey: key)
             try object.forEach {
@@ -95,8 +95,8 @@ final class EncoderKeyMap: KeyMap {
 
         if  let optionalArrayElements = options.optionalArrayElements,
             !optionalArrayElements.isEmpty,
-            result.key.stringValue.starts(with: optionalArrayElements),
-            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) { // "optional" array
+            result.key.stringValue.starts(with: optionalArrayElements) {
+            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
 
             var unkeyedContainer = result.container.nestedUnkeyedContainer(forKey: key)
             try object.forEach {

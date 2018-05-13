@@ -8,42 +8,67 @@
 @testable import KeyedCodable
 import XCTest
 
-import Foundation
+private let jsonString = """
+{
+    "vault": {
+        "0": {
+            "type": "Braintree_CreditCard",
+            "_attributes": {
+                "default": false
+            }
+        },
+        "1": {
+            "type": "Braintree_CreditCard",
+            "_attributes": {
+                "default": true
+            }
+        },
+        "2": {
+            "type": "Braintree_PayPalAccount",
+            "_attributes": {
+                "default": false
+            }
+        },
+        "autoTopup": "9969dc"
+    }
+}
+"""
 
-public struct PaymentMethod: Decodable, Keyedable {
+struct PaymentMethod: Decodable, Keyedable {
 
     private(set) public var type: String!
     private(set) public var isDefault: Bool!
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case type
         case isDefault = "_attributes.default"
     }
 
     public mutating func map(map: KeyMap) throws {
-        try type <<- map[CodingKeys.type]
-        try isDefault <<- map[CodingKeys.isDefault]
+        try type <<- map[.type]
+        try isDefault <<- map[.isDefault]
     }
 
     public init(from decoder: Decoder) throws {
         try KeyedDecoder(with: decoder).decode(to: &self)
     }
 }
-public struct PaymentMethods: Decodable, Keyedable {
 
-    private(set) public var userPaymentMethods: [PaymentMethod] = []
-    private(set) public var autoTopUpToken: String?
+struct PaymentMethods: Decodable, Keyedable {
+
+    private(set) var userPaymentMethods: [PaymentMethod] = []
+    private(set) var autoTopUpToken: String?
 
     enum CodingKeys: String, CodingKey {
         case autoTopUpToken = "vault.autoTopup"
         case vault
     }
 
-    public mutating func map(map: KeyMap) throws {
-        try autoTopUpToken <<- map[CodingKeys.autoTopUpToken]
-        guard case .decoding(let container) = map.type else { return }
+    mutating func map(map: KeyMap) throws {
+        try autoTopUpToken <<- map[.autoTopUpToken]
+        guard case .decoding(let keys) = map.type else { return }
 
-        try container.allKeys(for: CodingKeys.vault).forEach { key in
+        try keys.all(for: CodingKeys.vault).forEach { key in
             var paymentMethod: PaymentMethod?
             try paymentMethod <<- map[key]
             if let paymentMethod = paymentMethod {
@@ -72,34 +97,13 @@ class AllKeysTests: XCTestCase {
     func testAllKeys() {
         let jsonData = jsonString.data(using: .utf8)
 
-        let test = try! JSONDecoder().decode(PaymentMethods.self, from: jsonData!) // swiftlint:disable:this force_try
+        guard let test = try? JSONDecoder().decode(PaymentMethods.self, from: jsonData!) else {
+            XCTFail("PaymentMethods cannot be parsed")
+            return
+        }
 
         XCTAssert(test.userPaymentMethods.count == 3)
+        XCTAssert(test.userPaymentMethods[1].type == "Braintree_CreditCard")
+        XCTAssert(test.userPaymentMethods[1].isDefault == true)
     }
 }
-
-private let jsonString = """
-{
-    "vault": {
-        "0": {
-            "type": "Braintree_CreditCard",
-            "_attributes": {
-                "default": false
-            }
-        },
-        "1": {
-            "type": "Braintree_CreditCard",
-            "_attributes": {
-                "default": true
-            }
-        },
-        "2": {
-            "type": "Braintree_PayPalAccount",
-            "_attributes": {
-                "default": false
-            }
-        },
-        "autoTopup": "9969dc"
-    }
-}
-"""

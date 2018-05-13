@@ -5,26 +5,28 @@
 //  Created by Dariusz Grzeszczak on 26/03/2018.
 //
 
-public final class KeyedDecoder {
+public final class KeyedDecoder<Type> where Type: Decodable, Type: Keyedable {
 
-    private let keyMap: DecoderKeyMap
+    private let keyMap: Map<Type.CodingKeys>
     public init(with decoder: Decoder) throws {
-        keyMap = try DecoderKeyMap(with: decoder)
+        keyMap = try Map(keyMap: DecoderKeyMap(with: decoder))
     }
 
-    public func decode<Type>(to object: inout Type) throws where Type: Decodable, Type: Keyedable {
+    public func decode(to object: inout Type) throws {
         try object.map(map: keyMap)
     }
+}
 
-    public func decode<Type>(to object: Type) throws where Type: Decodable, Type: Keyedable, Type: AnyObject {
+public extension KeyedDecoder where Type: AnyObject {
+    public func decode(to object: Type) throws {
         var object = object
         try object.map(map: keyMap)
     }
 }
 
-final class DecoderKeyMap: KeyMap, KeyedDecoderContainer {
+private final class DecoderKeyMap: KeyMapBase {
 
-    var type: MappingType { return .decoding(container: self) }
+    var type: MappingType { return .decoding(keys: self) }
 
     private let startingCodePath: [CodingKey]
     private let container: KeyedDecodingContainer<Key>
@@ -40,18 +42,6 @@ final class DecoderKeyMap: KeyMap, KeyedDecoderContainer {
 
     var userInfo: [CodingUserInfoKey: Any] {
         return decoder.userInfo
-    }
-
-    func allKeys(for keyCode: CodingKey, options: KeyOptions) -> [Key] {
-        if let flat = options.flat, flat == keyCode.stringValue {
-            return container.allKeys
-        } else {
-            guard let result = try? keyedDecodingContainer(for: keyCode, options: options) else { return [] }
-            guard let container = try? result.container.nestedContainer(keyedBy: Key.self, forKey: result.key) else { return [] }
-            return container.allKeys.compactMap {
-                Key(stringValue: keyCode.stringValue + (options.delimiter ?? "") + $0.stringValue)
-            }
-        }
     }
 
     func decode<V>(object: inout V, with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable {
@@ -88,8 +78,8 @@ final class DecoderKeyMap: KeyMap, KeyedDecoderContainer {
         let result = try keyedDecodingContainer(for: keyCode, options: options)
         if  let optionalArrayElements = options.optionalArrayElements,
             !optionalArrayElements.isEmpty,
-            result.key.stringValue.starts(with: optionalArrayElements),
-            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) { // "optional" array
+            result.key.stringValue.starts(with: optionalArrayElements) {
+            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
 
             var unkeyedContainer = try result.container.nestedUnkeyedContainer(forKey: key)
             var newObject = [V]()
@@ -117,8 +107,8 @@ final class DecoderKeyMap: KeyMap, KeyedDecoderContainer {
         let result = try keyedDecodingContainer(for: keyCode, options: options)
         if  let optionalArrayElements = options.optionalArrayElements,
             !optionalArrayElements.isEmpty,
-            result.key.stringValue.starts(with: optionalArrayElements),
-            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) { // "optional" array
+            result.key.stringValue.starts(with: optionalArrayElements) {
+            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
 
             var unkeyedContainer = try result.container.nestedUnkeyedContainer(forKey: key)
             var newObject = [V]()
@@ -170,5 +160,19 @@ final class DecoderKeyMap: KeyMap, KeyedDecoderContainer {
         let container = try parent.nestedContainer(keyedBy: Key.self, forKey: lastKey)
         containerDictionary[codePathString] = container
         return container
+    }
+}
+
+extension DecoderKeyMap: KeysCollection {
+    func all(for keyCode: CodingKey, options: KeyOptions) -> [Key] {
+        if let flat = options.flat, flat == keyCode.stringValue {
+            return container.allKeys
+        } else {
+            guard let result = try? keyedDecodingContainer(for: keyCode, options: options) else { return [] }
+            guard let container = try? result.container.nestedContainer(keyedBy: Key.self, forKey: result.key) else { return [] }
+            return container.allKeys.compactMap {
+                Key(stringValue: keyCode.stringValue + (options.delimiter ?? "") + $0.stringValue)
+            }
+        }
     }
 }
