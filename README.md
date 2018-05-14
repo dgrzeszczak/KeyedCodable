@@ -1,12 +1,12 @@
 # Is this another JSON parsing library ? 
 
-*KeyedCodable* is an addition to swift's *Codable* introduced in swift 4. It’s great we can use automatic implementation of *Codable* methods but when you have to implement them manually it often brings boilerplate code - especially when you need both encoding and decoding methods for complicated JSON's structure. 
+*KeyedCodable* is an addition to swift's *Codable* introduced in swift 4. It’s great we can use automatic implementation of *Codable* methods but when we have to implement them manually it often brings boilerplate code - especially when we need to implement both encoding and decoding methods for complicated JSON's structure. 
 
 # The goal 
 
 The goal it to make manual implementation of *Encodable/Decodable* easier, more readable, less boilerplate and what is the most important fully compatible with 'standard' *Codable*.
 
-To support *KeyedCodable* you need to implemen ```Keyedable``` protocol ie. specify ```CodingKeys``` an implement ```map``` method:
+To support *KeyedCodable* you need to implement ```Keyedable``` protocol ie. specify ```CodingKeys``` an implement ```map``` method:
 ```swift
 func map(map: KeyMap) throws 
 ```
@@ -21,17 +21,18 @@ func encode(to encoder: Encoder) throws {
 ## Decoding 
 
 If you are implementing Decodable you have to add constructor like this:
+
 **for structs:**
 ```swift
-  init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
-   }
+init(from decoder: Decoder) throws {
+	try KeyedDecoder(with: decoder).decode(to: &self)
+}
 ```
 **for classes:**
 ```swift
-  init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: self)
-   }
+init(from decoder: Decoder) throws {
+	try KeyedDecoder(with: decoder).decode(to: self)
+}
 ```
 
 Unfortunatelly there is one drawback of doing it that way. Because of properties are not initialized in constructor (decoding is moved to to ```map()``` function) we have to use *Optionals* and *Implicit Unwrapped Optionals*. *Optionals* are used for non required and *Implicit Unwrapped Optional* for required mappings.
@@ -39,9 +40,9 @@ Unfortunatelly there is one drawback of doing it that way. Because of properties
 ## Map method implementation
 
 You can use three operators for your mappings: 
-```<->``` for Decoding and Encoding
-```<<-``` for decoding only
-```->>``` for encoding only
+- ```<->``` for Decoding and Encoding
+- ```<<-``` for decoding only
+- ```->>``` for encoding only
 
 ## Keyedable example:
 ```swift
@@ -175,7 +176,7 @@ In this example two use cases are shown:
 **By default empty string is used to mark flat class*
 
 # Optional array elements
-By default decoding whole array will fail if decoding of any array element fails (eg some property is not set). Sometimes instead of having empty list it would be better to have a list that contains all proper elements and omits wrong ones.
+By default decoding of array will fail if decoding of any array element fails. Sometimes instead of having empty list it would be better to have a list that contains all proper elements and omits wrong ones.
 ## Example JSON
 ```json
 {
@@ -269,7 +270,7 @@ struct PaymentMethods: Decodable, Keyedable {
 
 # KeyOptions
 
-For example it may happen that keys in your json file contain dots. In that situation you can disable or configure mapping features using ```KeyOptions``` parameter. You can set ```nil``` to disable feature at all or any ```String``` to change behaviour.
+It may happen that keys in your json file contain for example dots. In that situation you can disable or configure mapping features using ```KeyOptions``` parameter. You can set ```nil``` to disable feature at all or any ```String``` to change behaviour.
 ## Example JSON
 ```json
 {
