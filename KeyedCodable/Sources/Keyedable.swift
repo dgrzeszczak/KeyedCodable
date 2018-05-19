@@ -10,7 +10,7 @@
 public protocol Keyedable {
     associatedtype CodingKeys: CodingKey
 
-    typealias KeyMap = Map<CodingKeys>
+    typealias KeyMap = Map<Self.CodingKeys>
     mutating func map(map: KeyMap) throws
 }
 
