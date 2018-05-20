@@ -5,7 +5,7 @@
 //  Created by Dariusz Grzeszczak on 26/03/2018.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for KeyedCodable.
 FOUNDATION_EXPORT double KeyedCodableVersionNumber;

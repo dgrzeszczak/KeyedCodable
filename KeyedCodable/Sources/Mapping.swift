@@ -35,6 +35,14 @@ public struct KeyMap {
         return keyMap.type
     }
 
+    public subscript(key: String) -> Mapping {
+        return Mapping(map: self, key: Key(stringValue: key), options: KeyOptions())
+    }
+
+    public subscript(key: String, options: KeyOptions) -> Mapping {
+        return Mapping(map: self, key: Key(stringValue: key), options: options)
+    }
+
     public subscript(key: CodingKey) -> Mapping {
         return Mapping(map: self, key: key, options: KeyOptions())
     }

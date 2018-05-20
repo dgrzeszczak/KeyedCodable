@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0889DB5320699EA8008A0A13"
-               BuildableName = "KeyedCodable.framework"
-               BlueprintName = "KeyedCodable"
+               BlueprintIdentifier = "089426E520B1B87900A4B6FF"
+               BuildableName = "KeyedCodable_watchOS.framework"
+               BlueprintName = "KeyedCodable-watchOS"
                ReferencedContainer = "container:KeyedCodable.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0889DB5C20699EA8008A0A13"
-               BuildableName = "KeyedCodableTests.xctest"
-               BlueprintName = "KeyedCodableTests"
-               ReferencedContainer = "container:KeyedCodable.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0889DB5320699EA8008A0A13"
-            BuildableName = "KeyedCodable.framework"
-            BlueprintName = "KeyedCodable"
-            ReferencedContainer = "container:KeyedCodable.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0889DB5320699EA8008A0A13"
-            BuildableName = "KeyedCodable.framework"
-            BlueprintName = "KeyedCodable"
+            BlueprintIdentifier = "089426E520B1B87900A4B6FF"
+            BuildableName = "KeyedCodable_watchOS.framework"
+            BlueprintName = "KeyedCodable-watchOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0889DB5320699EA8008A0A13"
-            BuildableName = "KeyedCodable.framework"
-            BlueprintName = "KeyedCodable"
+            BlueprintIdentifier = "089426E520B1B87900A4B6FF"
+            BuildableName = "KeyedCodable_watchOS.framework"
+            BlueprintName = "KeyedCodable-watchOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

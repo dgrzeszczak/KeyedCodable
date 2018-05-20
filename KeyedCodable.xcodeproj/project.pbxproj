@@ -30,6 +30,63 @@
 		0889DB9E2069A2F5008A0A13 /* Keyedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* Keyedable.swift */; };
 		0889DBA02069A344008A0A13 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9F2069A344008A0A13 /* Helpers.swift */; };
 		0889DBA12069A344008A0A13 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9F2069A344008A0A13 /* Helpers.swift */; };
+		089426FC20B1B9E300A4B6FF /* KeyedCodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089426F320B1B9E300A4B6FF /* KeyedCodable.framework */; };
+		0894271820B1BA0700A4B6FF /* KeyedCodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0894270F20B1BA0600A4B6FF /* KeyedCodable.framework */; };
+		0894272620B1BA7100A4B6FF /* Keyedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* Keyedable.swift */; };
+		0894272720B1BA7100A4B6FF /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB992069A257008A0A13 /* Mapping.swift */; };
+		0894272820B1BA7100A4B6FF /* MappingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925120A50301006C45B2 /* MappingType.swift */; };
+		0894272920B1BA7100A4B6FF /* KeyedEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8920699FF0008A0A13 /* KeyedEncoder.swift */; };
+		0894272A20B1BA7100A4B6FF /* KeyedDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8B2069A01E008A0A13 /* KeyedDecoder.swift */; };
+		0894272B20B1BA7100A4B6FF /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB962069A1D8008A0A13 /* Operators.swift */; };
+		0894272C20B1BA7100A4B6FF /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB902069A1A3008A0A13 /* Key.swift */; };
+		0894272D20B1BA7100A4B6FF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9F2069A344008A0A13 /* Helpers.swift */; };
+		0894272E20B1BA7200A4B6FF /* Keyedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* Keyedable.swift */; };
+		0894272F20B1BA7200A4B6FF /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB992069A257008A0A13 /* Mapping.swift */; };
+		0894273020B1BA7200A4B6FF /* MappingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925120A50301006C45B2 /* MappingType.swift */; };
+		0894273120B1BA7200A4B6FF /* KeyedEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8920699FF0008A0A13 /* KeyedEncoder.swift */; };
+		0894273220B1BA7200A4B6FF /* KeyedDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8B2069A01E008A0A13 /* KeyedDecoder.swift */; };
+		0894273320B1BA7200A4B6FF /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB962069A1D8008A0A13 /* Operators.swift */; };
+		0894273420B1BA7200A4B6FF /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB902069A1A3008A0A13 /* Key.swift */; };
+		0894273520B1BA7200A4B6FF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9F2069A344008A0A13 /* Helpers.swift */; };
+		0894273620B1BA7200A4B6FF /* Keyedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* Keyedable.swift */; };
+		0894273720B1BA7200A4B6FF /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB992069A257008A0A13 /* Mapping.swift */; };
+		0894273820B1BA7200A4B6FF /* MappingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925120A50301006C45B2 /* MappingType.swift */; };
+		0894273920B1BA7200A4B6FF /* KeyedEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8920699FF0008A0A13 /* KeyedEncoder.swift */; };
+		0894273A20B1BA7200A4B6FF /* KeyedDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8B2069A01E008A0A13 /* KeyedDecoder.swift */; };
+		0894273B20B1BA7200A4B6FF /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB962069A1D8008A0A13 /* Operators.swift */; };
+		0894273C20B1BA7200A4B6FF /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB902069A1A3008A0A13 /* Key.swift */; };
+		0894273D20B1BA7200A4B6FF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9F2069A344008A0A13 /* Helpers.swift */; };
+		0894273E20B1BA7300A4B6FF /* Keyedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* Keyedable.swift */; };
+		0894273F20B1BA7300A4B6FF /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB992069A257008A0A13 /* Mapping.swift */; };
+		0894274020B1BA7300A4B6FF /* MappingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925120A50301006C45B2 /* MappingType.swift */; };
+		0894274120B1BA7300A4B6FF /* KeyedEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8920699FF0008A0A13 /* KeyedEncoder.swift */; };
+		0894274220B1BA7300A4B6FF /* KeyedDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8B2069A01E008A0A13 /* KeyedDecoder.swift */; };
+		0894274320B1BA7300A4B6FF /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB962069A1D8008A0A13 /* Operators.swift */; };
+		0894274420B1BA7300A4B6FF /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB902069A1A3008A0A13 /* Key.swift */; };
+		0894274520B1BA7300A4B6FF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9F2069A344008A0A13 /* Helpers.swift */; };
+		0894274620B1BA7400A4B6FF /* Keyedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* Keyedable.swift */; };
+		0894274720B1BA7400A4B6FF /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB992069A257008A0A13 /* Mapping.swift */; };
+		0894274820B1BA7400A4B6FF /* MappingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925120A50301006C45B2 /* MappingType.swift */; };
+		0894274920B1BA7400A4B6FF /* KeyedEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8920699FF0008A0A13 /* KeyedEncoder.swift */; };
+		0894274A20B1BA7400A4B6FF /* KeyedDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB8B2069A01E008A0A13 /* KeyedDecoder.swift */; };
+		0894274B20B1BA7400A4B6FF /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB962069A1D8008A0A13 /* Operators.swift */; };
+		0894274C20B1BA7400A4B6FF /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB902069A1A3008A0A13 /* Key.swift */; };
+		0894274D20B1BA7400A4B6FF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9F2069A344008A0A13 /* Helpers.swift */; };
+		0894274F20B1BA7B00A4B6FF /* KeyedCodable.h in Headers */ = {isa = PBXBuildFile; fileRef = 0889DB5720699EA8008A0A13 /* KeyedCodable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0894275020B1BA7B00A4B6FF /* KeyedCodable.h in Headers */ = {isa = PBXBuildFile; fileRef = 0889DB5720699EA8008A0A13 /* KeyedCodable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0894275120B1BA8300A4B6FF /* KeyedCodable.h in Headers */ = {isa = PBXBuildFile; fileRef = 0889DB5720699EA8008A0A13 /* KeyedCodable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0894275220B1BA8E00A4B6FF /* InnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925420A56B6C006C45B2 /* InnerTests.swift */; };
+		0894275320B1BA8E00A4B6FF /* FlatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925620A56CED006C45B2 /* FlatTests.swift */; };
+		0894275420B1BA8E00A4B6FF /* OptionalArrayElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */; };
+		0894275520B1BA8E00A4B6FF /* AllKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC29BB207BF444008B9726 /* AllKeysTests.swift */; };
+		0894275620B1BA8E00A4B6FF /* KeyOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */; };
+		0894275720B1BA8E00A4B6FF /* KeyedCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */; };
+		0894275820B1BA8F00A4B6FF /* InnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925420A56B6C006C45B2 /* InnerTests.swift */; };
+		0894275920B1BA8F00A4B6FF /* FlatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925620A56CED006C45B2 /* FlatTests.swift */; };
+		0894275A20B1BA8F00A4B6FF /* OptionalArrayElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */; };
+		0894275B20B1BA8F00A4B6FF /* AllKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC29BB207BF444008B9726 /* AllKeysTests.swift */; };
+		0894275C20B1BA8F00A4B6FF /* KeyOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */; };
+		0894275D20B1BA8F00A4B6FF /* KeyedCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */; };
 		08DC29BC207BF444008B9726 /* AllKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC29BB207BF444008B9726 /* AllKeysTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +97,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0889DB5320699EA8008A0A13;
 			remoteInfo = KeyedCoder;
+		};
+		089426FD20B1B9E300A4B6FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0889DB4B20699EA8008A0A13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 089426F220B1B9E300A4B6FF;
+			remoteInfo = "KeyedCodable-tvOS";
+		};
+		0894271920B1BA0700A4B6FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0889DB4B20699EA8008A0A13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0894270E20B1BA0600A4B6FF;
+			remoteInfo = "KeyedCodable-macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -53,7 +124,7 @@
 		0889DB5420699EA8008A0A13 /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0889DB5720699EA8008A0A13 /* KeyedCodable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyedCodable.h; sourceTree = "<group>"; };
 		0889DB5820699EA8008A0A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0889DB5D20699EA8008A0A13 /* KeyedCodableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeyedCodableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0889DB5D20699EA8008A0A13 /* KeyedCodableTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KeyedCodableTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedCodableTests.swift; sourceTree = "<group>"; };
 		0889DB6420699EA8008A0A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0889DB8920699FF0008A0A13 /* KeyedEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedEncoder.swift; sourceTree = "<group>"; };
@@ -63,6 +134,11 @@
 		0889DB992069A257008A0A13 /* Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapping.swift; sourceTree = "<group>"; };
 		0889DB9C2069A2F5008A0A13 /* Keyedable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyedable.swift; sourceTree = "<group>"; };
 		0889DB9F2069A344008A0A13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		089426E620B1B87900A4B6FF /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		089426F320B1B9E300A4B6FF /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		089426FB20B1B9E300A4B6FF /* KeyedCodable-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KeyedCodable-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0894270F20B1BA0600A4B6FF /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0894271720B1BA0700A4B6FF /* KeyedCodable-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KeyedCodable-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08DC29BB207BF444008B9726 /* AllKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllKeysTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +158,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		089426E220B1B87900A4B6FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089426EF20B1B9E300A4B6FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089426F820B1B9E300A4B6FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				089426FC20B1B9E300A4B6FF /* KeyedCodable.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0894270B20B1BA0600A4B6FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0894271420B1BA0700A4B6FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0894271820B1BA0700A4B6FF /* KeyedCodable.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -98,7 +211,12 @@
 			isa = PBXGroup;
 			children = (
 				0889DB5420699EA8008A0A13 /* KeyedCodable.framework */,
-				0889DB5D20699EA8008A0A13 /* KeyedCodableTests.xctest */,
+				0889DB5D20699EA8008A0A13 /* KeyedCodableTests-iOS.xctest */,
+				089426E620B1B87900A4B6FF /* KeyedCodable.framework */,
+				089426F320B1B9E300A4B6FF /* KeyedCodable.framework */,
+				089426FB20B1B9E300A4B6FF /* KeyedCodable-tvOSTests.xctest */,
+				0894270F20B1BA0600A4B6FF /* KeyedCodable.framework */,
+				0894271720B1BA0700A4B6FF /* KeyedCodable-macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,12 +272,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		089426E320B1B87900A4B6FF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0894274F20B1BA7B00A4B6FF /* KeyedCodable.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089426F020B1B9E300A4B6FF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0894275020B1BA7B00A4B6FF /* KeyedCodable.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0894270C20B1BA0600A4B6FF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0894275120B1BA8300A4B6FF /* KeyedCodable.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0889DB5320699EA8008A0A13 /* KeyedCodable */ = {
+		0889DB5320699EA8008A0A13 /* KeyedCodable-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0889DB6820699EA8008A0A13 /* Build configuration list for PBXNativeTarget "KeyedCodable" */;
+			buildConfigurationList = 0889DB6820699EA8008A0A13 /* Build configuration list for PBXNativeTarget "KeyedCodable-iOS" */;
 			buildPhases = (
 				0889DB4F20699EA8008A0A13 /* Sources */,
 				0889DB5020699EA8008A0A13 /* Frameworks */,
@@ -170,14 +312,14 @@
 			);
 			dependencies = (
 			);
-			name = KeyedCodable;
+			name = "KeyedCodable-iOS";
 			productName = KeyedCoder;
 			productReference = 0889DB5420699EA8008A0A13 /* KeyedCodable.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		0889DB5C20699EA8008A0A13 /* KeyedCodableTests */ = {
+		0889DB5C20699EA8008A0A13 /* KeyedCodableTests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0889DB6B20699EA8008A0A13 /* Build configuration list for PBXNativeTarget "KeyedCodableTests" */;
+			buildConfigurationList = 0889DB6B20699EA8008A0A13 /* Build configuration list for PBXNativeTarget "KeyedCodableTests-iOS" */;
 			buildPhases = (
 				0889DB5920699EA8008A0A13 /* Sources */,
 				0889DB5A20699EA8008A0A13 /* Frameworks */,
@@ -188,9 +330,99 @@
 			dependencies = (
 				0889DB6020699EA8008A0A13 /* PBXTargetDependency */,
 			);
-			name = KeyedCodableTests;
+			name = "KeyedCodableTests-iOS";
 			productName = KeyedCoderTests;
-			productReference = 0889DB5D20699EA8008A0A13 /* KeyedCodableTests.xctest */;
+			productReference = 0889DB5D20699EA8008A0A13 /* KeyedCodableTests-iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		089426E520B1B87900A4B6FF /* KeyedCodable-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 089426EB20B1B87900A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-watchOS" */;
+			buildPhases = (
+				089426E120B1B87900A4B6FF /* Sources */,
+				089426E220B1B87900A4B6FF /* Frameworks */,
+				089426E320B1B87900A4B6FF /* Headers */,
+				089426E420B1B87900A4B6FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KeyedCodable-watchOS";
+			productName = "KeyedCodable-watchOS";
+			productReference = 089426E620B1B87900A4B6FF /* KeyedCodable.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		089426F220B1B9E300A4B6FF /* KeyedCodable-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0894270420B1B9E300A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-tvOS" */;
+			buildPhases = (
+				089426EE20B1B9E300A4B6FF /* Sources */,
+				089426EF20B1B9E300A4B6FF /* Frameworks */,
+				089426F020B1B9E300A4B6FF /* Headers */,
+				089426F120B1B9E300A4B6FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KeyedCodable-tvOS";
+			productName = "KeyedCodable-tvOS";
+			productReference = 089426F320B1B9E300A4B6FF /* KeyedCodable.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		089426FA20B1B9E300A4B6FF /* KeyedCodable-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0894270720B1B9E300A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-tvOSTests" */;
+			buildPhases = (
+				089426F720B1B9E300A4B6FF /* Sources */,
+				089426F820B1B9E300A4B6FF /* Frameworks */,
+				089426F920B1B9E300A4B6FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				089426FE20B1B9E300A4B6FF /* PBXTargetDependency */,
+			);
+			name = "KeyedCodable-tvOSTests";
+			productName = "KeyedCodable-tvOSTests";
+			productReference = 089426FB20B1B9E300A4B6FF /* KeyedCodable-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0894270E20B1BA0600A4B6FF /* KeyedCodable-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0894272020B1BA0700A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-macOS" */;
+			buildPhases = (
+				0894270A20B1BA0600A4B6FF /* Sources */,
+				0894270B20B1BA0600A4B6FF /* Frameworks */,
+				0894270C20B1BA0600A4B6FF /* Headers */,
+				0894270D20B1BA0600A4B6FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KeyedCodable-macOS";
+			productName = "KeyedCodable-macOS";
+			productReference = 0894270F20B1BA0600A4B6FF /* KeyedCodable.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0894271620B1BA0700A4B6FF /* KeyedCodable-macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0894272320B1BA0700A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-macOSTests" */;
+			buildPhases = (
+				0894271320B1BA0700A4B6FF /* Sources */,
+				0894271420B1BA0700A4B6FF /* Frameworks */,
+				0894271520B1BA0700A4B6FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0894271A20B1BA0700A4B6FF /* PBXTargetDependency */,
+			);
+			name = "KeyedCodable-macOSTests";
+			productName = "KeyedCodable-macOSTests";
+			productReference = 0894271720B1BA0700A4B6FF /* KeyedCodable-macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -199,7 +431,7 @@
 		0889DB4B20699EA8008A0A13 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				TargetAttributes = {
 					0889DB5320699EA8008A0A13 = {
@@ -209,6 +441,26 @@
 					};
 					0889DB5C20699EA8008A0A13 = {
 						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					089426E520B1B87900A4B6FF = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+					};
+					089426F220B1B9E300A4B6FF = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+					};
+					089426FA20B1B9E300A4B6FF = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+					};
+					0894270E20B1BA0600A4B6FF = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+					};
+					0894271620B1BA0700A4B6FF = {
+						CreatedOnToolsVersion = 9.3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -225,8 +477,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0889DB5320699EA8008A0A13 /* KeyedCodable */,
-				0889DB5C20699EA8008A0A13 /* KeyedCodableTests */,
+				0889DB5320699EA8008A0A13 /* KeyedCodable-iOS */,
+				089426E520B1B87900A4B6FF /* KeyedCodable-watchOS */,
+				089426F220B1B9E300A4B6FF /* KeyedCodable-tvOS */,
+				0894270E20B1BA0600A4B6FF /* KeyedCodable-macOS */,
+				0889DB5C20699EA8008A0A13 /* KeyedCodableTests-iOS */,
+				089426FA20B1B9E300A4B6FF /* KeyedCodable-tvOSTests */,
+				0894271620B1BA0700A4B6FF /* KeyedCodable-macOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,6 +497,41 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0889DB5B20699EA8008A0A13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089426E420B1B87900A4B6FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089426F120B1B9E300A4B6FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089426F920B1B9E300A4B6FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0894270D20B1BA0600A4B6FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0894271520B1BA0700A4B6FF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -285,13 +577,110 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		089426E120B1B87900A4B6FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0894272C20B1BA7100A4B6FF /* Key.swift in Sources */,
+				0894272720B1BA7100A4B6FF /* Mapping.swift in Sources */,
+				0894272620B1BA7100A4B6FF /* Keyedable.swift in Sources */,
+				0894272D20B1BA7100A4B6FF /* Helpers.swift in Sources */,
+				0894272820B1BA7100A4B6FF /* MappingType.swift in Sources */,
+				0894272A20B1BA7100A4B6FF /* KeyedDecoder.swift in Sources */,
+				0894272920B1BA7100A4B6FF /* KeyedEncoder.swift in Sources */,
+				0894272B20B1BA7100A4B6FF /* Operators.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089426EE20B1B9E300A4B6FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0894273420B1BA7200A4B6FF /* Key.swift in Sources */,
+				0894272F20B1BA7200A4B6FF /* Mapping.swift in Sources */,
+				0894272E20B1BA7200A4B6FF /* Keyedable.swift in Sources */,
+				0894273520B1BA7200A4B6FF /* Helpers.swift in Sources */,
+				0894273020B1BA7200A4B6FF /* MappingType.swift in Sources */,
+				0894273220B1BA7200A4B6FF /* KeyedDecoder.swift in Sources */,
+				0894273120B1BA7200A4B6FF /* KeyedEncoder.swift in Sources */,
+				0894273320B1BA7200A4B6FF /* Operators.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		089426F720B1B9E300A4B6FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0894275220B1BA8E00A4B6FF /* InnerTests.swift in Sources */,
+				0894275520B1BA8E00A4B6FF /* AllKeysTests.swift in Sources */,
+				0894273C20B1BA7200A4B6FF /* Key.swift in Sources */,
+				0894275420B1BA8E00A4B6FF /* OptionalArrayElementTests.swift in Sources */,
+				0894273720B1BA7200A4B6FF /* Mapping.swift in Sources */,
+				0894273620B1BA7200A4B6FF /* Keyedable.swift in Sources */,
+				0894273D20B1BA7200A4B6FF /* Helpers.swift in Sources */,
+				0894273820B1BA7200A4B6FF /* MappingType.swift in Sources */,
+				0894273A20B1BA7200A4B6FF /* KeyedDecoder.swift in Sources */,
+				0894275720B1BA8E00A4B6FF /* KeyedCodableTests.swift in Sources */,
+				0894273920B1BA7200A4B6FF /* KeyedEncoder.swift in Sources */,
+				0894275620B1BA8E00A4B6FF /* KeyOptionsTests.swift in Sources */,
+				0894275320B1BA8E00A4B6FF /* FlatTests.swift in Sources */,
+				0894273B20B1BA7200A4B6FF /* Operators.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0894270A20B1BA0600A4B6FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0894274420B1BA7300A4B6FF /* Key.swift in Sources */,
+				0894273F20B1BA7300A4B6FF /* Mapping.swift in Sources */,
+				0894273E20B1BA7300A4B6FF /* Keyedable.swift in Sources */,
+				0894274520B1BA7300A4B6FF /* Helpers.swift in Sources */,
+				0894274020B1BA7300A4B6FF /* MappingType.swift in Sources */,
+				0894274220B1BA7300A4B6FF /* KeyedDecoder.swift in Sources */,
+				0894274120B1BA7300A4B6FF /* KeyedEncoder.swift in Sources */,
+				0894274320B1BA7300A4B6FF /* Operators.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0894271320B1BA0700A4B6FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0894275820B1BA8F00A4B6FF /* InnerTests.swift in Sources */,
+				0894275B20B1BA8F00A4B6FF /* AllKeysTests.swift in Sources */,
+				0894274C20B1BA7400A4B6FF /* Key.swift in Sources */,
+				0894275A20B1BA8F00A4B6FF /* OptionalArrayElementTests.swift in Sources */,
+				0894274720B1BA7400A4B6FF /* Mapping.swift in Sources */,
+				0894274620B1BA7400A4B6FF /* Keyedable.swift in Sources */,
+				0894274D20B1BA7400A4B6FF /* Helpers.swift in Sources */,
+				0894274820B1BA7400A4B6FF /* MappingType.swift in Sources */,
+				0894274A20B1BA7400A4B6FF /* KeyedDecoder.swift in Sources */,
+				0894275D20B1BA8F00A4B6FF /* KeyedCodableTests.swift in Sources */,
+				0894274920B1BA7400A4B6FF /* KeyedEncoder.swift in Sources */,
+				0894275C20B1BA8F00A4B6FF /* KeyOptionsTests.swift in Sources */,
+				0894275920B1BA8F00A4B6FF /* FlatTests.swift in Sources */,
+				0894274B20B1BA7400A4B6FF /* Operators.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		0889DB6020699EA8008A0A13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0889DB5320699EA8008A0A13 /* KeyedCodable */;
+			target = 0889DB5320699EA8008A0A13 /* KeyedCodable-iOS */;
 			targetProxy = 0889DB5F20699EA8008A0A13 /* PBXContainerItemProxy */;
+		};
+		089426FE20B1B9E300A4B6FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 089426F220B1B9E300A4B6FF /* KeyedCodable-tvOS */;
+			targetProxy = 089426FD20B1B9E300A4B6FF /* PBXContainerItemProxy */;
+		};
+		0894271A20B1BA0700A4B6FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0894270E20B1BA0600A4B6FF /* KeyedCodable-macOS */;
+			targetProxy = 0894271920B1BA0700A4B6FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -347,7 +736,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -403,7 +792,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -427,7 +816,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dg.KeyedCodable;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_MODULE_NAME = KeyedCodable;
+				PRODUCT_NAME = KeyedCodable;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -449,7 +839,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dg.KeyedCodable;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_MODULE_NAME = KeyedCodable;
+				PRODUCT_NAME = KeyedCodable;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -484,6 +875,224 @@
 			};
 			name = Release;
 		};
+		089426EC20B1B87900A4B6FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KeyedCodable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dg.KeyedCodable;
+				PRODUCT_MODULE_NAME = KeyedCodable;
+				PRODUCT_NAME = KeyedCodable;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		089426ED20B1B87900A4B6FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KeyedCodable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dg.KeyedCodable;
+				PRODUCT_MODULE_NAME = KeyedCodable;
+				PRODUCT_NAME = KeyedCodable;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		0894270520B1B9E300A4B6FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KeyedCodable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dg.KeyedCodable;
+				PRODUCT_MODULE_NAME = KeyedCodable;
+				PRODUCT_NAME = KeyedCodable;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		0894270620B1B9E300A4B6FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KeyedCodable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dg.KeyedCodable;
+				PRODUCT_MODULE_NAME = KeyedCodable;
+				PRODUCT_NAME = KeyedCodable;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		0894270820B1B9E300A4B6FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KeyedCodableTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.db.KeyedCodable-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.3;
+			};
+			name = Debug;
+		};
+		0894270920B1B9E300A4B6FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KeyedCodableTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.db.KeyedCodable-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.3;
+			};
+			name = Release;
+		};
+		0894272120B1BA0700A4B6FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = KeyedCodable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dg.KeyedCodable;
+				PRODUCT_MODULE_NAME = KeyedCodable;
+				PRODUCT_NAME = KeyedCodable;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0894272220B1BA0700A4B6FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = KeyedCodable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dg.KeyedCodable;
+				PRODUCT_MODULE_NAME = KeyedCodable;
+				PRODUCT_NAME = KeyedCodable;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		0894272420B1BA0700A4B6FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KeyedCodableTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.db.KeyedCodable-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0894272520B1BA0700A4B6FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KeyedCodableTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.db.KeyedCodable-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -496,7 +1105,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0889DB6820699EA8008A0A13 /* Build configuration list for PBXNativeTarget "KeyedCodable" */ = {
+		0889DB6820699EA8008A0A13 /* Build configuration list for PBXNativeTarget "KeyedCodable-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0889DB6920699EA8008A0A13 /* Debug */,
@@ -505,11 +1114,56 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0889DB6B20699EA8008A0A13 /* Build configuration list for PBXNativeTarget "KeyedCodableTests" */ = {
+		0889DB6B20699EA8008A0A13 /* Build configuration list for PBXNativeTarget "KeyedCodableTests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0889DB6C20699EA8008A0A13 /* Debug */,
 				0889DB6D20699EA8008A0A13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		089426EB20B1B87900A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				089426EC20B1B87900A4B6FF /* Debug */,
+				089426ED20B1B87900A4B6FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0894270420B1B9E300A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0894270520B1B9E300A4B6FF /* Debug */,
+				0894270620B1B9E300A4B6FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0894270720B1B9E300A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0894270820B1B9E300A4B6FF /* Debug */,
+				0894270920B1B9E300A4B6FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0894272020B1BA0700A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0894272120B1BA0700A4B6FF /* Debug */,
+				0894272220B1BA0700A4B6FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0894272320B1BA0700A4B6FF /* Build configuration list for PBXNativeTarget "KeyedCodable-macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0894272420B1BA0700A4B6FF /* Debug */,
+				0894272520B1BA0700A4B6FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

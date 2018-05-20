@@ -23,14 +23,9 @@ struct InnerExample: Codable, Keyedable {
     private(set) var greeting: String!
     private(set) var description: String!
 
-    enum CodingKeys: String, CodingKey {
-        case greeting = "inner.greeting"
-        case description = "inner.details.description"
-    }
-
     mutating func map(map: KeyMap) throws {
-        try greeting <-> map[CodingKeys.greeting]
-        try description <-> map[CodingKeys.description]
+        try greeting <-> map["inner.greeting"]
+        try description <-> map["inner.details.description"]
     }
 
     init(from decoder: Decoder) throws {

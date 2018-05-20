@@ -1,3 +1,5 @@
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 # Is this another JSON parsing library ? 
 
 *KeyedCodable* is an addition to swift's *Codable* introduced in swift 4. It’s great we can use automatic implementation of *Codable* methods but when we have to implement them manually it often brings boilerplate code - especially when we need to implement both encoding and decoding methods for complicated JSON's structure. 
@@ -6,7 +8,7 @@
 
 The goal it to make manual implementation of *Encodable/Decodable* easier, more readable, less boilerplate and what is the most important fully compatible with 'standard' *Codable*.
 
-To support *KeyedCodable* you need to implement ```Keyedable``` protocol ie. specify ```CodingKeys``` an implement ```map``` method:
+To support *KeyedCodable* you need to implement ```Keyedable``` protocol ie. implement ```map``` method:
 ```swift
 func map(map: KeyMap) throws 
 ```
@@ -55,6 +57,15 @@ You can use three operators for your mappings:
         try greeting <-> map[CodingKeys.greeting]
         try description <-> map[CodingKeys.description]
     }
+```
+
+or without the  ```CodingKeys``` : 
+
+```swift
+mutating func map(map: KeyMap) throws {
+    try greeting <-> map["inner.greeting"]
+    try description <-> map["inner.details.description"]
+}
 ```
 
 # Inner keys - Encode and Decode Manually - comparison with Apple example
@@ -107,16 +118,10 @@ struct Coordinate: Codable, Keyedable {
     var longitude: Double!
     var elevation: Double!
 
-    enum CodingKeys: String, CodingKey {
-        case latitude
-        case longitude
-        case elevation = "additionalInfo.elevation"
-    }
-
     mutating func map(map: KeyMap) throws {
-        try latitude <-> map[CodingKeys.latitude]
-        try longitude <-> map[CodingKeys.longitude]
-        try elevation <-> map[CodingKeys.elevation]
+        try latitude <-> map["latitude"]
+        try longitude <-> map["longitude"]
+        try elevation <-> map["additionalInfo.elevation"]
     }
 
     init(from decoder: Decoder) throws {
