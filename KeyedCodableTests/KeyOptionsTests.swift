@@ -70,12 +70,12 @@ struct KeyOptionsExample: Codable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try name <-> map[.name]
-        try greeting <-> map[.greeting, KeyOptions(delimiter: "+", flat: nil)]
-        try description <-> map[.description, KeyOptions(flat: nil)]
-        try location <-> map[.location, KeyOptions(flat: "__")]
-        try array <-> map[.array, KeyOptions(optionalArrayElements: "### ")]
-        try array1 <-> map[.array1, KeyOptions(optionalArrayElements: "### ")]
+        try name <-> map[CodingKeys.name]
+        try greeting <-> map[CodingKeys.greeting, KeyOptions(delimiter: "+", flat: nil)]
+        try description <-> map[CodingKeys.description, KeyOptions(flat: nil)]
+        try location <-> map[CodingKeys.location, KeyOptions(flat: "__")]
+        try array <-> map[CodingKeys.array, KeyOptions(optionalArrayElements: "### ")]
+        try array1 <-> map[CodingKeys.array1, KeyOptions(optionalArrayElements: "### ")]
     }
 
     init(from decoder: Decoder) throws {

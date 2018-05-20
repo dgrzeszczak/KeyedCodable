@@ -52,8 +52,8 @@ You can use three operators for your mappings:
     }
 
     mutating func map(map: KeyMap) throws {
-        try greeting <-> map[.greeting]
-        try description <-> map[.description]
+        try greeting <-> map[CodingKeys.greeting]
+        try description <-> map[CodingKeys.description]
     }
 ```
 
@@ -114,9 +114,9 @@ struct Coordinate: Codable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try latitude <-> map[.latitude]
-        try longitude <-> map[.longitude]
-        try elevation <-> map[.elevation]
+        try latitude <-> map[CodingKeys.latitude]
+        try longitude <-> map[CodingKeys.longitude]
+        try elevation <-> map[CodingKeys.elevation]
     }
 
     init(from decoder: Decoder) throws {
@@ -159,8 +159,8 @@ struct InnerWithFlatExample: Codable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try greeting <-> map[.greeting]
-        try location <-> map[.location]
+        try greeting <-> map[CodingKeys.greeting]
+        try location <-> map[CodingKeys.location]
     }
 
     init(from decoder: Decoder) throws {
@@ -208,7 +208,7 @@ struct OptionalArrayElementsExample: Codable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try array <-> map[.array]
+        try array <-> map[CodingKeys.array]
     }
 
     init(from decoder: Decoder) throws {
@@ -332,12 +332,12 @@ struct KeyOptionsExample: Codable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try name <-> map[.name]
-        try greeting <-> map[.greeting, KeyOptions(delimiter: "+", flat: nil)]
-        try description <-> map[.description, KeyOptions(flat: nil)]
-        try location <-> map[.location, KeyOptions(flat: "__")]
-        try array <-> map[.array, KeyOptions(optionalArrayElements: "### ")]
-        try array1 <-> map[.array1, KeyOptions(optionalArrayElements: "### ")]
+        try name <-> map[CodingKeys.name]
+        try greeting <-> map[CodingKeys.greeting, KeyOptions(delimiter: "+", flat: nil)]
+        try description <-> map[CodingKeys.description, KeyOptions(flat: nil)]
+        try location <-> map[CodingKeys.location, KeyOptions(flat: "__")]
+        try array <-> map[CodingKeys.array, KeyOptions(optionalArrayElements: "### ")]
+        try array1 <-> map[CodingKeys.array1, KeyOptions(optionalArrayElements: "### ")]
     }
 
     init(from decoder: Decoder) throws {

@@ -5,20 +5,18 @@
 //  Created by Dariusz Grzeszczak on 26/03/2018.
 //
 
-public final class KeyedDecoder<Type> where Type: Decodable, Type: Keyedable {
+public final class KeyedDecoder {
 
-    private let keyMap: Map<Type.CodingKeys>
+    private let keyMap: KeyMap
     public init(with decoder: Decoder) throws {
-        keyMap = try Map(keyMap: DecoderKeyMap(with: decoder))
+        keyMap = try KeyMap(keyMap: DecoderKeyMap(with: decoder))
     }
 
-    public func decode(to object: inout Type) throws {
+    public func decode<Type>(to object: inout Type) throws where Type: Decodable, Type: Keyedable {
         try object.map(map: keyMap)
     }
-}
 
-public extension KeyedDecoder where Type: AnyObject {
-    public func decode(to object: Type) throws {
+    public func decode<Type>(to object: Type) throws where Type: Decodable, Type: Keyedable, Type: AnyObject{
         var object = object
         try object.map(map: keyMap)
     }

@@ -29,8 +29,8 @@ struct InnerExample: Codable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try greeting <-> map[.greeting]
-        try description <-> map[.description]
+        try greeting <-> map[CodingKeys.greeting]
+        try description <-> map[CodingKeys.description]
     }
 
     init(from decoder: Decoder) throws {

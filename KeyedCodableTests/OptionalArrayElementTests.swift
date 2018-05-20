@@ -39,7 +39,7 @@ struct OptionalArrayElementsExample: Codable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try array <-> map[.array]
+        try array <-> map[CodingKeys.array]
     }
 
     init(from decoder: Decoder) throws {

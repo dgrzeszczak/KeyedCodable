@@ -7,8 +7,8 @@
 
 import Foundation
 
-public struct Mapping<Keys: CodingKey> {
-    public let map: Map<Keys>
+public struct Mapping {
+    public let map: KeyMap
     public let key: CodingKey
     public let options: KeyOptions
 }
@@ -25,7 +25,7 @@ public struct KeyOptions {
     }
 }
 
-public struct Map<Keys: CodingKey> {
+public struct KeyMap {
 
     public var userInfo: [CodingUserInfoKey : Any] {
         return keyMap.userInfo
@@ -35,15 +35,11 @@ public struct Map<Keys: CodingKey> {
         return keyMap.type
     }
 
-    public subscript(key: Key) -> Mapping<Keys> {
+    public subscript(key: CodingKey) -> Mapping {
         return Mapping(map: self, key: key, options: KeyOptions())
     }
 
-    public subscript(key: Keys) -> Mapping<Keys> {
-        return Mapping(map: self, key: key, options: KeyOptions())
-    }
-
-    public subscript(key: Keys, options: KeyOptions) -> Mapping<Keys> {
+    public subscript(key: CodingKey, options: KeyOptions) -> Mapping {
         return Mapping(map: self, key: key, options: options)
     }
 

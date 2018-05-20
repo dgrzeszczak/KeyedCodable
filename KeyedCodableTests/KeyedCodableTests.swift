@@ -48,9 +48,9 @@ struct CoordinateKeyed: Codable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try latitude <-> map[.latitude]
-        try longitude <-> map[.longitude]
-        try elevation <-> map[.elevation]
+        try latitude <-> map[CodingKeys.latitude]
+        try longitude <-> map[CodingKeys.longitude]
+        try elevation <-> map[CodingKeys.elevation]
     }
 
     init(from decoder: Decoder) throws {
@@ -158,9 +158,9 @@ extension Coordinate: Encodable {
 //    }
 //
 //    func map(map: KeyMap) throws {
-//        try booleanInClass <-> map[.booleanInClass]
-//        try array <-> map[.array]
-//        try intInClass <-> map[.intInClass]
+//        try booleanInClass <-> map[CodingKeys.booleanInClass]
+//        try array <-> map[CodingKeys.array]
+//        try intInClass <-> map[CodingKeys.intInClass]
 ////        try location <-> map[CodingKeys.location]
 //    }
 //}
@@ -200,14 +200,14 @@ extension Coordinate: Encodable {
 //    }
 //
 //    mutating func map(map: KeyMap) throws {
-//        try someString <-> map[.someString]
-//        try someInt <-> map[.someInt]
-//        try someClass <-> map[.someClass]
+//        try someString <-> map[CodingKeys.someString]
+//        try someInt <-> map[CodingKeys.someInt]
+//        try someClass <-> map[CodingKeys.someClass]
 //
-//        try innerInt <-> map[.innerInt]
-//        try innerString <-> map[.innerString, KeyOptions(delimiter: "+")]
+//        try innerInt <-> map[CodingKeys.innerInt]
+//        try innerString <-> map[CodingKeys.innerString, KeyOptions(delimiter: "+")]
 //
-//        try location <-> map[.location]
+//        try location <-> map[CodingKeys.location]
 //    }
 //}
 //

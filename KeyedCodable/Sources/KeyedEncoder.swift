@@ -5,14 +5,14 @@
 //  Created by Dariusz Grzeszczak on 26/03/2018.
 //
 
-public final class KeyedEncoder<Type> where Type: Encodable, Type: Keyedable {
+public final class KeyedEncoder {
 
-    private let keyMap: Map<Type.CodingKeys>
+    private let keyMap: KeyMap
     public init(with encoder: Encoder) {
-        keyMap = Map(keyMap: EncoderKeyMap(with: encoder))
+        keyMap = KeyMap(keyMap: EncoderKeyMap(with: encoder))
     }
 
-    public func encode(from object: Type) throws {
+    public func encode<Type>(from object: Type) throws where Type: Encodable, Type: Keyedable {
         var object = object
         try object.map(map: keyMap)
     }

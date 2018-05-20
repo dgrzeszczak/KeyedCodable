@@ -38,8 +38,8 @@ struct InnerWithFlatExample: Codable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try greeting <-> map[.greeting]
-        try location <-> map[.location]
+        try greeting <-> map[CodingKeys.greeting]
+        try location <-> map[CodingKeys.location]
     }
 
     init(from decoder: Decoder) throws {

@@ -45,8 +45,8 @@ struct PaymentMethod: Decodable, Keyedable {
     }
 
     public mutating func map(map: KeyMap) throws {
-        try type <<- map[.type]
-        try isDefault <<- map[.isDefault]
+        try type <<- map[CodingKeys.type]
+        try isDefault <<- map[CodingKeys.isDefault]
     }
 
     public init(from decoder: Decoder) throws {
@@ -65,7 +65,7 @@ struct PaymentMethods: Decodable, Keyedable {
     }
 
     mutating func map(map: KeyMap) throws {
-        try autoTopUpToken <<- map[.autoTopUpToken]
+        try autoTopUpToken <<- map[CodingKeys.autoTopUpToken]
         guard case .decoding(let keys) = map.type else { return }
 
         try keys.all(for: CodingKeys.vault).forEach { key in
