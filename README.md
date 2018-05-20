@@ -1,3 +1,4 @@
+[![CocoaPods](https://img.shields.io/cocoapods/v/ObjectMapper.svg)](https://github.com/dgrzeszczak/KeyedCodable)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 # Is this another JSON parsing library ? 
