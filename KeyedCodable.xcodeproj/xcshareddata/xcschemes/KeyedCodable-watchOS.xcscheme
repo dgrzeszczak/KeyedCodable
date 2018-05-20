@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "089426E520B1B87900A4B6FF"
-               BuildableName = "KeyedCodable_watchOS.framework"
+               BuildableName = "KeyedCodable.framework"
                BlueprintName = "KeyedCodable-watchOS"
                ReferencedContainer = "container:KeyedCodable.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "089426E520B1B87900A4B6FF"
-            BuildableName = "KeyedCodable_watchOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-watchOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "089426E520B1B87900A4B6FF"
-            BuildableName = "KeyedCodable_watchOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-watchOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>

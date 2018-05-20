@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "089426F220B1B9E300A4B6FF"
-               BuildableName = "KeyedCodable_tvOS.framework"
+               BuildableName = "KeyedCodable.framework"
                BlueprintName = "KeyedCodable-tvOS"
                ReferencedContainer = "container:KeyedCodable.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "089426F220B1B9E300A4B6FF"
-            BuildableName = "KeyedCodable_tvOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-tvOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "089426F220B1B9E300A4B6FF"
-            BuildableName = "KeyedCodable_tvOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-tvOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "089426F220B1B9E300A4B6FF"
-            BuildableName = "KeyedCodable_tvOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-tvOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>

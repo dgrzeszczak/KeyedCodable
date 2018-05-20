@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0894270E20B1BA0600A4B6FF"
-               BuildableName = "KeyedCodable_macOS.framework"
+               BuildableName = "KeyedCodable.framework"
                BlueprintName = "KeyedCodable-macOS"
                ReferencedContainer = "container:KeyedCodable.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0894270E20B1BA0600A4B6FF"
-            BuildableName = "KeyedCodable_macOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-macOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0894270E20B1BA0600A4B6FF"
-            BuildableName = "KeyedCodable_macOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-macOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0894270E20B1BA0600A4B6FF"
-            BuildableName = "KeyedCodable_macOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-macOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>

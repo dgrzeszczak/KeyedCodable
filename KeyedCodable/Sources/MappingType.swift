@@ -3,6 +3,7 @@
 //  KeyedCodable
 //
 //  Created by Dariusz Grzeszczak on 11/05/2018.
+//  Copyright © 2018 Dariusz Grzeszczak. All rights reserved.
 //
 
 public enum MappingType {

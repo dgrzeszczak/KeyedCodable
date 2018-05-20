@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0889DB5320699EA8008A0A13"
-               BuildableName = "KeyedCodable_iOS.framework"
+               BuildableName = "KeyedCodable.framework"
                BlueprintName = "KeyedCodable-iOS"
                ReferencedContainer = "container:KeyedCodable.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0889DB5320699EA8008A0A13"
-            BuildableName = "KeyedCodable_iOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-iOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0889DB5320699EA8008A0A13"
-            BuildableName = "KeyedCodable_iOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-iOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0889DB5320699EA8008A0A13"
-            BuildableName = "KeyedCodable_iOS.framework"
+            BuildableName = "KeyedCodable.framework"
             BlueprintName = "KeyedCodable-iOS"
             ReferencedContainer = "container:KeyedCodable.xcodeproj">
          </BuildableReference>
