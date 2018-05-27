@@ -394,6 +394,7 @@
 		0823925620A56CED006C45B2 /* FlatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatTests.swift; sourceTree = "<group>"; };
 		0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalArrayElementTests.swift; sourceTree = "<group>"; };
 		0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyOptionsTests.swift; sourceTree = "<group>"; };
+		086C497320BAEBFA008DB20C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
 		0889DB5420699EA8008A0A13 /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0889DB5720699EA8008A0A13 /* KeyedCodable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyedCodable.h; sourceTree = "<group>"; };
 		0889DB5820699EA8008A0A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -952,6 +953,7 @@
 				08DC29BB207BF444008B9726 /* AllKeysTests.swift */,
 				0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */,
 				0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */,
+				086C497320BAEBFA008DB20C /* CHANGELOG.md */,
 				0807903020A9062C0023C651 /* README.md */,
 				0894275E20B1F48B00A4B6FF /* _dgrzeszczak */,
 				0889DB6420699EA8008A0A13 /* Info.plist */,
