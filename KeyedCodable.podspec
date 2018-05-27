@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'KeyedCodable'
-  s.version = '1.0.0'
+  s.version = '1.1.0'
   s.license = 'MIT'
   s.summary = 'Elegant way of manual swift Codable implementation with easy key mappings'
   sc.description = <<-DESC
