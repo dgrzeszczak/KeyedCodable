@@ -96,32 +96,28 @@ class KeyOptionsTests: XCTestCase {
     }
     
     func testKeyOptions() {
-        let jsonData = jsonString.data(using: .utf8)
+        let jsonData = jsonString.data(using: .utf8)!
 
-        guard let test = try? JSONDecoder().decode(KeyOptionsExample.self, from: jsonData!) else {
-            XCTFail("KeyOptionsExample cannot be parsed")
-            return
+        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: KeyOptionsExample) in
+
+            XCTAssert(test.name == "John")
+
+            XCTAssert(test.greeting == "Hallo world")
+            XCTAssert(test.description == "Its nice here")
+
+            XCTAssert(test.location.lattitude == 3.4)
+            XCTAssert(test.location.longitude == 3.2)
+
+            XCTAssert(test.array.count == 3)
+            XCTAssert(test.array[0].element == 1)
+            XCTAssert(test.array[1].element == 3)
+            XCTAssert(test.array[2].element == 4)
+
+            XCTAssert(test.array1.count == 3)
+            XCTAssert(test.array1[0].element == 1)
+            XCTAssert(test.array1[1].element == 3)
+            XCTAssert(test.array1[2].element == 4)
         }
-
-        XCTAssert(test.name == "John")
-
-        XCTAssert(test.greeting == "Hallo world")
-        XCTAssert(test.description == "Its nice here")
-
-        XCTAssert(test.location.lattitude == 3.4)
-        XCTAssert(test.location.longitude == 3.2)
-
-        XCTAssert(test.array.count == 3)
-        XCTAssert(test.array[0].element == 1)
-        XCTAssert(test.array[1].element == 3)
-        XCTAssert(test.array[2].element == 4)
-
-        XCTAssert(test.array1.count == 3)
-        XCTAssert(test.array1[0].element == 1)
-        XCTAssert(test.array1[1].element == 3)
-        XCTAssert(test.array1[2].element == 4)
-
-        KeyedCodableTestHelper.checkEncode(codable: test)
     }
     
     func testPerformanceExample() {

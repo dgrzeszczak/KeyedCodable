@@ -68,9 +68,9 @@ struct PaymentMethods: Decodable, Keyedable {
         try autoTopUpToken <<- map[CodingKeys.autoTopUpToken]
         guard case .decoding(let keys) = map.type else { return }
 
-        try keys.all(for: CodingKeys.vault).forEach { key in
+        keys.all(for: CodingKeys.vault).forEach { key in
             var paymentMethod: PaymentMethod?
-            try paymentMethod <<- map[key]
+            try? paymentMethod <<- map[key]
             if let paymentMethod = paymentMethod {
                 userPaymentMethods.append(paymentMethod)
             }
@@ -95,10 +95,14 @@ class AllKeysTests: XCTestCase {
     }
 
     func testAllKeys() {
-        let jsonData = jsonString.data(using: .utf8)
+        let jsonData = jsonString.data(using: .utf8)!
 
-        guard let test = try? JSONDecoder().decode(PaymentMethods.self, from: jsonData!) else {
+        var test: PaymentMethods!
+        do {
+            test = try JSONDecoder().decode(PaymentMethods.self, from: jsonData)
+        } catch ( let error ) {
             XCTFail("PaymentMethods cannot be parsed")
+            print(error.localizedDescription)
             return
         }
 

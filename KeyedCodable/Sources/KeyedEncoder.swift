@@ -6,16 +6,90 @@
 //  Copyright © 2018 Dariusz Grzeszczak. All rights reserved.
 //
 
+import Foundation
+
 public final class KeyedEncoder {
 
-    private let keyMap: KeyMap
+    private let encoder: Encoder
     public init(with encoder: Encoder) {
-        keyMap = KeyMap(keyMap: EncoderKeyMap(with: encoder))
+        self.encoder = encoder
     }
 
     public func encode<Type>(from object: Type) throws where Type: Encodable, Type: Keyedable {
+        let encoder = EncoderKeyMap(with: self.encoder)
+        let keyMap = KeyMap(keyMap: encoder)
         var object = object
         try object.map(map: keyMap)
+        try encoder.encode()
+    }
+}
+
+private enum Encoding {
+    case container(KeyedEncodingContainer<Key>, key: Key)
+    case encoder(Encoder)
+}
+
+private class Node {
+
+    let key: String?
+
+    var root: [(_ encoding: Encoding) throws -> Void] = []
+    var children: [String: Node] = [:]
+
+    init(key: String?) {
+        self.key = key
+    }
+
+    func node(for key: String, options: KeyOptions) -> Node {
+        var keys = key.components(separatedBy: options.delimiter ?? "")
+        guard !keys.isEmpty else { fatalError("encode failed - no key") }
+
+        var currentNode: Node = self
+
+        while keys.count != 0 {
+            let key = keys[0]
+            if let node = currentNode.children[key] {
+                currentNode = node
+            } else {
+                let node = Node(key: key)
+                currentNode.children[key] = node
+                currentNode = node
+            }
+            keys.remove(at: 0)
+        }
+
+        return currentNode
+    }
+
+    func encode(container: KeyedEncodingContainer<Key>) throws {
+        var container = container
+        guard let key = key else {
+            try children.values.forEach {
+                try $0.encode(container: container)
+            }
+            return
+        }
+
+        if children.keys.isEmpty {
+            try root.forEach {
+                try $0(.container(container, key: Key(stringValue: key)))
+            }
+        } else {
+            var cont: KeyedEncodingContainer<Key>
+            if root.isEmpty {
+                cont = container.nestedContainer(keyedBy: Key.self, forKey: Key(stringValue: key))
+            } else {
+                let encoder = container.superEncoder(forKey: Key(stringValue: key))
+                cont = encoder.container(keyedBy: Key.self)
+                try root.forEach {
+                    try $0(.encoder(encoder))
+                }
+            }
+
+            try children.values.forEach {
+                try $0.encode(container: cont)
+            }
+        }
     }
 }
 
@@ -24,6 +98,8 @@ private final class EncoderKeyMap: KeyMapBase {
     private var containerDictionary: [String: KeyedEncodingContainer<Key>] = [:]
     private var container: KeyedEncodingContainer<Key>
     private let encoder: Encoder
+
+    var node: Node
 
     var type: MappingType { return .encoding }
 
@@ -36,112 +112,54 @@ private final class EncoderKeyMap: KeyMapBase {
         container = encoder.container(keyedBy: Key.self)
         startingCodePath = container.codingPath
         containerDictionary[startingCodePath.codePathString] = container
+
+        node = Node(key: nil)
     }
 
     func encode<V>(object: V, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
+
         if let flat = options.flat, flat == keyCode.stringValue {
-            if let optional = object as? _Optional {
-                if let value = optional.value {
-                    try value.encode(to: encoder)
-                }
-            } else {
-                try object.encode(to: encoder)
-            }
+            try EncoderKeyMap.encode(object: object, encoding: .encoder(encoder))
         } else {
-            var result = keyedEncodingContainer(for: keyCode, options: options)
-            if let optional = object as? _Optional {
-                if optional.hasValue {
-                    try result.container.encode(object, forKey: result.key)
-                }
-            } else {
-                try result.container.encode(object, forKey: result.key)
-            }
+            node.node(for: keyCode.stringValue, options: options).root.append( { encoding in
+                try EncoderKeyMap.encode(object: object, encoding: encoding)
+            })
         }
     }
 
-    func encode<V>(object: V!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
-        if let flat = options.flat, flat == keyCode.stringValue {
-            try object.encode(to: encoder)
-        } else {
-            var result = keyedEncodingContainer(for: keyCode, options: options)
-            try result.container.encode(object, forKey: result.key)
-        }
+    func encode() throws {
+        try node.encode(container: container)
     }
 
     func encode<V>(object: [V], with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
-        var result = keyedEncodingContainer(for: keyCode, options: options)
+        node.node(for: keyCode.stringValue, options: options).root.append( { encoding in
 
-        if  let optionalArrayElements = options.optionalArrayElements,
-            !optionalArrayElements.isEmpty,
-            result.key.stringValue.starts(with: optionalArrayElements) {
-            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
+            if  case .container(let container, let key) = encoding,
+                let optionalArrayElements = options.optionalArrayElements,
+                !optionalArrayElements.isEmpty,
+                key.stringValue.starts(with: optionalArrayElements) {
+                let key = Key(stringValue: String(key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
 
-            var unkeyedContainer = result.container.nestedUnkeyedContainer(forKey: key)
-            try object.forEach {
-                try unkeyedContainer.encode($0)
-            }
-        } else {
-            if let optional = object as? _Optional {
-                if optional.hasValue {
-                    try result.container.encode(object, forKey: result.key)
-                }
+                try EncoderKeyMap.encode(object: object, encoding: .container(container, key: key))
             } else {
-                try result.container.encode(object, forKey: result.key)
+                try EncoderKeyMap.encode(object: object, encoding: encoding)
             }
-        }
+        })
     }
 
-    func encode<V>(object: [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
-        var result = keyedEncodingContainer(for: keyCode, options: options)
-
-        if  let optionalArrayElements = options.optionalArrayElements,
-            !optionalArrayElements.isEmpty,
-            result.key.stringValue.starts(with: optionalArrayElements) {
-            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
-
-            var unkeyedContainer = result.container.nestedUnkeyedContainer(forKey: key)
-            try object.forEach {
-                try unkeyedContainer.encode($0)
+    private static func encode<V>(object: V, encoding: Encoding) throws where V: Encodable {
+        if let optional = object as? _Optional {
+            if let value = optional.value {
+                switch encoding {
+                case .encoder(let encoder): try value.encode(to: encoder)
+                case .container(var container, let key): try container.encode(object, forKey: key)
+                }
             }
         } else {
-            try result.container.encode(object, forKey: result.key)
+            switch encoding {
+            case .encoder(let encoder): try object.encode(to: encoder)
+            case .container(var container, let key): try container.encode(object, forKey: key)
+            }
         }
-    }
-
-    private func keyedEncodingContainer(for keyCode: CodingKey, options: KeyOptions) -> (container: KeyedEncodingContainer<Key>, key: Key) {
-        var keys = keyCode.stringValue
-            .components(separatedBy: options.delimiter ?? "")
-            .compactMap { Key(stringValue: $0) }
-        guard !keys.isEmpty else { fatalError("encode failed - no key") }
-
-        var codingPath = startingCodePath
-        // initialize containers
-        while keys.count != 1 {
-            codingPath.append(keys[0])
-            keys.remove(at: 0)
-            _ = keyedEncodingContainer(for: codingPath)
-        }
-
-        return (keyedEncodingContainer(for: codingPath), keys[0])
-    }
-
-    private func keyedEncodingContainer(for codingPath: [CodingKey]) -> KeyedEncodingContainer<Key> {
-        let codePathString = codingPath.codePathString
-        if let cached = containerDictionary[codePathString] {
-            return cached
-        }
-
-        let parentCodePathString = codingPath.dropLast().codePathString
-
-        guard var parent = containerDictionary[parentCodePathString] else {
-            fatalError("KeyedEncoder - no parent container")
-        }
-        guard let lastKey = codingPath[codingPath.count - 1] as? Key else {
-            fatalError("KeyedEncoder -  invalid key")
-        }
-
-        let container = parent.nestedContainer(keyedBy: Key.self, forKey: lastKey)
-        containerDictionary[codePathString] = container
-        return container
     }
 }

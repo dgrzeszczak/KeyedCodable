@@ -60,20 +60,15 @@ class OptionalArrayElementTests: XCTestCase {
     }
     
     func testOptionalArrayElement() {
-        let jsonData = jsonString.data(using: .utf8)
+        let jsonData = jsonString.data(using: .utf8)!
 
-        guard let test = try? JSONDecoder().decode(OptionalArrayElementsExample.self, from: jsonData!) else {
-            XCTFail("OptionalArrayElementsExample cannot be parsed")
-            return
+        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: OptionalArrayElementsExample) in
+            // returns array with 3 elements, empty element will be omitted
+            XCTAssert(test.array.count == 3)
+            XCTAssert(test.array[0].element == 1)
+            XCTAssert(test.array[1].element == 3)
+            XCTAssert(test.array[2].element == 4)
         }
-
-        // returns array with 3 elements, empty element will be omitted
-        XCTAssert(test.array.count == 3)
-        XCTAssert(test.array[0].element == 1)
-        XCTAssert(test.array[1].element == 3)
-        XCTAssert(test.array[2].element == 4)
-
-        KeyedCodableTestHelper.checkEncode(codable: test)
     }
     
     func testPerformanceExample() {

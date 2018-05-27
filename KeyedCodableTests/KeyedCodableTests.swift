@@ -8,27 +8,34 @@
 @testable import KeyedCodable
 import XCTest
 
-import Foundation
-
 struct KeyedCodableTestHelper {
 
-    static func checkEncode<Type: Codable>(codable: Type) {
+    static func checkEncode<Type: Codable>(data: Data, testObject: (_ codable: Type) -> Void) {
+        guard let codable = try? JSONDecoder().decode(Type.self, from: data) else {
+            XCTFail("\(Type.self) cannot be parsed")
+            return
+        }
+
+        testObject(codable)
+
         guard let jsonData = try? JSONEncoder().encode(codable) else {
-            XCTFail("\(Type.self) cannot be encoded [checkEncode]")
-            return
-        }
-
-        guard let object = try? JSONDecoder().decode(Type.self, from: jsonData) else {
-            XCTFail("\(Type.self) cannot be parsed [checkEncode]")
-            return
-        }
-
-        guard let jsonData1 = try? JSONEncoder().encode(object) else {
-            XCTFail("\(Type.self) cannot be encoded second time [checkEncode]")
+            XCTFail("\(Type.self) cannot be encoded")
             return
         }
 
         let jsonString = String(data: jsonData, encoding: .utf8)
+        guard let object = try? JSONDecoder().decode(Type.self, from: jsonData) else {
+            XCTFail("\(Type.self) cannot be parsed second time")
+            return
+        }
+
+        testObject(object)
+
+        guard let jsonData1 = try? JSONEncoder().encode(object) else {
+            XCTFail("\(Type.self) cannot be encoded second time")
+            return
+        }
+
         let jsonString1 = String(data: jsonData1, encoding: .utf8)
 
         XCTAssert(jsonString == jsonString1)

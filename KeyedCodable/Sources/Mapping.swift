@@ -72,15 +72,15 @@ public struct KeyMap {
     func encode<V>(object: V, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
         try keyMap.encode(object: object, with: keyCode, options: options)
     }
-    func encode<V>(object: V!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
-        try keyMap.encode(object: object!, with: keyCode, options: options)
-    }
+//    func encode<V>(object: inout V!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
+//        try keyMap.encode(object: &object, with: keyCode, options: options)
+//    }
     func encode<V>(object: [V], with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
         try keyMap.encode(object: object, with: keyCode, options: options)
     }
-    func encode<V>(object: [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
-        try keyMap.encode(object: object!, with: keyCode, options: options)
-    }
+//    func encode<V>(object: inout [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
+//        try keyMap.encode(object: &object, with: keyCode, options: options)
+//    }
 }
 
 protocol KeyMapBase {
@@ -94,10 +94,10 @@ protocol KeyMapBase {
     func decode<V>(object: inout [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable
 
     func encode<V>(object: V, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable
-    func encode<V>(object: V!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable
+    //func encode<V>(object: inout V!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable
 
     func encode<V>(object: [V], with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable
-    func encode<V>(object: [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable
+    //func encode<V>(object: inout [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable
 }
 
 extension KeyMapBase {
@@ -109,8 +109,8 @@ extension KeyMapBase {
     func decode<V>(object: inout [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable { }
 
     func encode<V>(object: V, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable { }
-    func encode<V>(object: V!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable { }
+    //func encode<V>(object: inout V!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable { }
 
     func encode<V>(object: [V], with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable { }
-    func encode<V>(object: [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable { }
+    //func encode<V>(object: inout [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable { }
 }

@@ -259,9 +259,9 @@ struct PaymentMethods: Decodable, Keyedable {
     mutating func map(map: KeyMap) throws {
         guard case .decoding(let keys) = map.type else { return }
 
-        try keys.all(for: CodingKeys.vault).forEach { key in
+        keys.all(for: CodingKeys.vault).forEach { key in
             var paymentMethod: PaymentMethod?
-            try paymentMethod <<- map[key]
+            try? paymentMethod <<- map[key]
             if let paymentMethod = paymentMethod {
                 userPaymentMethods.append(paymentMethod)
             }

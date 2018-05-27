@@ -60,17 +60,12 @@ class FlatTests: XCTestCase {
     }
     
     func testFlat() {
-        let jsonData = jsonString.data(using: .utf8)
+        let jsonData = jsonString.data(using: .utf8)!
 
-        guard let test = try? JSONDecoder().decode(InnerWithFlatExample.self, from: jsonData!) else {
-            XCTFail("InnerWithFlatExample cannot be parsed")
-            return
+        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: InnerWithFlatExample) in
+            XCTAssert(test.greeting == "hallo")
+            XCTAssert(test.location?.lattitude == 3.4)
+            XCTAssert(test.location?.longitude == 3.2)
         }
-
-        XCTAssert(test.greeting == "hallo")
-        XCTAssert(test.location?.lattitude == 3.4)
-        XCTAssert(test.location?.longitude == 3.2)
-
-        KeyedCodableTestHelper.checkEncode(codable: test)
     }
 }

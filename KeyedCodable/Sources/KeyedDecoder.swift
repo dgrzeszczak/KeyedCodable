@@ -53,7 +53,7 @@ private final class DecoderKeyMap: KeyMapBase {
         } else {
             let result = try keyedDecodingContainer(for: keyCode, options: options)
             if object is _Optional {
-                if let val = try? result.container.decode(V.self, forKey: result.key) {
+                if let val = try result.container.decodeIfPresent(V.self, forKey: result.key) {
                     object = val
                 }
             } else {
@@ -92,7 +92,7 @@ private final class DecoderKeyMap: KeyMapBase {
             object = newObject
         } else {
             if object is _Optional {
-                if let val = try? result.container.decode([V].self, forKey: result.key) {
+                if let val = try result.container.decodeIfPresent([V].self, forKey: result.key) {
                     object = val
                 }
             } else {
