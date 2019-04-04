@@ -14,7 +14,7 @@ public protocol Keyedable {
 }
 
 public extension Keyedable where Self: Encodable {
-    public func encode(to encoder: Encoder) throws {
+    func encode(to encoder: Encoder) throws {
         try KeyedEncoder(with: encoder).encode(from: self)
     }
 }

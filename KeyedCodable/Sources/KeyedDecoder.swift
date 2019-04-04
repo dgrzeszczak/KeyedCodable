@@ -45,32 +45,22 @@ private final class DecoderKeyMap: KeyMapBase {
 
     func decode<V>(object: inout V, with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable {
         if let flat = options.flat, flat == keyCode.stringValue {
-            if object is _Optional {
-                try? object = V(from: decoder)
-            } else {
-                try object = V(from: decoder)
-            }
-        } else {
-            let result = try keyedDecodingContainer(for: keyCode, options: options)
-            if object is _Optional {
-                if let val = try result.container.decodeIfPresent(V.self, forKey: result.key) {
-                    object = val
-                }
-            } else {
-                let val = try result.container.decode(V.self, forKey: result.key)
-                object = val
-            }
-        }
-    }
-
-    func decode<V>(object: inout V!, with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable {
-        if let flat = options.flat, flat == keyCode.stringValue {
             try object = V(from: decoder)
         } else {
             let result = try keyedDecodingContainer(for: keyCode, options: options)
-            let val = try result.container.decode(V.self, forKey: result.key)
+            object = try result.container.decode(V.self, forKey: result.key)
+        }
+    }
+
+    func decodeIfPresent<V>(object: inout V, with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable {
+        if let flat = options.flat, flat == keyCode.stringValue {
+            try? object = V(from: decoder)
+        } else {
+            guard let result = try? keyedDecodingContainer(for: keyCode, options: options) else { return }
+            guard let val = try result.container.decodeIfPresent(V.self, forKey: result.key) else { return }
             object = val
         }
+        
     }
 
     func decode<V>(object: inout [V], with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable {
@@ -91,18 +81,11 @@ private final class DecoderKeyMap: KeyMapBase {
             }
             object = newObject
         } else {
-            if object is _Optional {
-                if let val = try result.container.decodeIfPresent([V].self, forKey: result.key) {
-                    object = val
-                }
-            } else {
-                let val = try result.container.decode([V].self, forKey: result.key)
-                object = val
-            }
+            object = try result.container.decode([V].self, forKey: result.key)
         }
     }
 
-    func decode<V>(object: inout [V]!, with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable {
+    func decode<V>(object: inout [V]?, with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable {
         let result = try keyedDecodingContainer(for: keyCode, options: options)
         if  let optionalArrayElements = options.optionalArrayElements,
             !optionalArrayElements.isEmpty,
@@ -120,7 +103,30 @@ private final class DecoderKeyMap: KeyMapBase {
             }
             object = newObject
         } else {
-            let val = try result.container.decode([V].self, forKey: result.key)
+            object = try result.container.decode([V].self, forKey: result.key)
+        }
+    }
+
+    func decodeIfPresent<V>(object: inout [V], with keyCode: CodingKey, options: KeyOptions) throws where V: Decodable {
+        guard let result = try? keyedDecodingContainer(for: keyCode, options: options) else { return }
+
+        if  let optionalArrayElements = options.optionalArrayElements,
+            !optionalArrayElements.isEmpty,
+            result.key.stringValue.starts(with: optionalArrayElements) {
+            let key = Key(stringValue: String(result.key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
+
+            var unkeyedContainer = try result.container.nestedUnkeyedContainer(forKey: key)
+            var newObject = [V]()
+            while !unkeyedContainer.isAtEnd {
+                if let route = try? unkeyedContainer.decode(V.self) {
+                    newObject.append(route)
+                } else {
+                    _ = try? unkeyedContainer.decode(EmptyCodable.self)
+                }
+            }
+            object = newObject
+        } else {
+            guard let val = try result.container.decodeIfPresent([V].self, forKey: result.key) else { return }
             object = val
         }
     }

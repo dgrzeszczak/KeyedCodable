@@ -30,7 +30,7 @@ struct Location: Codable {
 
 struct InnerWithFlatExample: Codable, Keyedable {
     private(set) var greeting: String!
-    private(set) var location: Location?
+    private(set) var location: Location!
 
     enum CodingKeys: String, CodingKey {
         case greeting = "inner.greeting"

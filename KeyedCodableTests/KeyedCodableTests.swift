@@ -11,8 +11,12 @@ import XCTest
 struct KeyedCodableTestHelper {
 
     static func checkEncode<Type: Codable>(data: Data, testObject: (_ codable: Type) -> Void) {
-        guard let codable = try? JSONDecoder().decode(Type.self, from: data) else {
-            XCTFail("\(Type.self) cannot be parsed")
+
+        let codable: Type
+        do {
+            codable = try JSONDecoder().decode(Type.self, from: data)
+        } catch (let error) {
+            XCTFail("\(Type.self) cannot be parsed with error: \(error)")
             return
         }
 
@@ -38,7 +42,16 @@ struct KeyedCodableTestHelper {
 
         let jsonString1 = String(data: jsonData1, encoding: .utf8)
 
-        XCTAssert(jsonString == jsonString1)
+        XCTAssert(jsonString?.removedWhiteSpaces == jsonString1?.removedWhiteSpaces)
+    }
+}
+
+extension String {
+    var removedWhiteSpaces: String {
+        let characters = compactMap {
+            $0 == " " || $0 == "\t" || $0 == "\n" ? nil : $0
+        }
+        return String(characters.sorted())
     }
 }
 

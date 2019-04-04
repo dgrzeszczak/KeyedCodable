@@ -43,9 +43,15 @@ Unfortunatelly there is one drawback of doing it that way. Because of properties
 ## Map method implementation
 
 You can use three operators for your mappings: 
-- ```<->``` for Decoding and Encoding
-- ```<<-``` for decoding only
-- ```->>``` for encoding only
+- ```<->``` for decode and encode
+- ```<<-``` for decode only
+- ```->>``` for encode only
+
+and ifPresent equivalents:
+
+- ```<?>``` for decodeIfPresent and encodeIfPresent
+- ```<<?``` for decodeIfPresent only
+- ```?>>``` for encodeIfPresent only
 
 ## Keyedable example:
 ```swift
@@ -157,7 +163,7 @@ struct Location: Codable {
 
 struct InnerWithFlatExample: Codable, Keyedable {
     private(set) var greeting: String!
-    private(set) var location: Location?
+    private(set) var location: Location!
 
     enum CodingKeys: String, CodingKey {
         case greeting = "inner.greeting"

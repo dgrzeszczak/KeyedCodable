@@ -33,6 +33,35 @@ struct InnerExample: Codable, Keyedable {
     }
 }
 
+struct InnerExample1: Codable, Keyedable {
+
+    private(set) var greeting: String!
+    private(set) var description: String!
+    private(set) var details: Details!
+
+    struct Details: Codable, Keyedable {
+        private(set) var description: String!
+
+        mutating func map(map: KeyMap) throws {
+            try description <-> map["details.description"]
+        }
+
+        init(from decoder: Decoder) throws {
+            try KeyedDecoder(with: decoder).decode(to: &self)
+        }
+    }
+
+    mutating func map(map: KeyMap) throws {
+        try greeting <-> map["inner.greeting"]
+        try description <-> map["inner.details.description"]
+        try details <-> map["inner"]
+    }
+
+    init(from decoder: Decoder) throws {
+        try KeyedDecoder(with: decoder).decode(to: &self)
+    }
+}
+
 //MARK: second
 struct User: Codable {
     var name: String?
@@ -76,6 +105,32 @@ let orderDataResponseJson = """
 }
 """
 
+//MARK: third
+private let responseJsonString = """
+{
+    "data":null,
+    "message": "User not found.",
+    "status_code":401
+}
+"""
+
+struct Response: Codable, Keyedable {
+    var user: User?
+    var message: String?
+    var status_code: NSInteger!
+
+    mutating func map(map: KeyMap) throws {
+        try message <-> map["message"]
+        try user <?> map["data.user"]
+
+        try status_code <-> map["status_code"]
+    }
+
+    init(from decoder: Decoder) throws {
+        try KeyedDecoder(with: decoder).decode(to: &self)
+    }
+}
+
 class InnerTests: XCTestCase {
 
     override func setUp() {
@@ -97,6 +152,16 @@ class InnerTests: XCTestCase {
         }
     }
 
+    func testInner1() {
+        let jsonData = jsonString.data(using: .utf8)!
+
+        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: InnerExample1) in
+            XCTAssert(test.greeting == "Hallo world")
+            XCTAssert(test.description == "Its nice here")
+            XCTAssert(test.details.description == "Its nice here")
+        }
+    }
+
     func testResponse() {
         let jsonData = orderDataResponseJson.data(using: .utf8)!
         KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: OrderDataResponse) in
@@ -104,6 +169,16 @@ class InnerTests: XCTestCase {
             XCTAssert(test.address == "New York")
             XCTAssert(test.user?.name == "John")
             XCTAssert(test.data?.orderCount == 10)
+        }
+    }
+
+    func testOptionalResponse() {
+        let jsonData = responseJsonString.data(using: .utf8)!
+
+        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: Response) in
+            XCTAssert(test.user == nil)
+            XCTAssert(test.message == "User not found.")
+            XCTAssert(test.status_code == 401)
         }
     }
 }

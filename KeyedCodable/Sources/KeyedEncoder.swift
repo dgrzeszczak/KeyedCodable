@@ -127,6 +127,17 @@ private final class EncoderKeyMap: KeyMapBase {
         }
     }
 
+    func encodeIfPresent<V>(object: V?, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
+
+        if let flat = options.flat, flat == keyCode.stringValue {
+            try EncoderKeyMap.encodeIfPresent(object: object, encoding: .encoder(encoder))
+        } else {
+            node.node(for: keyCode.stringValue, options: options).root.append( { encoding in
+                try EncoderKeyMap.encodeIfPresent(object: object, encoding: encoding)
+            })
+        }
+    }
+
     func encode() throws {
         try node.encode(container: container)
     }
@@ -147,6 +158,38 @@ private final class EncoderKeyMap: KeyMapBase {
         })
     }
 
+    func encode<V>(object: [V]?, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
+        node.node(for: keyCode.stringValue, options: options).root.append( { encoding in
+
+            if  case .container(let container, let key) = encoding,
+                let optionalArrayElements = options.optionalArrayElements,
+                !optionalArrayElements.isEmpty,
+                key.stringValue.starts(with: optionalArrayElements) {
+                let key = Key(stringValue: String(key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
+
+                try EncoderKeyMap.encode(object: object, encoding: .container(container, key: key))
+            } else {
+                try EncoderKeyMap.encode(object: object, encoding: encoding)
+            }
+        })
+    }
+
+    func encodeIfPresent<V>(object: [V]?, with keyCode: CodingKey, options: KeyOptions) throws where V: Encodable {
+        node.node(for: keyCode.stringValue, options: options).root.append( { encoding in
+
+            if  case .container(let container, let key) = encoding,
+                let optionalArrayElements = options.optionalArrayElements,
+                !optionalArrayElements.isEmpty,
+                key.stringValue.starts(with: optionalArrayElements) {
+                let key = Key(stringValue: String(key.stringValue.dropFirst(optionalArrayElements.count))) // "optional" array
+
+                try EncoderKeyMap.encodeIfPresent(object: object, encoding: .container(container, key: key))
+            } else {
+                try EncoderKeyMap.encodeIfPresent(object: object, encoding: encoding)
+            }
+        })
+    }
+
     private static func encode<V>(object: V, encoding: Encoding) throws where V: Encodable {
         if let optional = object as? _Optional {
             if let value = optional.value {
@@ -160,6 +203,13 @@ private final class EncoderKeyMap: KeyMapBase {
             case .encoder(let encoder): try object.encode(to: encoder)
             case .container(var container, let key): try container.encode(object, forKey: key)
             }
+        }
+    }
+
+    private static func encodeIfPresent<V>(object: V?, encoding: Encoding) throws where V: Encodable {
+        switch encoding {
+        case .encoder(let encoder): try object?.encode(to: encoder)
+        case .container(var container, let key): try container.encodeIfPresent(object, forKey: key)
         }
     }
 }

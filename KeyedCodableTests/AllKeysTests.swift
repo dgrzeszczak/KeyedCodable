@@ -68,7 +68,7 @@ struct PaymentMethods: Decodable, Keyedable {
         try autoTopUpToken <<- map[CodingKeys.autoTopUpToken]
         guard case .decoding(let keys) = map.type else { return }
 
-        keys.all(for: CodingKeys.vault).forEach { key in
+        keys.all(for: CodingKeys.vault).sorted { $0.stringValue > $1.stringValue }.forEach { key in
             var paymentMethod: PaymentMethod?
             try? paymentMethod <<- map[key]
             if let paymentMethod = paymentMethod {
