@@ -357,3 +357,7 @@ struct KeyOptionsExample: Codable, Keyedable {
     }
 }
 ```
+## Migration to 1.2.0 version 
+
+Because of swift5 changes about optionals you can find the issues with parsing your optional properties in your Keyedable objects in 1.1.0 version. 
+Because of that ```ifPresent``` operators were introduced and it's recommended to use that operators ie: ``` <?> <<? ?>>``` for all optional properties and standard operators ie: ```<-> <<- ->>``` for implicitly unwrapped optionals. 
