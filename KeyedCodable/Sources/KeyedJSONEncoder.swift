@@ -8,9 +8,9 @@
 //
 import Foundation
 
-public class KeyedJSONEncoder: JSONEncoder {
+open class KeyedJSONEncoder: JSONEncoder {
 
-    public override func encode<T>(_ value: T) throws -> Data where T : Encodable {
+    open override func encode<T>(_ value: T) throws -> Data where T : Encodable {
         return try super.encode(KeyedEncodable(value: value))
     }
 }

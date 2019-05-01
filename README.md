@@ -5,81 +5,19 @@
 
 # Is this another JSON parsing library ? 
 
-*KeyedCodable* is an addition to swift's *Codable* introduced in swift 4. It’s great we can use automatic implementation of *Codable* methods but when we have to implement them manually it often brings boilerplate code - especially when we need to implement both encoding and decoding methods for complicated JSON's structure. 
+*KeyedCodable* is an addition to swift's *Codable* introduced in swift 4. It’s great we can use automatic implementation of *Codable* methods but when we have to implement them manually it often brings boilerplate code - especially when you need both to encode and decode nested keys in complicated JSON's structure. 
 
 # The goal 
 
-The goal it to make manual implementation of *Encodable/Decodable* easier, more readable, less boilerplate and what is the most important fully compatible with 'standard' *Codable*.
+The goal it to avoid manual implementation of *Encodable/Decodable* and make encoding/decoding easier, more readable, less boilerplate and what is the most important fully compatible with 'standard' *Codable*. 
 
-To support *KeyedCodable* you need to implement ```Keyedable``` protocol ie. implement ```map``` method:
-```swift
-func map(map: KeyMap) throws 
-```
-## Encoding
+## How to use?
 
-There is an default implementation of *Encodable’s* ```encode(to encoder: Encoder)``` method in *KeyedCodable*. If you need to change/override it please remember to call *KeyedEncoder* to make your mappings work.
-```swift
-func encode(to encoder: Encoder) throws {
-	try KeyedEncoder(with: encoder).encode(from: self)
-}
-```
-## Decoding 
+To support *KeyedCodable* you have to use ```KeyedJSONEncoder```/```KeyedJSONDecoder``` in place of standard ```JSONEncoder```/```JSONDecoder``` and use ```KeyedKey``` intead of ```CodingKey``` for your ```CodingKeys``` enums. Please notice that *Keyed* versions are the wrappers around (inherits from) standard versions so they are fully compatible. 
 
-If you are implementing Decodable you have to add constructor like this:
-
-**for structs:**
-```swift
-init(from decoder: Decoder) throws {
-	try KeyedDecoder(with: decoder).decode(to: &self)
-}
-```
-**for classes:**
-```swift
-init(from decoder: Decoder) throws {
-	try KeyedDecoder(with: decoder).decode(to: self)
-}
-```
-
-Unfortunatelly there is one drawback of doing it that way. Because of properties are not initialized in constructor (decoding is moved to to ```map()``` function) we have to use *Optionals* and *Implicit Unwrapped Optionals*. *Optionals* are used for non required and *Implicit Unwrapped Optional* for required mappings.
-
-## Map method implementation
-
-You can use three operators for your mappings: 
-- ```<->``` for decode and encode
-- ```<<-``` for decode only
-- ```->>``` for encode only
-
-and ifPresent equivalents:
-
-- ```<?>``` for decodeIfPresent and encodeIfPresent
-- ```<<?``` for decodeIfPresent only
-- ```?>>``` for encodeIfPresent only
-
-## Keyedable example:
-```swift
-    enum CodingKeys: String, CodingKey {
-        case greeting = "inner.greeting"
-        case description = "inner.details.description"
-    }
-
-    mutating func map(map: KeyMap) throws {
-        try greeting <-> map[CodingKeys.greeting]
-        try description <-> map[CodingKeys.description]
-    }
-```
-
-or without the  ```CodingKeys``` : 
-
-```swift
-mutating func map(map: KeyMap) throws {
-    try greeting <-> map["inner.greeting"]
-    try description <-> map["inner.details.description"]
-}
-```
-
-# Inner keys - Encode and Decode Manually - comparison with Apple example
+# Inner keys (comparison with example from Apple)
 First, please have a look on Codable example provided by Apple.
-## Codable example:
+## vanilla Codable example:
 ```swift
 struct Coordinate {
     var latitude: Double
@@ -120,30 +58,26 @@ extension Coordinate: Encodable {
 }
 ```
 
-## Using KeyedCodable:
+## using KeyedCodable:
 ```swift
-struct Coordinate: Codable, Keyedable {
-    var latitude: Double!
-    var longitude: Double!
-    var elevation: Double!
-
-    mutating func map(map: KeyMap) throws {
-        try latitude <-> map["latitude"]
-        try longitude <-> map["longitude"]
-        try elevation <-> map["additionalInfo.elevation"]
-    }
-
-    init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
+struct Coordinate: Codable {
+    var latitude: Double
+    var longitude: Double
+    var elevation: Double
+    
+    enum CodingKeys: String, KeyedKey {
+        case latitude
+        case longitude
+        case elevation = "additionalInfo.elevation"
     }
 }
 ```
-You can notice that using *KeyedCodable* require lot less code even there is only one nested property in this example. 
+You can notice by using *KeyedCodable* you don't need to implement ```Codable``` manually so it require a lot less code even for single nested property. 
 
-**By default dot is used for separate the inner keys.*
+**By default dot is used as delimiter to separate the inner keys**
 
 # Flat classes
-Sometimes you can have json with all properties in one big class. Flat feature allows you to group those properties in smaller classes. It can be also useful for grouping not required properties. 
+Sometimes you may get the json with all properties in one big class. Flat feature allows you to group properties into smaller classes. It may be also useful for grouping not required properties. 
 
 ## Example JSON
 ```json
@@ -164,33 +98,24 @@ struct Location: Codable {
 }
 
 struct InnerWithFlatExample: Codable, Keyedable {
-    private(set) var greeting: String!
-    private(set) var location: Location!
+    let greeting: String
+    let location: Location?
 
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, KeyedKey {
         case greeting = "inner.greeting"
         case location = ""
-    }
-
-    mutating func map(map: KeyMap) throws {
-        try greeting <-> map[CodingKeys.greeting]
-        try location <-> map[CodingKeys.location]
-    }
-
-    init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
     }
 }
 ```
 
 In this example two use cases are shown: 
-- longitude and latitude are placed in json main class but we 'moved' them to struct called Location 
+- longitude and latitude are placed in json main class but we 'moved' them into separate struct called Location 
 - both longitude and latitude are optional. If both or one of them are missing then location property will be nil.
 
-**By default empty string is used to mark flat class*
+**By default empty string or whitespaces are used to mark flat class**
 
-# Optional array elements
-By default decoding of array will fail if decoding of any array element fails. Sometimes instead of having empty list it would be better to have a list that contains all proper elements and omits wrong ones.
+# Flat arrays
+By default decoding of whole array will fail if decoding of any array's element fails. Sometimes instead of having empty list it would be better to have a list that contains all valid elements and omits wrong ones
 ## Example JSON
 ```json
 {
@@ -214,77 +139,22 @@ struct ArrayElement: Codable {
     let element: Int
 }
 
-struct OptionalArrayElementsExample: Codable, Keyedable {
-    private(set) var array: [ArrayElement]!
+struct OptionalArrayElementsExample: Codable {
+    let array: [ArrayElement]
 
-    enum CodingKeys: String, CodingKey {
-        case array = "* array"
-    }
-
-    mutating func map(map: KeyMap) throws {
-        try array <-> map[CodingKeys.array]
-    }
-
-    init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
+    enum CodingKeys: String, KeyedKey {
+        case array = ".array"
     }
 }
 ```
 
-In example above ```array``` will contain three elements [1,3,4] even though decoding second element fails.
+In example above ```array``` property will contain three elements [1,3,4] even though decoding second element 'fails'.
 
-**By default ```* ``` (aterisk + space) is used to mark optional array*
-
-# All keys
-During decoding process you can get all possible keys 
-## Example JSON
-```json
-{
-    "vault": {
-        "0": {
-            "type": "Braintree_CreditCard"
-        },
-        "1": {
-            "type": "Braintree_CreditCard"
-        },
-        "2": {
-            "type": "Braintree_PayPalAccount"
-        },
-    }
-}
-```
-## Keyedable
-```swift
-
-struct PaymentMethods: Decodable, Keyedable {
-
-    private(set) var userPaymentMethods: [PaymentMethod] = []
-
-    enum CodingKeys: String, CodingKey {
-        case vault
-    }
-
-    mutating func map(map: KeyMap) throws {
-        guard case .decoding(let keys) = map.type else { return }
-
-        keys.all(for: CodingKeys.vault).forEach { key in
-            var paymentMethod: PaymentMethod?
-            try? paymentMethod <<- map[key]
-            if let paymentMethod = paymentMethod {
-                userPaymentMethods.append(paymentMethod)
-            }
-        }
-    }
-
-    public init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
-    }
-}
-```
+**You can mark your flat array by prefixing the array's name by 'flat + delimiter' so it is 'empty string + dot' by default**
 
 # KeyOptions
 
-It may happen that keys in your json file contain for example dots. In that situation you can disable or configure mapping features using ```KeyOptions``` parameter. You can set ```nil``` to disable feature at all or any ```String``` to change behaviour.
+It may happen that keys in the json will conflict with delimiters used by ```KeyedCodable``` - eg. dots used for nested keys. In situations like that you may configure mapping features (delimiters and flat strings) and also you may disable the feature at all. You may do that by providing ```options: KeyOptions?``` property in your CodingKeys (please return ```nil``` to use the default ```KeyOptions``` ).
 ## Example JSON
 ```json
 {
@@ -325,41 +195,40 @@ It may happen that keys in your json file contain for example dots. In that situ
 ```
 ## Keyedable
 ```swift
-struct KeyOptionsExample: Codable, Keyedable {
-    private(set) var greeting: String!
-    private(set) var description: String!
-    private(set) var name: String!
-    private(set) var location: Location!
-    private(set) var array: [ArrayElement]!
-    private(set) var array1: [ArrayElement]!
+struct KeyOptionsExample: Codable {
+    let greeting: String
+    let description: String
+    let name: String
+    let location: Location
+    let array: [ArrayElement]
+    let array1: [ArrayElement]
 
 
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, KeyedKey {
         case location = "__"
         case name = "* name"
         case greeting = "+.greeting"
         case description = ".details.description"
 
-        case array = "### array"
-        case array1 = "### * array1"
+        case array = "### .array"
+        case array1 = "### .* array1"
 
-    }
-
-    mutating func map(map: KeyMap) throws {
-        try name <-> map[CodingKeys.name]
-        try greeting <-> map[CodingKeys.greeting, KeyOptions(delimiter: "+", flat: nil)]
-        try description <-> map[CodingKeys.description, KeyOptions(flat: nil)]
-        try location <-> map[CodingKeys.location, KeyOptions(flat: "__")]
-        try array <-> map[CodingKeys.array, KeyOptions(optionalArrayElements: "### ")]
-        try array1 <-> map[CodingKeys.array1, KeyOptions(optionalArrayElements: "### ")]
-    }
-
-    init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
+        var options: KeyOptions? {
+            switch self {
+            case .greeting: return KeyOptions(delimiter: .character("+"), flat: .none)
+            case .description: return KeyOptions(flat: .none)
+            case .location: return KeyOptions(flat: .string("__"))
+            case .array, .array1: return KeyOptions(flat: .string("### "))
+            default: return nil
+            }
+        }
     }
 }
 ```
-## Migration to 1.2.0 version 
+## Migration to 2.0.0 version 
 
-Because of swift5 changes about optionals you can find the issues with parsing your optional properties in your Keyedable objects in 1.1.0 version. 
-Because of that ```ifPresent``` operators were introduced and it's recommended to use that operators ie: ``` <?> <<? ?>>``` for all optional properties and standard operators ie: ```<-> <<- ->>``` for implicitly unwrapped optionals. 
+Unfortunately 2.0.0 version is not compatible with 1.x.x versions but I believe that new way is much better and it brings less boilerplate than previous versions. There is no need to add any manual mapping implementation, it's really simple so I strongly recommend to migrate to new version. All you need is to: 
+- use ```KeyedJSONEncoder``` \ ```KeyedJSONDecoder``` instead of ```JSONEncoder``` \ ```JSONDecoder``` !!
+- change you CodingKeys to ```KeyedKey``` and move your mappings here
+- remove ```KeyedCodable``` protocol
+- remove constructor and map method

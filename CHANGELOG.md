@@ -1,3 +1,9 @@
+## [2.0.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/2.0.0)
+
+#### New
+- redesigned way of encoding and decoding the keyed codables
+
+
 ## [1.2.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/1.2.0)
 
 #### New

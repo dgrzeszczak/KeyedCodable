@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class KeyedJSONDecoder: JSONDecoder {
+open class KeyedJSONDecoder: JSONDecoder {
 
-    public override func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T {
+    open override func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T {
         return try super.decode(KeyedDecodable<T>.self, from: data).value
     }
 }

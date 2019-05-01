@@ -33,7 +33,7 @@ struct ArrayElement: Codable {
 }
 
 struct OptionalArrayElementsExample: Codable {
-    private(set) var array: [ArrayElement]
+    let array: [ArrayElement]
 
     enum CodingKeys: String, KeyedKey {
         case array = ".array"

@@ -47,7 +47,6 @@ struct InnerExample1: Codable {
     let greeting: String
     let description: String
     let details: Details
-    let dupa: String?
 
     struct Details: Codable {
         enum CodingKeys: String, KeyedKey {
@@ -59,7 +58,6 @@ struct InnerExample1: Codable {
     enum CodingKeys: String, KeyedKey {
         case greeting = "inner.greeting"
         case description = "inner.details.description"
-        case dupa
         case details = "inner"
     }
 }
