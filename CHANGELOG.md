@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/1.2.0)
+
+#### New
+- ifPresent operators added
+- swift 5 migration
+
 ## [1.1.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/v1.1.0)
 
 #### Fixed
