@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'KeyedCodable'
-  s.version = '1.1.0'
+  s.version = '1.2.0'
   s.license = 'MIT'
   s.summary = 'Elegant way of manual swift Codable implementation with easy key mappings'
   s.description = <<-DESC
@@ -10,7 +10,7 @@ The goal it to make manual implementation of Encodable/Decodable easier, more re
 
   s.homepage = 'https://github.com/dgrzeszczak/KeyedCodable'
   s.authors = { 'Dariusz Grzeszczak' => 'dariusz.grzeszczak@interia.pl' }
-  s.source = { :git => 'https://github.com/dgrzeszczak/KeyedCodable.git', :tag => s.version.to_s }
+  s.source = { :git => 'https://github.com/dgrzeszczak/KeyedCodable.git', :tag => s.version }
 
   s.watchos.deployment_target = '2.0'
   s.ios.deployment_target = '8.0'

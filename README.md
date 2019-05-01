@@ -1,5 +1,7 @@
-[![CocoaPods](https://img.shields.io/cocoapods/v/ObjectMapper.svg)](https://cocoapods.org/pods/KeyedCodable)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Version](https://img.shields.io/cocoapods/v/KeyedCodable.svg?style=flat)](https://cocoapods.org/pods/KeyedCodable)
+[![License](https://img.shields.io/cocoapods/l/KeyedCodable.svg?style=flat)](https://cocoapods.org/pods/KeyedCodable)
+[![Platform](https://img.shields.io/cocoapods/p/KeyedCodable.svg?style=flat)](https://cocoapods.org/pods/KeyedCodable)
 
 # Is this another JSON parsing library ? 
 
@@ -43,9 +45,15 @@ Unfortunatelly there is one drawback of doing it that way. Because of properties
 ## Map method implementation
 
 You can use three operators for your mappings: 
-- ```<->``` for Decoding and Encoding
-- ```<<-``` for decoding only
-- ```->>``` for encoding only
+- ```<->``` for decode and encode
+- ```<<-``` for decode only
+- ```->>``` for encode only
+
+and ifPresent equivalents:
+
+- ```<?>``` for decodeIfPresent and encodeIfPresent
+- ```<<?``` for decodeIfPresent only
+- ```?>>``` for encodeIfPresent only
 
 ## Keyedable example:
 ```swift
@@ -157,7 +165,7 @@ struct Location: Codable {
 
 struct InnerWithFlatExample: Codable, Keyedable {
     private(set) var greeting: String!
-    private(set) var location: Location?
+    private(set) var location: Location!
 
     enum CodingKeys: String, CodingKey {
         case greeting = "inner.greeting"
@@ -351,3 +359,7 @@ struct KeyOptionsExample: Codable, Keyedable {
     }
 }
 ```
+## Migration to 1.2.0 version 
+
+Because of swift5 changes about optionals you can find the issues with parsing your optional properties in your Keyedable objects in 1.1.0 version. 
+Because of that ```ifPresent``` operators were introduced and it's recommended to use that operators ie: ``` <?> <<? ?>>``` for all optional properties and standard operators ie: ```<-> <<- ->>``` for implicitly unwrapped optionals. 
