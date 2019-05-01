@@ -13,7 +13,7 @@ The goal it to avoid manual implementation of *Encodable/Decodable* and make enc
 
 ## How to use?
 
-To support *KeyedCodable* you have to use ```KeyedJSONEncoder```/```KeyedJSONDecoder``` in place of standard ```JSONEncoder```/```JSONDecoder``` and use ```KeyedKey``` intead of ```CodingKey``` for your ```CodingKeys``` enums. Please notice that *Keyed* versions are the wrappers around (inherits from) standard versions so they are fully compatible. 
+To support *KeyedCodable* you have to use ```KeyedJSONEncoder```/```KeyedJSONDecoder``` in place of standard ```JSONEncoder```/```JSONDecoder``` and use ```KeyedKey``` intead of ```CodingKey``` for your ```CodingKeys``` enums. *Keyed* versions are the wrappers around (inherits from) standard versions so they are fully compatible. 
 
 # Inner keys (comparison with example from Apple)
 First, please have a look on Codable example provided by Apple.
@@ -72,7 +72,7 @@ struct Coordinate: Codable {
     }
 }
 ```
-You can notice by using *KeyedCodable* you don't need to implement ```Codable``` manually so it require a lot less code even for single nested property. 
+By using *KeyedCodable* you don't need to implement ```Codable``` manually so it require a lot less code even for single nested property. 
 
 **By default dot is used as delimiter to separate the inner keys**
 
