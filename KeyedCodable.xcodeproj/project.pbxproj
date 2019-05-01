@@ -88,7 +88,6 @@
 		0823925620A56CED006C45B2 /* FlatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatTests.swift; sourceTree = "<group>"; };
 		0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalArrayElementTests.swift; sourceTree = "<group>"; };
 		0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyOptionsTests.swift; sourceTree = "<group>"; };
-		08599527224A9BEB001E0CE0 /* ZeroDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroDecodable.swift; sourceTree = "<group>"; };
 		086C497320BAEBFA008DB20C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
 		0889DB5420699EA8008A0A13 /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0889DB5720699EA8008A0A13 /* KeyedCodable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyedCodable.h; sourceTree = "<group>"; };
@@ -224,7 +223,6 @@
 				0889DB9C2069A2F5008A0A13 /* KeyedConfig.swift */,
 				0889DB8920699FF0008A0A13 /* KeyedJSONEncoder.swift */,
 				0889DB8B2069A01E008A0A13 /* KeyedJSONDecoder.swift */,
-				08599527224A9BEB001E0CE0 /* ZeroDecodable.swift */,
 				0889DB902069A1A3008A0A13 /* AnyKey.swift */,
 				0889DB9F2069A344008A0A13 /* Helpers.swift */,
 			);
