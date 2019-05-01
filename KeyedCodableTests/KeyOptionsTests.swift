@@ -5,6 +5,7 @@
 //  Created by Dariusz Grzeszczak on 11/05/2018.
 //
 
+import KeyedCodable
 import XCTest
 
 //********** KeyOptions
@@ -49,37 +50,33 @@ private let jsonString = """
 }
 """
 
-struct KeyOptionsExample: Codable, Keyedable {
-    private(set) var greeting: String!
-    private(set) var description: String!
-    private(set) var name: String!
-    private(set) var location: Location!
-    private(set) var array: [ArrayElement]!
-    private(set) var array1: [ArrayElement]!
+struct KeyOptionsExample: Codable {
+    let greeting: String
+    let description: String
+    let name: String
+    let location: Location
+    let array: [ArrayElement]
+    let array1: [ArrayElement]
 
 
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, KeyedKey {
         case location = "__"
         case name = "* name"
         case greeting = "+.greeting"
         case description = ".details.description"
 
-        case array = "### array"
-        case array1 = "### * array1"
+        case array = "### .array"
+        case array1 = "### .* array1"
 
-    }
-
-    mutating func map(map: KeyMap) throws {
-        try name <-> map[CodingKeys.name]
-        try greeting <-> map[CodingKeys.greeting, KeyOptions(delimiter: "+", flat: nil)]
-        try description <-> map[CodingKeys.description, KeyOptions(flat: nil)]
-        try location <-> map[CodingKeys.location, KeyOptions(flat: "__")]
-        try array <-> map[CodingKeys.array, KeyOptions(optionalArrayElements: "### ")]
-        try array1 <-> map[CodingKeys.array1, KeyOptions(optionalArrayElements: "### ")]
-    }
-
-    init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
+        var options: KeyOptions? {
+            switch self {
+            case .greeting: return KeyOptions(delimiter: .character("+"), flat: .none)
+            case .description: return KeyOptions(flat: .none)
+            case .location: return KeyOptions(flat: .string("__"))
+            case .array, .array1: return KeyOptions(flat: .string("### "))
+            default: return nil
+            }
+        }
     }
 }
 
@@ -98,7 +95,7 @@ class KeyOptionsTests: XCTestCase {
     func testKeyOptions() {
         let jsonData = jsonString.data(using: .utf8)!
 
-        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: KeyOptionsExample) in
+        KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: KeyOptionsExample) in
 
             XCTAssert(test.name == "John")
 
@@ -118,13 +115,5 @@ class KeyOptionsTests: XCTestCase {
             XCTAssert(test.array1[1].element == 3)
             XCTAssert(test.array1[2].element == 4)
         }
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+    }    
 }

@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import KeyedCodable
 
 // by default parsing all array will fail when any of element fail
 // you can mark array an optional - so it will ommit element that couldn't be parsed (eg. some field missing)
@@ -31,19 +32,11 @@ struct ArrayElement: Codable {
     let element: Int
 }
 
-struct OptionalArrayElementsExample: Codable, Keyedable {
-    private(set) var array: [ArrayElement]!
+struct OptionalArrayElementsExample: Codable {
+    private(set) var array: [ArrayElement]
 
-    enum CodingKeys: String, CodingKey {
-        case array = "* array"
-    }
-
-    mutating func map(map: KeyMap) throws {
-        try array <-> map[CodingKeys.array]
-    }
-
-    init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
+    enum CodingKeys: String, KeyedKey {
+        case array = ".array"
     }
 }
 
@@ -62,7 +55,7 @@ class OptionalArrayElementTests: XCTestCase {
     func testOptionalArrayElement() {
         let jsonData = jsonString.data(using: .utf8)!
 
-        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: OptionalArrayElementsExample) in
+        KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: OptionalArrayElementsExample) in
             // returns array with 3 elements, empty element will be omitted
             XCTAssert(test.array.count == 3)
             XCTAssert(test.array[0].element == 1)
@@ -70,12 +63,4 @@ class OptionalArrayElementTests: XCTestCase {
             XCTAssert(test.array[2].element == 4)
         }
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }

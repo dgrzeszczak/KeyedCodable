@@ -5,7 +5,7 @@
 //  Created by Dariusz Grzeszczak on 11/05/2018.
 //
 
-@testable import KeyedCodable
+import KeyedCodable
 import XCTest
 
 private let jsonString = """
@@ -19,19 +19,51 @@ private let jsonString = """
 }
 """
 
-struct InnerExample: Codable, Keyedable {
-    private(set) var greeting: String!
-    private(set) var description: String!
+struct StandardExample: Codable {
+    let inner: Inner
 
-    mutating func map(map: KeyMap) throws {
-        try greeting <-> map["inner.greeting"]
-        try description <-> map["inner.details.description"]
+    struct Inner: Codable {
+        let greeting: String
+        let details: Details
     }
 
-    init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
+    struct Details: Codable {
+        let description: String
     }
 }
+
+struct InnerExample: Codable {
+    let greeting: String
+    let description: String
+
+    enum CodingKeys: String, KeyedKey {
+        case greeting = "inner.greeting"
+        case description = "inner.details.description"
+    }
+}
+
+struct InnerExample1: Codable {
+
+    let greeting: String
+    let description: String
+    let details: Details
+    let dupa: String?
+
+    struct Details: Codable {
+        enum CodingKeys: String, KeyedKey {
+            case description = "details.description"
+        }
+        let description: String
+    }
+
+    enum CodingKeys: String, KeyedKey {
+        case greeting = "inner.greeting"
+        case description = "inner.details.description"
+        case dupa
+        case details = "inner"
+    }
+}
+
 
 //MARK: second
 struct User: Codable {
@@ -44,22 +76,18 @@ struct OrderData: Codable {
     var orderCount: Int
 }
 
-struct ApiResponse<DataType: Codable>: Codable, Keyedable {
+struct ApiResponse<DataType: Codable>: Codable {
     // MARK: Properties
-    var result: String!
+    var result: String
     var user: User?
-    var address: String!
+    var address: String
     var data: DataType?
 
-    mutating func map(map: KeyMap) throws {
-        try result <-> map["result"]
-        try address <-> map["data.user.address"]
-        try user <-> map["data.user"]
-        try data <-> map["data"]
-    }
-
-    init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
+    enum CodingKeys: String, KeyedKey {
+        case result
+        case user = "data.user"
+        case address = "data.user.address"
+        case data
     }
 }
 
@@ -99,11 +127,31 @@ class InnerTests: XCTestCase {
 
     func testResponse() {
         let jsonData = orderDataResponseJson.data(using: .utf8)!
-        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: OrderDataResponse) in
+
+        KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: OrderDataResponse) in
             XCTAssert(test.result == "OK")
             XCTAssert(test.address == "New York")
             XCTAssert(test.user?.name == "John")
             XCTAssert(test.data?.orderCount == 10)
+        }
+    }
+
+    func testStandard() {
+        let jsonData = jsonString.data(using: .utf8)!
+
+        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: StandardExample) in
+            XCTAssert(test.inner.greeting == "Hallo world")
+            XCTAssert(test.inner.details.description == "Its nice here")
+        }
+    }
+
+    func testInner1() {
+        let jsonData = jsonString.data(using: .utf8)!
+
+        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: InnerExample1) in
+            XCTAssert(test.greeting == "Hallo world")
+            XCTAssert(test.description == "Its nice here")
+            XCTAssert(test.details.description == "Its nice here")
         }
     }
 }

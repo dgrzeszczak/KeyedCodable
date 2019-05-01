@@ -5,14 +5,9 @@
 //  Created by Dariusz Grzeszczak on 11/05/2018.
 //
 
+import KeyedCodable
 import XCTest
 
-//!!!!! it's recomended to use before other mappings (on begining of map() function)
-//!!!!! due to swift issue it may throw strange error when used after "optional array elements" mapping
-//
-// ==== it seems it is fixed in swift 4.1
-
-//
 private let jsonString = """
 {
     "inner": {
@@ -25,44 +20,35 @@ private let jsonString = """
 
 struct Location: Codable {
     let lattitude: Double
-    let longitude: Double
+    let longitude: Double?
 }
 
-struct InnerWithFlatExample: Codable, Keyedable {
-    private(set) var greeting: String!
-    private(set) var location: Location?
+struct InnerWithFlatExample: Codable {
+    let greeting: String
+    let location: Location?
 
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, KeyedKey {
         case greeting = "inner.greeting"
         case location = ""
-    }
-
-    mutating func map(map: KeyMap) throws {
-        try greeting <-> map[CodingKeys.greeting]
-        try location <-> map[CodingKeys.location]
-    }
-
-    init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
     }
 }
 
 class FlatTests: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testFlat() {
         let jsonData = jsonString.data(using: .utf8)!
 
-        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: InnerWithFlatExample) in
+        KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: InnerWithFlatExample) in
             XCTAssert(test.greeting == "hallo")
             XCTAssert(test.location?.lattitude == 3.4)
             XCTAssert(test.location?.longitude == 3.2)

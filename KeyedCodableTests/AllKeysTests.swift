@@ -5,7 +5,7 @@
 //  Created by Dariusz Grzeszczak on 09/04/2018.
 //
 
-@testable import KeyedCodable
+import KeyedCodable
 import XCTest
 
 private let jsonString = """
@@ -34,51 +34,36 @@ private let jsonString = """
 }
 """
 
-struct PaymentMethod: Decodable, Keyedable {
+struct PaymentMethod: Decodable {
 
-    private(set) public var type: String!
-    private(set) public var isDefault: Bool!
+    let type: String
+    let isDefault: Bool
 
-    public enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, KeyedKey {
         case type
         case isDefault = "_attributes.default"
     }
-
-    public mutating func map(map: KeyMap) throws {
-        try type <<- map[CodingKeys.type]
-        try isDefault <<- map[CodingKeys.isDefault]
-    }
-
-    public init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
-    }
 }
 
-struct PaymentMethods: Decodable, Keyedable {
+struct PaymentMethods: Decodable {
 
-    private(set) var userPaymentMethods: [PaymentMethod] = []
-    private(set) var autoTopUpToken: String?
+    let userPaymentMethods: [PaymentMethod]
+    let autoTopUpToken: String?
 
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, KeyedKey {
         case autoTopUpToken = "vault.autoTopup"
         case vault
     }
 
-    mutating func map(map: KeyMap) throws {
-        try autoTopUpToken <<- map[CodingKeys.autoTopUpToken]
-        guard case .decoding(let keys) = map.type else { return }
-
-        keys.all(for: CodingKeys.vault).forEach { key in
-            var paymentMethod: PaymentMethod?
-            try? paymentMethod <<- map[key]
-            if let paymentMethod = paymentMethod {
-                userPaymentMethods.append(paymentMethod)
-            }
-        }
-    }
-
     public init(from decoder: Decoder) throws {
-        try KeyedDecoder(with: decoder).decode(to: &self)
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        autoTopUpToken = try container.decode(String.self, forKey: .autoTopUpToken)
+
+        let universalContainer = try container.nestedContainer(keyedBy: AnyKey.self, forKey: .vault)
+        userPaymentMethods = universalContainer.allKeys
+            .sorted { $0.stringValue < $1.stringValue }
+            .compactMap { try? universalContainer.decode(PaymentMethod.self, forKey: $0) }
     }
 }
 
@@ -99,7 +84,7 @@ class AllKeysTests: XCTestCase {
 
         var test: PaymentMethods!
         do {
-            test = try JSONDecoder().decode(PaymentMethods.self, from: jsonData)
+            test = try KeyedJSONDecoder().decode(PaymentMethods.self, from: jsonData)
         } catch ( let error ) {
             XCTFail("PaymentMethods cannot be parsed")
             print(error.localizedDescription)
