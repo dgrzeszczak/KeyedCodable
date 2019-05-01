@@ -97,7 +97,7 @@ struct Location: Codable {
     let longitude: Double
 }
 
-struct InnerWithFlatExample: Codable, Keyedable {
+struct InnerWithFlatExample: Codable {
     let greeting: String
     let location: Location?
 
