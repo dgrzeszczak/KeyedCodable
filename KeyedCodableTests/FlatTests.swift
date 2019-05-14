@@ -14,12 +14,12 @@ private let jsonString = """
         "greeting": "hallo"
     },
     "longitude": 3.2,
-    "lattitude": 3.4
+    "latitude": 3.4
 }
 """
 
 struct Location: Codable {
-    let lattitude: Double
+    let latitude: Double
     let longitude: Double?
 }
 
@@ -50,7 +50,7 @@ class FlatTests: XCTestCase {
 
         KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: InnerWithFlatExample) in
             XCTAssert(test.greeting == "hallo")
-            XCTAssert(test.location?.lattitude == 3.4)
+            XCTAssert(test.location?.latitude == 3.4)
             XCTAssert(test.location?.longitude == 3.2)
         }
     }

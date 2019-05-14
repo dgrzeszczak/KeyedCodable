@@ -22,7 +22,7 @@ private let jsonString = """
         }
     },
     "longitude": 3.2,
-    "lattitude": 3.4,
+    "latitude": 3.4,
     "array": [
     {
     "element": 1
@@ -102,7 +102,7 @@ class KeyOptionsTests: XCTestCase {
             XCTAssert(test.greeting == "Hallo world")
             XCTAssert(test.description == "Its nice here")
 
-            XCTAssert(test.location.lattitude == 3.4)
+            XCTAssert(test.location.latitude == 3.4)
             XCTAssert(test.location.longitude == 3.2)
 
             XCTAssert(test.array.count == 3)

@@ -89,14 +89,14 @@ Sometimes you may get the json with all properties in one big class. Flat featur
         "greeting": "hallo"
     },
     "longitude": 3.2,
-    "lattitude": 3.4
+    "latitude": 3.4
 }
 ```
 
 ## Keyedable
 ```swift
 struct Location: Codable {
-    let lattitude: Double
+    let latitude: Double
     let longitude: Double
 }
 
@@ -169,7 +169,7 @@ It may happen that keys in the json will conflict with delimiters used by ```Key
         }
     },
     "longitude": 3.2,
-    "lattitude": 3.4,
+    "latitude": 3.4,
     "array": [
     {
     "element": 1
