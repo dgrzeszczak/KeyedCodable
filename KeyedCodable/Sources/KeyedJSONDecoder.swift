@@ -11,19 +11,22 @@ import Foundation
 open class KeyedJSONDecoder: JSONDecoder {
 
     open override func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T {
-        return try super.decode(KeyedDecodable<T>.self, from: data).value
+
+        return try super.decode(Keyed<T>.self, from: data).value
+    }
+}
+
+extension Keyed: Decodable where Value: Decodable {
+    public init(from decoder: Decoder) throws {
+        if let keyedDecoder = decoder as? KeyedDecoder {
+            value = try keyedDecoder.singleValueContainer().decode(Value.self)
+        } else {
+            value = try Value(from: KeyedDecoder(decoder: decoder, codingPath: decoder.codingPath))
+        }
     }
 }
 
 // MARK: internal
-
-struct KeyedDecodable<Value>: Decodable where Value: Decodable {
-
-    let value: Value
-    public init(from decoder: Decoder) throws {
-        value = try Value(from: KeyedDecoder(decoder: decoder, codingPath: []))
-    }
-}
 
 struct KeyedDecoder: Decoder {
     let decoder: Decoder
@@ -231,7 +234,7 @@ final class KeyedKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
     var codingPath: [CodingKey] { return keyedDecoder.codingPath }
 
     var allKeys: [K] {
-        guard let type = K.self as? AnyKeyedKey.Type else { return container.allKeys.compactMap(K.init) }
+        guard let type = K.self as? CaseIterableKey.Type else { return container.allKeys.compactMap(K.init) }
         return type.allKeys.compactMap { K(stringValue: $0.stringValue) }.filter(contains)
     }
 

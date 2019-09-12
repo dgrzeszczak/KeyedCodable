@@ -15,14 +15,6 @@ public struct KeyedConfig {
     public init(keyOptions: KeyOptions = KeyOptions(delimiter: .character("."), flat: .emptyOrWhitespace)) {
         self.keyOptions = keyOptions
     }
-
-//    public struct Encoding {
-//
-//    }
-//
-//    public struct Decoding {
-//        
-//    }
 }
 
 

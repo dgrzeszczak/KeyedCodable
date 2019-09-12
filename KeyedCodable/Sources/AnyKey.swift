@@ -6,34 +6,39 @@
 //  Copyright © 2018 Dariusz Grzeszczak. All rights reserved.
 //
 
-public struct AnyKey: CodingKey, Hashable {
+public struct AnyKey: CodingKey, Hashable, AnyKeyedKey {
+
     public let stringValue: String
     public let intValue: Int?
+
+    public let options: KeyOptions?
+
+    public init(stringValue: String, options: KeyOptions) {
+        self.stringValue = stringValue
+        intValue = nil
+        self.options = options
+    }
+
+    public init(intValue: Int, options: KeyOptions) {
+        stringValue = String(intValue)
+        self.intValue = intValue
+        self.options = options
+    }
 
     public init(stringValue: String) {
         self.stringValue = stringValue
         intValue = nil
+        options = nil
     }
 
     public init(intValue: Int) {
         stringValue = String(intValue)
         self.intValue = intValue
+        options = nil
     }
 
-    public init(key: CodingKey) {
+    public init(key: CodingKey, options: KeyOptions? = nil) {
         if let intValue = key.intValue { self.init(intValue: intValue) }
         else { self.init(stringValue: key.stringValue )}
     }
 }
-//extension RandomAccessCollection where Element == CodingKey {
-//    var keyed: [_Key] {
-//        return map { key -> [_Key] in
-//                if let key = key as? _Key {
-//                    return [key]
-//                } else {
-//                    return key.keyed
-//                }
-//            }
-//            .flatMap { $0 }
-//    }
-//}

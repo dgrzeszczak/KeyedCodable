@@ -11,24 +11,21 @@ import Foundation
 open class KeyedJSONEncoder: JSONEncoder {
 
     open override func encode<T>(_ value: T) throws -> Data where T : Encodable {
-        return try super.encode(KeyedEncodable(value: value))
+        return try super.encode(Keyed(value))
+    }
+}
+
+extension Keyed: Encodable where Value: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        if let keyedEncoder = encoder as? KeyedEncoder {
+            try value.encode(to: keyedEncoder)
+        } else {
+            try value.encode(to: KeyedEncoder(encoder: encoder, codingPath: encoder.codingPath, cache: nil))
+        }
     }
 }
 
 // MARK: internal
-
-struct KeyedEncodable<Type>: Encodable where Type: Encodable {
-
-    let value: Type
-
-    init(value: Type) {
-        self.value = value
-    }
-
-    func encode(to encoder: Encoder) throws {
-        try value.encode(to: KeyedEncoder(encoder: encoder, codingPath: [], cache: nil))
-    }
-}
 
 struct KeyedEncoder: Encoder {
 

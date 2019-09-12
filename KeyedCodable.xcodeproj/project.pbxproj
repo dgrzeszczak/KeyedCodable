@@ -50,6 +50,9 @@
 		0894275C20B1BA8F00A4B6FF /* KeyOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */; };
 		0894275D20B1BA8F00A4B6FF /* KeyedCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */; };
 		0899CEAA22354CAE000B7F9E /* KeyedCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */; };
+		08DCCEE322E9F4C100C5018D /* DecodePathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */; };
+		08DCCEE422E9F4C100C5018D /* DecodePathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */; };
+		08DCCEE522E9F4C100C5018D /* DecodePathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */; };
 		08FD6E4F22746520007E4D59 /* OptionalArrayElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */; };
 		08FD6E642278C92A007E4D59 /* KeyOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */; };
 		08FD6ED92279F5BA007E4D59 /* KeyedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FD6ED82279F5BA007E4D59 /* KeyedKey.swift */; };
@@ -107,6 +110,7 @@
 		0894271720B1BA0700A4B6FF /* KeyedCodable-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KeyedCodable-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08942A0320B1F4C700A4B6FF /* KeyedCodable.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = KeyedCodable.podspec; sourceTree = SOURCE_ROOT; };
 		08DC29BB207BF444008B9726 /* AllKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllKeysTests.swift; sourceTree = "<group>"; };
+		08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodePathTest.swift; sourceTree = "<group>"; };
 		08FD6ED82279F5BA007E4D59 /* KeyedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,6 +212,7 @@
 				08DC29BB207BF444008B9726 /* AllKeysTests.swift */,
 				0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */,
 				0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */,
+				08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */,
 				086C497320BAEBFA008DB20C /* CHANGELOG.md */,
 				0807903020A9062C0023C651 /* README.md */,
 				0889DB6420699EA8008A0A13 /* Info.plist */,
@@ -530,6 +535,7 @@
 			files = (
 				08FD6E642278C92A007E4D59 /* KeyOptionsTests.swift in Sources */,
 				0838E8EB2267D5A70010A7ED /* AllKeysTests.swift in Sources */,
+				08DCCEE322E9F4C100C5018D /* DecodePathTest.swift in Sources */,
 				0838E8E12267D5070010A7ED /* FlatTests.swift in Sources */,
 				0899CEAA22354CAE000B7F9E /* KeyedCodableTests.swift in Sources */,
 				08FD6E4F22746520007E4D59 /* OptionalArrayElementTests.swift in Sources */,
@@ -569,6 +575,7 @@
 			files = (
 				0894275220B1BA8E00A4B6FF /* InnerTests.swift in Sources */,
 				0894275520B1BA8E00A4B6FF /* AllKeysTests.swift in Sources */,
+				08DCCEE422E9F4C100C5018D /* DecodePathTest.swift in Sources */,
 				0894275420B1BA8E00A4B6FF /* OptionalArrayElementTests.swift in Sources */,
 				0894275720B1BA8E00A4B6FF /* KeyedCodableTests.swift in Sources */,
 				0894275620B1BA8E00A4B6FF /* KeyOptionsTests.swift in Sources */,
@@ -595,6 +602,7 @@
 			files = (
 				0894275820B1BA8F00A4B6FF /* InnerTests.swift in Sources */,
 				0894275B20B1BA8F00A4B6FF /* AllKeysTests.swift in Sources */,
+				08DCCEE522E9F4C100C5018D /* DecodePathTest.swift in Sources */,
 				0894275A20B1BA8F00A4B6FF /* OptionalArrayElementTests.swift in Sources */,
 				0894275D20B1BA8F00A4B6FF /* KeyedCodableTests.swift in Sources */,
 				0894275C20B1BA8F00A4B6FF /* KeyOptionsTests.swift in Sources */,

@@ -7,12 +7,16 @@
 
 import Foundation
 
-public protocol KeyedKey: CaseIterable, AnyKeyedKey { }
+public protocol KeyedKey: CaseIterable, CaseIterableKey, AnyKeyedKey { }
 
 public protocol AnyKeyedKey: CodingKey {
-    static var allKeys: [CodingKey] { get }
 
     var options: KeyOptions? { get }
+}
+
+public protocol CaseIterableKey: CodingKey {
+
+    static var allKeys: [CodingKey] { get }
 }
 
 extension KeyedKey {
@@ -23,7 +27,7 @@ extension KeyedKey {
     public var options: KeyOptions? { return nil }
 }
 
-public struct KeyOptions {
+public struct KeyOptions: Hashable {
     public var flat: Flat
     public var delimiter: Delimiter
 
@@ -33,12 +37,12 @@ public struct KeyOptions {
         self.delimiter = delimiter
     }
 
-    public enum Delimiter {
+    public enum Delimiter: Hashable {
         case none
         case character(_ character: Character)
     }
 
-    public enum Flat {
+    public enum Flat: Hashable {
         case none
         case emptyOrWhitespace
         case string(_ string: String)
@@ -50,5 +54,13 @@ public struct KeyOptions {
             case .string(let string): return key.stringValue == string
             }
         }
+    }
+}
+
+public struct Keyed<Value> {
+    public let value: Value
+
+    public init(_ value: Value) {
+        self.value = value
     }
 }
