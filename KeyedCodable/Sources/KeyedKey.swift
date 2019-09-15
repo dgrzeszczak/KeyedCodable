@@ -64,3 +64,7 @@ public struct Keyed<Value> {
         self.value = value
     }
 }
+
+public enum KeyedCodableError: Error {
+    case stringParseFailed
+}

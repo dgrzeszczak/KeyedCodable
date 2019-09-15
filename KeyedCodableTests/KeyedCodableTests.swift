@@ -17,7 +17,7 @@ struct KeyedCodableTestHelper {
         let codable: Type
 
         do {
-        codable = try KeyedJSONDecoder().decode(Type.self, from: data)
+            codable = try KeyedJSONDecoder().decode(Type.self, from: data)
         } catch {
             XCTFail("\(Type.self) cannot be parsed with error: \(error)")
             return

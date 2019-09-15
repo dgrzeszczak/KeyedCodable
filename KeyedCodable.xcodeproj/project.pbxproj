@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0823925520A56B6C006C45B2 /* InnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925420A56B6C006C45B2 /* InnerTests.swift */; };
+		08276C3D232AEC0C0030C9B2 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08276C3C232AEC0C0030C9B2 /* ExtensionTests.swift */; };
 		0838E8E12267D5070010A7ED /* FlatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925620A56CED006C45B2 /* FlatTests.swift */; };
 		0838E8EB2267D5A70010A7ED /* AllKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC29BB207BF444008B9726 /* AllKeysTests.swift */; };
 		0889DB5E20699EA8008A0A13 /* KeyedCodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0889DB5420699EA8008A0A13 /* KeyedCodable.framework */; };
@@ -91,6 +92,7 @@
 		0823925620A56CED006C45B2 /* FlatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatTests.swift; sourceTree = "<group>"; };
 		0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalArrayElementTests.swift; sourceTree = "<group>"; };
 		0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyOptionsTests.swift; sourceTree = "<group>"; };
+		08276C3C232AEC0C0030C9B2 /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		086C497320BAEBFA008DB20C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
 		0889DB5420699EA8008A0A13 /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0889DB5720699EA8008A0A13 /* KeyedCodable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyedCodable.h; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */,
 				0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */,
 				08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */,
+				08276C3C232AEC0C0030C9B2 /* ExtensionTests.swift */,
 				086C497320BAEBFA008DB20C /* CHANGELOG.md */,
 				0807903020A9062C0023C651 /* README.md */,
 				0889DB6420699EA8008A0A13 /* Info.plist */,
@@ -540,6 +543,7 @@
 				0899CEAA22354CAE000B7F9E /* KeyedCodableTests.swift in Sources */,
 				08FD6E4F22746520007E4D59 /* OptionalArrayElementTests.swift in Sources */,
 				0823925520A56B6C006C45B2 /* InnerTests.swift in Sources */,
+				08276C3D232AEC0C0030C9B2 /* ExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

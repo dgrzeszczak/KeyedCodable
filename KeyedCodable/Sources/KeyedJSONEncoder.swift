@@ -11,7 +11,29 @@ import Foundation
 open class KeyedJSONEncoder: JSONEncoder {
 
     open override func encode<T>(_ value: T) throws -> Data where T : Encodable {
-        return try super.encode(Keyed(value))
+        if let string = value as? String {
+            return try Data.from(string: string)
+        } else if let int = value as? Int {
+            return try Data.from(string: "\(int)")
+        } else if let lossless = value as? LosslessStringConvertible {
+            return try Data.from(string: lossless.description)
+        } else {
+            return try super.encode(Keyed(value))
+        }
+    }
+}
+
+
+
+extension Encodable {
+
+    public func jsonData(encoder: KeyedJSONEncoder = KeyedConfig.default.defaultJSONEncoder()) throws -> Data {
+        return try encoder.encode(self)
+    }
+
+    public func jsonString(encoding: String.Encoding = .utf8, encoder: KeyedJSONEncoder = KeyedConfig.default.defaultJSONEncoder()) throws -> String {
+        let data = try encoder.encode(self)
+        return try String.from(data: data, encoding: encoding)
     }
 }
 

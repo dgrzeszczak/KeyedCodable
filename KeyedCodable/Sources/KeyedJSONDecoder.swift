@@ -12,7 +12,28 @@ open class KeyedJSONDecoder: JSONDecoder {
 
     open override func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T {
 
-        return try super.decode(Keyed<T>.self, from: data).value
+        if T.self == String.self {
+            return try String.from(data: data) as! T
+        } else if T.self == Int.self {
+            guard let int = try Int(String.from(data: data)) else { throw KeyedCodableError.stringParseFailed }
+            return int as! T
+        } else if let type = T.self as? LosslessStringConvertible.Type {
+            guard let lossless = try type.init(String.from(data: data)) else { throw KeyedCodableError.stringParseFailed }
+            return lossless as! T
+        } else {
+            return try super.decode(Keyed<T>.self, from: data).value
+        }
+    }
+}
+
+extension Decodable {
+
+    public init(fromJSON data: Data, decoder: KeyedJSONDecoder = KeyedConfig.default.defaultJSONDecoder()) throws {
+        self = try decoder.decode(Self.self, from: data)
+    }
+
+    public init(fromJSON string: String, encoding: String.Encoding = .utf8, decoder: KeyedJSONDecoder = KeyedConfig.default.defaultJSONDecoder()) throws {
+        try self.init(fromJSON: Data.from(string: string, encoding: encoding), decoder: decoder)
     }
 }
 

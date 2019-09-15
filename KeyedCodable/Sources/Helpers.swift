@@ -65,3 +65,17 @@ extension Array: _Array where Element: Decodable {
         return newObject as! T
     }
 }
+
+extension Data {
+    static func from(string: String, encoding: String.Encoding = .utf8) throws -> Data {
+        guard let data = string.data(using: encoding) else { throw KeyedCodableError.stringParseFailed }
+        return data
+    }
+}
+
+extension String {
+     static func from(data: Data, encoding: String.Encoding = .utf8) throws -> String {
+        guard let string = String(data: data, encoding: encoding) else { throw KeyedCodableError.stringParseFailed }
+        return string
+    }
+}
