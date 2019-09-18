@@ -8,7 +8,7 @@
 import KeyedCodable
 import XCTest
 
-struct Test: Codable {
+struct Model: Codable {
     var property: Int
 }
 
@@ -47,20 +47,20 @@ class ExtensionTests: XCTestCase {
     }
 
     func testSingle() throws {
-        var test = try? Test(fromJSON: singleJson)
+        var test = try? Model(fromJSON: singleJson)
         XCTAssert(test?.property == 3)
 
         let data = try test.jsonData()
-        test = try? Test(fromJSON: data)
+        test = try? Model(fromJSON: data)
         XCTAssert(test?.property == 3)
     }
 
     func testArray() throws {
-        var test = try! [Test](fromJSON: arrayJson)
+        var test = try! [Model](fromJSON: arrayJson)
         XCTAssert(test[0].property == 3)
 
         let data = try test.jsonData()
-        test = try [Test](fromJSON: data)
+        test = try [Model](fromJSON: data)
         XCTAssert(test[0].property == 3)
     }
 

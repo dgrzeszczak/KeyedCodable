@@ -23,5 +23,3 @@ public struct KeyedConfig {
         defaultJSONEncoder = keyedJSONEncoder
     }
 }
-
-

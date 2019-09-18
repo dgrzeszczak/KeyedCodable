@@ -6,21 +6,13 @@
 
 ![](/keyedCodable.gif) 
 
-# Is this another JSON parsing library ? 
-
-*KeyedCodable* is an addition to swift's *Codable* introduced in swift 4. It’s great we can use automatic implementation of *Codable* methods but when we have to implement them manually it often brings boilerplate code - especially when you need both to encode and decode nested keys in complicated JSON's structure. 
-
 # The goal 
 
-The goal it to avoid manual implementation of *Encodable/Decodable* and make encoding/decoding easier, more readable, less boilerplate and what is the most important fully compatible with 'standard' *Codable*. 
+*KeyedCodable* is an addition to swift's *Codable* and it's designed for automatic nested key mappings. The goal it to avoid manual implementation of *Encodable/Decodable* and make encoding/decoding easier, more readable, less boilerplate and what is the most important fully compatible with 'standard' *Codable*. 
 
-## How to use?
-
-To support *KeyedCodable* you have to use ```KeyedJSONEncoder```/```KeyedJSONDecoder``` in place of standard ```JSONEncoder```/```JSONDecoder``` and use ```KeyedKey``` intead of ```CodingKey``` for your ```CodingKeys``` enums. *Keyed* versions are the wrappers around (inherits from) standard versions so they are fully compatible. 
-
-# Inner keys (comparison with example from Apple)
+# Nested keys
 First, please have a look on Codable example provided by Apple.
-## vanilla Codable example:
+## vanilla Codable:
 ```swift
 struct Coordinate {
     var latitude: Double
@@ -61,7 +53,7 @@ extension Coordinate: Encodable {
 }
 ```
 
-## using KeyedCodable:
+## KeyedCodable:
 ```swift
 struct Coordinate: Codable {
     var latitude: Double
@@ -75,14 +67,15 @@ struct Coordinate: Codable {
     }
 }
 ```
-By using *KeyedCodable* you don't need to implement ```Codable``` manually so it require a lot less code even for single nested property. 
 
 **By default dot is used as delimiter to separate the inner keys**
 
 # Flat classes
-Sometimes you may get the json with all properties in one big class. Flat feature allows you to group properties into smaller classes. It may be also useful for grouping not required properties. 
+Flat classes feature allows you to group properties into smaller parts. In the example below you can see that: 
+- longitude and latitude are placed in json's main class but in the swift's model we 'moved' them into separate struct ```Location``` 
+- both longitude and latitude are optional. If any of them is missing, the location property will be nil.
 
-## Example JSON
+## Example JSON:
 ```json
 {
     "inner": {
@@ -93,7 +86,7 @@ Sometimes you may get the json with all properties in one big class. Flat featur
 }
 ```
 
-## Keyedable
+## KeyedCodable:
 ```swift
 struct Location: Codable {
     let latitude: Double
@@ -111,15 +104,12 @@ struct InnerWithFlatExample: Codable {
 }
 ```
 
-In this example two use cases are shown: 
-- longitude and latitude are placed in json main class but we 'moved' them into separate struct called Location 
-- both longitude and latitude are optional. If both or one of them are missing then location property will be nil.
-
 **By default empty string or whitespaces are used to mark flat class**
 
 # Flat arrays
-By default decoding of whole array will fail if decoding of any array's element fails. Sometimes instead of having empty list it would be better to have a list that contains all valid elements and omits wrong ones
-## Example JSON
+Decoding of *Decodable* array will fail if decoding of any array's element fails. Flat array *KeyedCodable's* feature omits incorrect elements and creates array that contain valid elements only. In example below ```array``` property will contain three elements [1,3,4] though decoding second element fails.
+
+## Example JSON:
 ```json
 {
     "array": [
@@ -136,7 +126,7 @@ By default decoding of whole array will fail if decoding of any array's element 
     ]
 }
 ```
-## Keyedable
+## KeyedCodable:
 ```swift
 struct ArrayElement: Codable {
     let element: Int
@@ -151,14 +141,12 @@ struct OptionalArrayElementsExample: Codable {
 }
 ```
 
-In example above ```array``` property will contain three elements [1,3,4] even though decoding second element 'fails'.
-
 **You can mark your flat array by prefixing the array's name by 'flat + delimiter' so it is 'empty string + dot' by default**
 
 # KeyOptions
 
-It may happen that keys in the json will conflict with delimiters used by ```KeyedCodable``` - eg. dots used for nested keys. In situations like that you may configure mapping features (delimiters and flat strings) and also you may disable the feature at all. You may do that by providing ```options: KeyOptions?``` property in your CodingKeys (please return ```nil``` to use the default ```KeyOptions``` ).
-## Example JSON
+In case of conflicts between json's keys and delimiters used by ```KeyedCodable```, you may use KeyOptions to configure mapping features. You may do that by providing ```options: KeyOptions?``` property in your CodingKeys ( use ```nil``` for default option). Also you may disable the feature by providing ```.none``` value. 
+## Example JSON:
 ```json
 {
     "* name": "John",
@@ -196,7 +184,7 @@ It may happen that keys in the json will conflict with delimiters used by ```Key
     ]
 }
 ```
-## Keyedable
+## KeyedCodable:
 ```swift
 struct KeyOptionsExample: Codable {
     let greeting: String
@@ -228,6 +216,115 @@ struct KeyOptionsExample: Codable {
     }
 }
 ```
+## How to use?
+
+To support nested key mappings you need to use ```KeyedKey``` intead of ```CodingKey``` for your ```CodingKeys``` enums and  ```KeyedJSONEncoder```/```KeyedJSONDecoder``` in place standard ```JSONEncoder```/```JSONDecoder```. Please notice that Keyed coders inherit from standard equivalents so they are fully compatible with Apple versions. 
+
+### Codable extensions
+
+```swift
+struct Model: Codable {
+    var property: Int
+}
+```
+Decode from string:
+```swift 
+let model = try Model(fromJSON: jsonString)
+```
+Decode from data: 
+```swift
+let model = try Model(fromJSON: data)
+```
+Endcode to string: 
+```swift
+model.jsonString() 
+```
+
+Encode to data: 
+```swift
+model.jsonData() 
+```
+
+**Note that you can provide coders in parameters**
+
+### Coders 
+
+You can also use *Keyed* coders the same way as normal versions. 
+
+```swift
+let model = try KeyedJSONDecoder().decode(Model.self, from: data)
+```
+```swift
+let data = try KeyedJSONEncoder().encode(model)
+```
+
+**Note**
+What's important *Keyed* coders supports simple types like ```String```, ```Int``` etc. 
+For example: 
+```swift
+let number = try JSONDecoder().decode(Int.self, from: data)
+```
+will throw an error about incorrect format but Keyed version that will parse it with success. 
+
+### Keyed<> wrapper
+
+There is also possibility to use standard JSON coders but still be able to encode/decode codables with ```KeyedKey```. To do that you have to use ```Keyed<>``` wrapper like that: 
+```swift
+let model = try JSONDecoder().decode(Keyed<Model>.self, from: data).value
+```
+```swift
+let data = try JSONEncoder().encode(Keyed(modele))
+```
+
+It can be useful especially in case you do not have the access to initialization code for coders. In that situation your model may looks like that: 
+
+```swift
+struct KeyedModel: Codable { 
+... 
+
+    enum CodingKeys: String, KeyedKey {
+        ....
+    }
+.... 
+}
+
+struct Model { 
+    
+    let keyed: Keyed<KeyedModel>    
+}
+```
+
+### Manual nested key coding
+
+In case you need implement *Codable* manually you can use ```AnyKey``` for simpler access to nested keys. 
+
+```swift
+private let TokenKey = AnyKey(stringValue: "data.tokens.access_token")
+
+struct TokenModel: Codable {
+
+    let token: Token
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyKey.self)
+        token = try container.decode(Token.self, forKey: TokenKey)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy:  AnyKey.self)
+        try container.encode(token, forKey: TokenKey)
+    }
+}
+```
+
+### KeyedConfig
+
+As mentioned earlier there is possibility to setup key options like delimiters on ```KeyedKey``` level but there is also possibility to setup it globally. 
+
+You can do it by setting ```KeyedConfig.default.keyOptions``` value based on your need. 
+
+Beside key opptions you can globally setup coders that are used by default in *Codable* extensions.
+
 ## Migration to 2.0.0 version 
 
 Unfortunately 2.0.0 version is not compatible with 1.x.x versions but I believe that new way is much better and it brings less boilerplate than previous versions. There is no need to add any manual mapping implementation, it's really simple so I strongly recommend to migrate to new version. All you need is to: 

@@ -1,8 +1,11 @@
-## [2.1.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/2.1.0)
+## [2.5.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/2.5.0)
 
 #### New
 - added support for manual coding with keyed AnyKey 
-- Keyed<> struct added 
+- Keyed<> wrapper added 
+- Codable extensions from/toString
+- Default JSON coders
+- valuetype support for json coding
 
 ## [2.0.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/2.0.0)
 

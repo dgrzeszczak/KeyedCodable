@@ -23,8 +23,6 @@ open class KeyedJSONEncoder: JSONEncoder {
     }
 }
 
-
-
 extension Encodable {
 
     public func jsonData(encoder: KeyedJSONEncoder = KeyedConfig.default.defaultJSONEncoder()) throws -> Data {
