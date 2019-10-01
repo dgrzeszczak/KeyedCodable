@@ -28,21 +28,39 @@ open class KeyedJSONDecoder: JSONDecoder {
 
 extension Decodable {
 
+    public static var keyed: Keyed<Self>.Type { return Keyed.self }
+
+    @available(*, deprecated, message: "Use DecodableType.keyed.fromJSON() instead. Replace all occurences of '(fromJSON: ' with '.keyed.fromJSON('.")
     public init(fromJSON data: Data, decoder: KeyedJSONDecoder = KeyedConfig.default.defaultJSONDecoder()) throws {
-        self = try decoder.decode(Self.self, from: data)
+
+        self = try Self.keyed.fromJSON(data, decoder: decoder)
     }
 
+    @available(*, deprecated, message: "Use DecodableType.keyed.fromJSON() instead. Replace all occurences of '(fromJSON: ' with '.keyed.fromJSON('.")
     public init(fromJSON string: String, encoding: String.Encoding = .utf8, decoder: KeyedJSONDecoder = KeyedConfig.default.defaultJSONDecoder()) throws {
-        try self.init(fromJSON: Data.from(string: string, encoding: encoding), decoder: decoder)
+
+        self = try Self.keyed.fromJSON(string, encoding: encoding, decoder: decoder)
     }
 }
 
-extension Keyed: Decodable where Value: Decodable {
+extension Keyed where Base: Decodable {
+
+    public static func fromJSON(_ data: Data, decoder: KeyedJSONDecoder = KeyedConfig.default.defaultJSONDecoder()) throws -> Base {
+
+        return try decoder.decode(Base.self, from: data)
+    }
+
+    public static func fromJSON(_ string: String, encoding: String.Encoding = .utf8, decoder: KeyedJSONDecoder = KeyedConfig.default.defaultJSONDecoder()) throws -> Base {
+        return try fromJSON(Data.from(string: string, encoding: encoding), decoder: decoder)
+    }
+}
+
+extension Keyed: Decodable where Base: Decodable {
     public init(from decoder: Decoder) throws {
         if let keyedDecoder = decoder as? KeyedDecoder {
-            value = try keyedDecoder.singleValueContainer().decode(Value.self)
+            value = try keyedDecoder.singleValueContainer().decode(Base.self)
         } else {
-            value = try Value(from: KeyedDecoder(decoder: decoder, codingPath: decoder.codingPath))
+            value = try Base(from: KeyedDecoder(decoder: decoder, codingPath: decoder.codingPath))
         }
     }
 }

@@ -1,11 +1,10 @@
 Pod::Spec.new do |s|
   s.name = 'KeyedCodable'
-  s.version = '2.5.0'
+  s.version = '2.6.0'
   s.license = 'MIT'
   s.summary = 'Easy nested key mappings for swift Codable'
   s.description = <<-DESC
-KeyedCodable is an addition to swift's Codable and it's designed for automatic nested key mappings.
-The goal it to avoid manual implementation of Encodable/Decodable and make encoding/decoding easier, more readable, less boilerplate and what is the most important fully compatible with 'standard' Codable.
+KeyedCodable is an addition to swift's Codable and it's designed for automatic nested key mappings. The goal it to avoid manual implementation of Encodable/Decodable and make encoding/decoding easier, more readable, less boilerplate and what is the most important fully compatible with 'standard' Codable.
                    DESC
 
   s.homepage = 'https://github.com/dgrzeszczak/KeyedCodable'

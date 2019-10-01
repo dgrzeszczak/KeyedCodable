@@ -47,56 +47,56 @@ class ExtensionTests: XCTestCase {
     }
 
     func testSingle() throws {
-        var test = try? Model(fromJSON: singleJson)
+        var test = try? Model.keyed.fromJSON(singleJson)
         XCTAssert(test?.property == 3)
 
-        let data = try test.jsonData()
-        test = try? Model(fromJSON: data)
+        let data = try test.keyed.jsonData()
+        test = try? Model.keyed.fromJSON(data)
         XCTAssert(test?.property == 3)
     }
 
     func testArray() throws {
-        var test = try! [Model](fromJSON: arrayJson)
+        var test = try! [Model].keyed.fromJSON(arrayJson)
         XCTAssert(test[0].property == 3)
 
-        let data = try test.jsonData()
-        test = try [Model](fromJSON: data)
+        let data = try test.keyed.jsonData()
+        test = try [Model].keyed.fromJSON(data)
         XCTAssert(test[0].property == 3)
     }
 
     func testValueArray() throws {
-        var test = try! [Int](fromJSON: valueArrayJson)
+        var test = try! [Int].keyed.fromJSON(valueArrayJson)
         XCTAssert(test[1] == 2)
 
-        let data = try test.jsonData()
-        test = try [Int](fromJSON: data)
+        let data = try test.keyed.jsonData()
+        test = try [Int].keyed.fromJSON(data)
         XCTAssert(test[1] == 2)
     }
 
     func testIntValue() throws {
-        var test = try! Int(fromJSON: intJson)
+        var test = try! Int.keyed.fromJSON(intJson)
         XCTAssert(test == 3)
 
-        let data = try test.jsonData()
-        test = try Int(fromJSON: data)
+        let data = try test.keyed.jsonData()
+        test = try Int.keyed.fromJSON(data)
         XCTAssert(test == 3)
     }
 
     func testFloatValue() throws {
-        var test = try! Float(fromJSON: floatJson)
+        var test = try! Float.keyed.fromJSON(floatJson)
         XCTAssert(test == 3.3)
 
-        let data = try test.jsonData()
-        test = try Float(fromJSON: data)
+        let data = try test.keyed.jsonData()
+        test = try Float.keyed.fromJSON(data)
         XCTAssert(test == 3.3)
     }
 
     func testStringValue() throws {
-        var test = try! String(fromJSON: stringJson)
+        var test = try! String.keyed.fromJSON(stringJson)
         XCTAssert(test == "domek")
 
-        let data = try test.jsonData()
-        test = try String(fromJSON: data)
+        let data = try test.keyed.jsonData()
+        test = try String.keyed.fromJSON(data)
         XCTAssert(test == "domek")
     }
 }

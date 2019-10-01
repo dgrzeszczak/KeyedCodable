@@ -229,20 +229,20 @@ struct Model: Codable {
 ```
 Decode from string:
 ```swift 
-let model = try Model(fromJSON: jsonString)
+let model = try Model.keyed.fromJSON(jsonString)
 ```
 Decode from data: 
 ```swift
-let model = try Model(fromJSON: data)
+let model = try Model.keyed.fromJSON(data)
 ```
 Endcode to string: 
 ```swift
-model.jsonString() 
+model.keyed.jsonString() 
 ```
 
 Encode to data: 
 ```swift
-model.jsonData() 
+model.keyed.jsonData() 
 ```
 
 *You can provide coders in method parameters in case you need additional setup*
@@ -272,7 +272,7 @@ There is a possibility to use standard JSON coders and still encode/decode *Keye
 let model = try JSONDecoder().decode(Keyed<Model>.self, from: data).value
 ```
 ```swift
-let data = try JSONEncoder().encode(Keyed(modele))
+let data = try JSONEncoder().encode(Keyed(model))
 ```
 
 It may be useful in case you do not have an access to coder's initialization code. In that situation your model may looks like that: 

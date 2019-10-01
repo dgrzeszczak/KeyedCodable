@@ -17,7 +17,7 @@ struct KeyedCodableTestHelper {
         let codable: Type
 
         do {
-            codable = try Type(fromJSON: data)
+            codable = try Type.keyed.fromJSON(data)
         } catch {
             XCTFail("\(Type.self) cannot be parsed with error: \(error)")
             return
@@ -25,7 +25,7 @@ struct KeyedCodableTestHelper {
 
         testObject(codable)
 
-        guard let jsonString = try? codable.jsonString() else {
+        guard let jsonString = try? codable.keyed.jsonString() else {
             XCTFail("\(Type.self) cannot be encoded")
             return
         }
@@ -35,14 +35,14 @@ struct KeyedCodableTestHelper {
                   "Result JSON string is different") // check the string are the same
         }
 
-        guard let object = try? Type(fromJSON: jsonString) else {
+        guard let object = try? Type.keyed.fromJSON(jsonString) else {
             XCTFail("\(Type.self) cannot be parsed second time")
             return
         }
 
         testObject(object)
 
-        guard let jsonString1 = try? object.jsonString() else {
+        guard let jsonString1 = try? object.keyed.jsonString() else {
             XCTFail("\(Type.self) cannot be encoded second time")
             return
         }

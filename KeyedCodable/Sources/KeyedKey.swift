@@ -57,10 +57,14 @@ public struct KeyOptions: Hashable {
     }
 }
 
-public struct Keyed<Value> {
-    public let value: Value
+public struct Keyed<Base> {
 
-    public init(_ value: Value) {
+    @available(*, deprecated, renamed: "Base")
+    typealias Value = Base
+
+    public let value: Base
+
+    public init(_ value: Base) {
         self.value = value
     }
 }

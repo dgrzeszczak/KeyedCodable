@@ -1,3 +1,9 @@
+## [2.6.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/2.6.0)
+
+#### New
+- added .keyed to Codable extensions to increase readibility
+- deprecate Codable extensions from 2.5.0
+
 ## [2.5.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/2.5.0)
 
 #### New

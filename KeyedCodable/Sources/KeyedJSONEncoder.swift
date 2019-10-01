@@ -25,17 +25,34 @@ open class KeyedJSONEncoder: JSONEncoder {
 
 extension Encodable {
 
+    public var keyed: Keyed<Self> { return Keyed(self) }
+
+    @available(*, deprecated, message: "Use keyed.jsonData() instead")
     public func jsonData(encoder: KeyedJSONEncoder = KeyedConfig.default.defaultJSONEncoder()) throws -> Data {
-        return try encoder.encode(self)
+
+        return try keyed.jsonData(encoder: encoder)
+    }
+
+    @available(*, deprecated, message: "Use keyed.jsonString() instead")
+    public func jsonString(encoding: String.Encoding = .utf8, encoder: KeyedJSONEncoder = KeyedConfig.default.defaultJSONEncoder()) throws -> String {
+
+        return try keyed.jsonString(encoding: encoding, encoder: encoder)
+    }
+}
+
+extension Keyed where Base: Encodable {
+
+    public func jsonData(encoder: KeyedJSONEncoder = KeyedConfig.default.defaultJSONEncoder()) throws -> Data {
+        return try encoder.encode(value)
     }
 
     public func jsonString(encoding: String.Encoding = .utf8, encoder: KeyedJSONEncoder = KeyedConfig.default.defaultJSONEncoder()) throws -> String {
-        let data = try encoder.encode(self)
+        let data = try encoder.encode(value)
         return try String.from(data: data, encoding: encoding)
     }
 }
 
-extension Keyed: Encodable where Value: Encodable {
+extension Keyed: Encodable where Base: Encodable {
     public func encode(to encoder: Encoder) throws {
         if let keyedEncoder = encoder as? KeyedEncoder {
             try value.encode(to: keyedEncoder)
