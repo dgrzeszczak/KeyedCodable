@@ -285,6 +285,7 @@ final class KeyedKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
 
     func decodeNil(forKey key: K) throws -> Bool {
         if key.isFlat { return false }
+        guard contains(key) else { return true }
         let contanerWithKey = try boxedContainer(for: key)
         return try contanerWithKey.0.decodeNil(forKey: contanerWithKey.1)
     }
