@@ -69,12 +69,12 @@ struct KeyedEncoder: Encoder {
     let encoder: Encoder
     let codingPath: [CodingKey]
 
-    let cache: KeyedEncodingContainerCache?
+    let cache: (() -> KeyedEncodingContainerCache)?
 
     var userInfo: [CodingUserInfoKey : Any] { return encoder.userInfo }
 
     func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key : CodingKey {
-        let cache = self.cache ?? KeyedEncodingContainerCache(container: encoder.container(keyedBy: AnyKey.self))
+        let cache = self.cache?() ?? KeyedEncodingContainerCache(encoder: encoder)
         return KeyedEncodingContainer(KeyedKeyedEncodingContainer<Key>(keyedEncoder: self, cache: cache))
     }
 
@@ -353,8 +353,10 @@ final class KeyedKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerPro
 
     func superEncoder() -> Encoder {
         let encoder = cache.superEncoder(for: [AnyKey.superKey])
-        let newCache = cache.node(for: [AnyKey.superKey])
-        return KeyedEncoder(encoder: encoder, codingPath: codingPath + [AnyKey.superKey], cache: newCache)
+
+        return KeyedEncoder(encoder: encoder, codingPath: codingPath + [AnyKey.superKey]) { [cache] in
+            return cache.node(for: [AnyKey.superKey]) // TODO check with superEncoder for: keyPatch
+        }
     }
 
     func superEncoder(forKey key: K) -> Encoder {
@@ -362,18 +364,26 @@ final class KeyedKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerPro
             return keyedEncoder
         } else if key.isFirstFlat {
             let encoder = cache.superEncoder(for: Array(key.keyed.dropFirst()))
-            let newCache = cache.node(for: keyPath(forKey: key))
-            return KeyedEncoder(encoder: encoder, codingPath: codingPath + [key], cache: newCache)
+            let nodeKey = keyPath(forKey: key)
+            return KeyedEncoder(encoder: encoder, codingPath: codingPath + [key]) { [cache] in
+                return cache.node(for: nodeKey)
+            }
         } else {
             let encoder = cache.superEncoder(for: keyPath(forKey: key))
-            let newCache = cache.node(for: keyPath(forKey: key))
-            return KeyedEncoder(encoder: encoder, codingPath: codingPath + [key], cache: newCache)
+            let nodeKey = keyPath(forKey: key)
+            return KeyedEncoder(encoder: encoder, codingPath: codingPath + [key]) { [cache] in
+                return cache.node(for: nodeKey)
+            }
         }
     }
 }
 
 final class KeyedEncodingContainerCache {
-    private(set) var container: KeyedEncodingContainer<AnyKey>
+    private(set) lazy var container: KeyedEncodingContainer<AnyKey> = {
+        return self.encoder.container(keyedBy: AnyKey.self)
+    }()
+
+    private(set) var encoder: Encoder
 
     private(set) var dictionary: [AnyKey: KeyedEncodingContainerCache] = [:]
 
@@ -382,10 +392,10 @@ final class KeyedEncodingContainerCache {
     //        self.encoder = encoder
     //    }
 
-    var _codingPath: [CodingKey] { return container.codingPath }
+    var _codingPath: [CodingKey] { return encoder.codingPath }
 
-    init(container: KeyedEncodingContainer<AnyKey>) {
-        self.container = container
+    init(encoder: Encoder) {
+        self.encoder = encoder
     }
 
     func node(for keyPath: [AnyKey]) -> KeyedEncodingContainerCache {
@@ -405,7 +415,7 @@ final class KeyedEncodingContainerCache {
 
         //print(self.container.codingPath)
         let encoder = container.superEncoder(forKey: key)
-        let node = KeyedEncodingContainerCache(container: encoder.container(keyedBy: AnyKey.self))
+        let node = KeyedEncodingContainerCache(encoder: encoder)
         dictionary[key] = node
         return node
     }
