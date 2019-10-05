@@ -71,4 +71,5 @@ public struct Keyed<Base> {
 
 public enum KeyedCodableError: Error {
     case stringParseFailed
+    case transformFailed
 }

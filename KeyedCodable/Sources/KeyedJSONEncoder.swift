@@ -337,7 +337,15 @@ final class KeyedKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerPro
     }
 
     func encode<T>(_ value: T, forKey key: K) throws where T : Encodable {
-        try value.encode(to: superEncoder(forKey: key))
+        #if swift(>=5.1)
+        if (value as? Nullable)?.isNil == true  {
+            // do not encode null as standard library
+        } else {
+            try value.encode(to: superEncoder(forKey: key))
+        }
+        #else
+            try value.encode(to: superEncoder(forKey: key))
+        #endif
     }
 
     func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type, forKey key: K) -> KeyedEncodingContainer<NestedKey> where NestedKey : CodingKey {
