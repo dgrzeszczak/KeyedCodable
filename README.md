@@ -78,6 +78,31 @@ Flat classes feature allows you to group properties into smaller parts. In the e
 ### Example JSON:
 ```json
 {
+    "greeting": "hallo",
+    "longitude": 3.2,
+    "latitude": 3.4
+}
+```
+
+### KeyedCodable:
+```swift
+struct Location: Codable {
+    let latitude: Double
+    let longitude: Double
+}
+
+struct InnerWithFlatExample: Codable {
+    let greeting: String
+    @Flat var location: Location?
+}
+```
+
+<details>
+  <summary>Without property wrappers</summary>
+  
+### Example JSON:
+```json
+{
     "inner": {
         "greeting": "hallo"
     },
@@ -105,9 +130,40 @@ struct InnerWithFlatExample: Codable {
 ```
 
 *By default empty string or whitespaces are used to mark flat class*
+</details>
 
 # Flat arrays
 Decoding of *Decodable* array will fail if decoding of any array's element fails. Flat array *KeyedCodable's* feature omits incorrect elements and creates array that contain valid elements only. In example below ```array``` property will contain three elements [1,3,4] though decoding second element fails.
+
+```json
+{
+    "array": [
+    {
+    "element": 1
+    },
+    {},
+    {
+    "element": 3
+    },
+    {
+    "element": 4
+    }
+    ]
+}
+```
+### KeyedCodable:
+```swift
+struct ArrayElement: Codable {
+    let element: Int
+}
+
+struct OptionalArrayElementsExample: Codable {
+    @Flat var array: [ArrayElement]
+}
+```
+
+<details>
+<summary>Without property wrappers</summary>
 
 ### Example JSON:
 ```json
@@ -142,7 +198,7 @@ struct OptionalArrayElementsExample: Codable {
 ```
 
 *To enable flat array you have to add [flat][delimiter] before property name - by defult it is 'empty string + dot'*
-
+</details>
 # KeyOptions
 
 In case of conflicts between json's keys and delimiters used by ```KeyedCodable```, you may use ```KeyOptions``` to configure mapping features. You may do that by providing ```options: KeyOptions?``` property in your CodingKeys ( use ```nil``` to use default value). You may also disable the feature by setting ```.none``` value. 

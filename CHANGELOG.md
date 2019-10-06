@@ -1,3 +1,11 @@
+## [3.0.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/3.0.0)
+
+#### New
+- @CodedBy, @EncodedBy, @DecodedBy transformers added
+- @Zero fill implementation added
+- @Flat properties and arrays added
+
+
 ## [2.6.0](https://github.com/dgrzeszczak/KeyedCodable/releases/tag/2.6.0)
 
 #### New
