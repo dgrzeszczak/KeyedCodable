@@ -9,10 +9,33 @@ import KeyedCodable
 import XCTest
 
 #if swift(>=5.1)
+
+let notCodable = """
+{
+    "some": 3
+}
+"""
 struct NotCodable {
     let id: Int
 }
 
+enum NonCodableTransformer<Object>: Transformer {
+    static func transform(from decodable: Int) -> Any? {
+        return NotCodable(id: decodable)
+    }
+
+    static func transform(object: Object) -> Int? {
+        return (object as? NotCodable)?.id
+    }
+}
+
+struct SomeCodable: Codable {
+
+    @CodedBy<NonCodableTransformer> var some: NotCodable
+}
+
+
+//Dates
 enum DateTransformer<Object>: Transformer {
 
     static var formatter: DateFormatter {
@@ -35,58 +58,48 @@ let dates = """
 {
     "date0": "2012-05-01",
     "date1": "2012-05-02",
-    "date2": "2012-05-03",
-
-"lat": 1,
-"array": [{"o": 1}, { }, { "o":2 }]
+    "date2": "2012-05-03"
 }
 """
 
-struct TextCodableTrasform: Codable {
+struct DateCodableTrasform: Codable {
 
-//    @CodedBy<MyDateFormatter> var date0: Date!
-//    @CodedBy<MyDateFormatter> var date1: Date
-//    @CodedBy<MyDateFormatter> var date2: Date!
-//    @CodedBy<MyDateFormatter> var date5: Date?
-//    @Flat var loc: Loc
+    @CodedBy<DateTransformer> var date0: Date!
+    @CodedBy<DateTransformer> var date1: Date
+    @CodedBy<DateTransformer> var date2: Date?
+    @CodedBy<DateTransformer> var date3: Date?
+}
 
-    //var date8: TestNil?
-
+struct DateCodableTransform: Codable {
+    @CodedBy<DateTransformer> var date4: Date!
 }
 
 class TransformersTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testTransformDates() throws {
+        let jsonData = dates.data(using: .utf8)!
+
+        KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: DateCodableTrasform) in
+            XCTAssert(test.date0.timeIntervalSince1970 == 1335823200)
+            XCTAssert(test.date1 == Date(timeIntervalSince1970: 1335909600))
+            XCTAssert(test.date2 == Date(timeIntervalSince1970: 1335996000))
+            XCTAssert(test.date3 == nil)
+        }
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    func testTransformOptionalNilEncoding() throws {
 
-
-    func testTransformDates() {
-        XCTFail("not implemented")
-//        //let container = TextCodableTrasform(test: NotCodable(d: 8))
-//        let data = dates.data(using: .utf8)!
-//        var second = try! TextCodableTrasform(fromJSON: dates)
-//        //print(second.date0)
-//        //print(second.date1)
-//        //print(second.date2)
-////        print(second.date5)
-//        let string = try! String(data: KeyedJSONEncoder().encode(second), encoding: .utf8) //second.keyed.jsonString()
-//        print(string)
-//        //let zero = try! TextCodableTrasform.keyed.zero()
-//        //print(zero)
-//        let d = 3
+        let date = try DateCodableTransform.keyed.fromJSON("{}")
+        let string = try date.keyed.jsonString()
+        XCTAssert(string == "{}")
     }
 
     func testTransformNotCodable() {
-        XCTFail("not implemented")
-    }
+        let jsonData = notCodable.data(using: .utf8)!
 
-    func testTransformOptionalNilEncoding() {
-        XCTFail("not implemented")
+        KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: SomeCodable) in
+            XCTAssert(test.some.id == 3)
+        }
     }
 }
 #endif

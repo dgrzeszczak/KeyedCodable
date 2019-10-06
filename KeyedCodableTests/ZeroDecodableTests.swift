@@ -8,6 +8,18 @@
 import KeyedCodable
 import XCTest
 
+struct ZeroTestCodable: Codable {
+    @Zero var property: Int
+}
+
+struct ZeroTestOptionalCodable: Codable {
+    @Zero var property: Int?
+}
+
+struct ZeroTestImplicitCodable: Decodable {
+    @Zero var property: Int?
+}
+
 class ZeroDecodableTests: XCTestCase {
 
     override func setUp() {
@@ -24,25 +36,33 @@ class ZeroDecodableTests: XCTestCase {
         XCTAssert(zero.inner.greeting == "")
     }
 
+    #if swift(>=5.1)
     func testStandardExampleWrapper() throws {
-        XCTFail("not implemented")
+        let zero = try ZeroTestCodable.keyed.fromJSON("{ }")
+        XCTAssert(zero.property == 0)
     }
 
-    #if swift(>=5.1)
     func testNilZeroWrapper() throws {
-        XCTFail("not implemented")
+        let zero = try ZeroTestOptionalCodable.keyed.fromJSON("{ }")
+        XCTAssert(zero.property == nil)
     }
 
     func testNilInpicitZeroWrapper() throws {
-        XCTFail("not implemented")
-    }
-
-    func testNilOptionalZeroWrapper() throws {
-        XCTFail("not implemented")
+        let zero = try ZeroTestImplicitCodable.keyed.fromJSON("{ }")
+        XCTAssert(zero.property == nil)
     }
 
     func testEncoding() throws {
-        XCTFail("not implemented")
+        let jsonData = "{}".data(using: .utf8)!
+        KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: ZeroTestCodable) in
+            XCTAssert(test.property == 0)
+        }
+    }
+
+    func testNilEncoding() throws {
+        let zero = try ZeroTestOptionalCodable.keyed.fromJSON("{}")
+        let string = try zero.keyed.jsonString()
+        XCTAssert(string == "{}")
     }
     #endif
 }
