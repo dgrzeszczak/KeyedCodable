@@ -1,13 +1,47 @@
 //
 //  ZeroDecodable.swift
-//  KeyedCodable-iOS
+//  KeyedCodable
 //
 //  Created by Dariusz Grzeszczak on 26/03/2019.
 //
 
+#if swift(>=5.1)
+@propertyWrapper
+public struct Zero<T: Decodable>: Decodable {
+    public var wrappedValue: T
+
+    public init(wrappedValue: T) {
+        self.wrappedValue = wrappedValue
+    }
+
+    public init(from decoder: Decoder) throws {
+        guard   let container = try? decoder.singleValueContainer(),
+                let value = try? container.decode(T.self) else {
+
+                    wrappedValue = try T.keyed.zero()
+                    return
+        }
+        wrappedValue = value
+    }
+}
+
+extension Zero: Encodable where T: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(wrappedValue)
+    }
+}
+#endif
+
+extension Keyed where Base: Decodable {
+    public static func zero() throws -> Base {
+        return try ZeroDecoder().decode(Base.self)
+    }
+}
+
 struct ZeroDecoder {
 
-    var userInfo: [CodingUserInfoKey : Any]
+    var userInfo: [CodingUserInfoKey : Any] = [:]
 
     public func decode<T : Decodable>(_ type: T.Type) throws -> T {
         let decoder: Decoder = ZeroSingleValueDecoder(minimumMode: true, codingPath: [], userInfo: userInfo)

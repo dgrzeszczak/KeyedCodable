@@ -22,6 +22,10 @@
 		088D833923490CFF00642B31 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833723490CFF00642B31 /* Transformers.swift */; };
 		088D833A23490CFF00642B31 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833723490CFF00642B31 /* Transformers.swift */; };
 		088D833B23490CFF00642B31 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833723490CFF00642B31 /* Transformers.swift */; };
+		088D833D23494A8600642B31 /* ZeroDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833C23494A8600642B31 /* ZeroDecodable.swift */; };
+		088D833E23494A8600642B31 /* ZeroDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833C23494A8600642B31 /* ZeroDecodable.swift */; };
+		088D833F23494A8600642B31 /* ZeroDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833C23494A8600642B31 /* ZeroDecodable.swift */; };
+		088D834023494A8600642B31 /* ZeroDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833C23494A8600642B31 /* ZeroDecodable.swift */; };
 		089426FC20B1B9E300A4B6FF /* KeyedCodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089426F320B1B9E300A4B6FF /* KeyedCodable.framework */; };
 		0894271820B1BA0700A4B6FF /* KeyedCodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0894270F20B1BA0600A4B6FF /* KeyedCodable.framework */; };
 		0894272620B1BA7100A4B6FF /* KeyedConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* KeyedConfig.swift */; };
@@ -110,6 +114,7 @@
 		0889DB9C2069A2F5008A0A13 /* KeyedConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedConfig.swift; sourceTree = "<group>"; };
 		0889DB9F2069A344008A0A13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		088D833723490CFF00642B31 /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
+		088D833C23494A8600642B31 /* ZeroDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroDecodable.swift; sourceTree = "<group>"; };
 		089426E620B1B87900A4B6FF /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		089426F320B1B9E300A4B6FF /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		089426FB20B1B9E300A4B6FF /* KeyedCodable-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KeyedCodable-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +242,7 @@
 				0889DB8920699FF0008A0A13 /* KeyedJSONEncoder.swift */,
 				0889DB8B2069A01E008A0A13 /* KeyedJSONDecoder.swift */,
 				088D833723490CFF00642B31 /* Transformers.swift */,
+				088D833C23494A8600642B31 /* ZeroDecodable.swift */,
 				0889DB902069A1A3008A0A13 /* AnyKey.swift */,
 				0889DB9F2069A344008A0A13 /* Helpers.swift */,
 			);
@@ -530,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088D833823490CFF00642B31 /* Transformers.swift in Sources */,
+				088D833D23494A8600642B31 /* ZeroDecodable.swift in Sources */,
 				0889DB8C2069A01E008A0A13 /* KeyedJSONDecoder.swift in Sources */,
 				08FD6ED92279F5BA007E4D59 /* KeyedKey.swift in Sources */,
 				0889DB9D2069A2F5008A0A13 /* KeyedConfig.swift in Sources */,
@@ -559,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088D833923490CFF00642B31 /* Transformers.swift in Sources */,
+				088D833E23494A8600642B31 /* ZeroDecodable.swift in Sources */,
 				0894272C20B1BA7100A4B6FF /* AnyKey.swift in Sources */,
 				08FD6EDA2279F5BA007E4D59 /* KeyedKey.swift in Sources */,
 				0894272620B1BA7100A4B6FF /* KeyedConfig.swift in Sources */,
@@ -573,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088D833A23490CFF00642B31 /* Transformers.swift in Sources */,
+				088D833F23494A8600642B31 /* ZeroDecodable.swift in Sources */,
 				0894273420B1BA7200A4B6FF /* AnyKey.swift in Sources */,
 				08FD6EDB2279F5BA007E4D59 /* KeyedKey.swift in Sources */,
 				0894272E20B1BA7200A4B6FF /* KeyedConfig.swift in Sources */,
@@ -601,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088D833B23490CFF00642B31 /* Transformers.swift in Sources */,
+				088D834023494A8600642B31 /* ZeroDecodable.swift in Sources */,
 				0894274420B1BA7300A4B6FF /* AnyKey.swift in Sources */,
 				08FD6EDC2279F5BA007E4D59 /* KeyedKey.swift in Sources */,
 				0894273E20B1BA7300A4B6FF /* KeyedConfig.swift in Sources */,
