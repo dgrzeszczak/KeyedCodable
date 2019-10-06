@@ -328,9 +328,9 @@ You can even implement transformer for non Codable model and use it in you Codab
 
 ### Usage 
 ```swift
-struct SomeCodable: Codable {
+struct DetailPage: Codable {
 
-    @CodedBy<UserTransformer> var some: User
+    @CodedBy<UserTransformer> var user: User
 }
 
 struct User {           // User do not implement Codable protocol
