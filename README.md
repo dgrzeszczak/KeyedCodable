@@ -317,7 +317,7 @@ enum DateTransformer<Object>: Transformer {
 
 ## Non codable formater example 
 
-You can also implement transformer model that do not implement Codable protocol, add custom transformation and use it in you Codable tree like that. 
+You can even implement transformer for non Codable model and use it in you Codable tree like that:
 
 ### Example JSON:
 ```json
