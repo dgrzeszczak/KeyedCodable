@@ -340,6 +340,8 @@ final class KeyedKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerPro
         #if swift(>=5.1)
         if (value as? Nullable)?.isNil == true  {
             // do not encode null as standard library
+        } else if type(of: value) is FlatType.Type {
+             try value.encode(to: keyedEncoder)
         } else {
             try value.encode(to: superEncoder(forKey: key))
         }

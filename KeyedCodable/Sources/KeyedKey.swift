@@ -57,6 +57,44 @@ public struct KeyOptions: Hashable {
     }
 }
 
+#if swift(>=5.1)
+@propertyWrapper
+public struct Flat<T: Decodable>: Decodable {
+    public var wrappedValue: T
+
+    public init(wrappedValue: T) {
+        self.wrappedValue = wrappedValue
+    }
+
+    public init(from decoder: Decoder) throws {
+        if let type = T.self as? _Optional.Type {
+            guard let value = try? T(from: decoder) else {
+                wrappedValue = type.empty as! T
+                return
+            }
+            wrappedValue =  value
+        } else {
+            wrappedValue = try T(from: decoder)
+        }
+    }
+}
+
+extension Flat: Encodable where T: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        try wrappedValue.encode(to: encoder)
+    }
+}
+
+protocol FlatType { }
+extension Flat: FlatType { }
+extension Flat: Nullable {
+    var isNil: Bool {
+        guard let wrapped = wrappedValue as? _Optional else { return false }
+        return wrapped.isNil
+    }
+}
+#endif
+
 public struct Keyed<Base> {
 
     @available(*, deprecated, renamed: "Base")

@@ -361,7 +361,15 @@ final class KeyedKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
     }
 
     func decode<T>(_ type: T.Type, forKey key: K) throws -> T where T : Decodable {
-        return try decodeArray(type, forKey: key) ?? T(from: superDecoder(forKey: key))
+        #if swift(>=5.1)
+        if type is FlatType.Type {
+            return try T(from: keyedDecoder)
+        } else {
+            return try decodeArray(type, forKey: key) ?? T(from: superDecoder(forKey: key))
+        }
+        #else
+            return try decodeArray(type, forKey: key) ?? T(from: superDecoder(forKey: key))
+        #endif
     }
 
     private func decodeArray<T>(_ type: T.Type, forKey key: K) throws -> T? where T : Decodable {
