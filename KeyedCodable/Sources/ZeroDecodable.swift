@@ -31,6 +31,13 @@ extension Zero: Encodable where T: Encodable {
         try container.encode(wrappedValue)
     }
 }
+
+extension Zero: Nullable {
+    var isNil: Bool {
+        guard let wrapped = wrappedValue as? _Optional else { return false }
+        return wrapped.isNil
+    }
+}
 #endif
 
 extension Keyed where Base: Decodable {
