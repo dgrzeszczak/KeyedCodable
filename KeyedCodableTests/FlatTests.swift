@@ -33,6 +33,18 @@ struct InnerWithFlatExample: Codable {
     }
 }
 
+#if swift(>=5.1)
+struct InnerWithFlatWrapperExample: Codable {
+    let greeting: String
+    @Flat private(set) var location: Location?
+
+    enum CodingKeys: String, KeyedKey {
+        case greeting = "inner.greeting"
+        case location
+    }
+}
+#endif
+
 class FlatTests: XCTestCase {
 
     override func setUp() {
@@ -54,4 +66,16 @@ class FlatTests: XCTestCase {
             XCTAssert(test.location?.longitude == 3.2)
         }
     }
+
+    #if swift(>=5.1)
+    func testFlatWrapper() {
+        let jsonData = jsonString.data(using: .utf8)!
+
+        KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: InnerWithFlatWrapperExample) in
+            XCTAssert(test.greeting == "hallo")
+            XCTAssert(test.location?.latitude == 3.4)
+            XCTAssert(test.location?.longitude == 3.2)
+        }
+    }
+    #endif
 }

@@ -26,6 +26,12 @@
 		088D833E23494A8600642B31 /* ZeroDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833C23494A8600642B31 /* ZeroDecodable.swift */; };
 		088D833F23494A8600642B31 /* ZeroDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833C23494A8600642B31 /* ZeroDecodable.swift */; };
 		088D834023494A8600642B31 /* ZeroDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D833C23494A8600642B31 /* ZeroDecodable.swift */; };
+		088D83422349ECD600642B31 /* ZeroDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D83412349ECD600642B31 /* ZeroDecodableTests.swift */; };
+		088D83432349ECD600642B31 /* ZeroDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D83412349ECD600642B31 /* ZeroDecodableTests.swift */; };
+		088D83442349ECD600642B31 /* ZeroDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D83412349ECD600642B31 /* ZeroDecodableTests.swift */; };
+		088D83462349ECF700642B31 /* TransformersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D83452349ECF700642B31 /* TransformersTests.swift */; };
+		088D83472349ECF700642B31 /* TransformersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D83452349ECF700642B31 /* TransformersTests.swift */; };
+		088D83482349ECF700642B31 /* TransformersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088D83452349ECF700642B31 /* TransformersTests.swift */; };
 		089426FC20B1B9E300A4B6FF /* KeyedCodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089426F320B1B9E300A4B6FF /* KeyedCodable.framework */; };
 		0894271820B1BA0700A4B6FF /* KeyedCodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0894270F20B1BA0600A4B6FF /* KeyedCodable.framework */; };
 		0894272620B1BA7100A4B6FF /* KeyedConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB9C2069A2F5008A0A13 /* KeyedConfig.swift */; };
@@ -115,6 +121,8 @@
 		0889DB9F2069A344008A0A13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		088D833723490CFF00642B31 /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
 		088D833C23494A8600642B31 /* ZeroDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroDecodable.swift; sourceTree = "<group>"; };
+		088D83412349ECD600642B31 /* ZeroDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroDecodableTests.swift; sourceTree = "<group>"; };
+		088D83452349ECF700642B31 /* TransformersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersTests.swift; sourceTree = "<group>"; };
 		089426E620B1B87900A4B6FF /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		089426F320B1B9E300A4B6FF /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		089426FB20B1B9E300A4B6FF /* KeyedCodable-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KeyedCodable-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +234,8 @@
 				0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */,
 				08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */,
 				08276C3C232AEC0C0030C9B2 /* ExtensionTests.swift */,
+				088D83412349ECD600642B31 /* ZeroDecodableTests.swift */,
+				088D83452349ECF700642B31 /* TransformersTests.swift */,
 				086C497320BAEBFA008DB20C /* CHANGELOG.md */,
 				0807903020A9062C0023C651 /* README.md */,
 				0889DB6420699EA8008A0A13 /* Info.plist */,
@@ -553,9 +563,11 @@
 				08FD6E642278C92A007E4D59 /* KeyOptionsTests.swift in Sources */,
 				0838E8EB2267D5A70010A7ED /* AllKeysTests.swift in Sources */,
 				08DCCEE322E9F4C100C5018D /* DecodePathTest.swift in Sources */,
+				088D83422349ECD600642B31 /* ZeroDecodableTests.swift in Sources */,
 				0838E8E12267D5070010A7ED /* FlatTests.swift in Sources */,
 				0899CEAA22354CAE000B7F9E /* KeyedCodableTests.swift in Sources */,
 				08FD6E4F22746520007E4D59 /* OptionalArrayElementTests.swift in Sources */,
+				088D83462349ECF700642B31 /* TransformersTests.swift in Sources */,
 				0823925520A56B6C006C45B2 /* InnerTests.swift in Sources */,
 				08276C3D232AEC0C0030C9B2 /* ExtensionTests.swift in Sources */,
 			);
@@ -596,10 +608,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0894275220B1BA8E00A4B6FF /* InnerTests.swift in Sources */,
+				088D83432349ECD600642B31 /* ZeroDecodableTests.swift in Sources */,
 				0894275520B1BA8E00A4B6FF /* AllKeysTests.swift in Sources */,
 				08DCCEE422E9F4C100C5018D /* DecodePathTest.swift in Sources */,
 				0894275420B1BA8E00A4B6FF /* OptionalArrayElementTests.swift in Sources */,
 				0894275720B1BA8E00A4B6FF /* KeyedCodableTests.swift in Sources */,
+				088D83472349ECF700642B31 /* TransformersTests.swift in Sources */,
 				0894275620B1BA8E00A4B6FF /* KeyOptionsTests.swift in Sources */,
 				0894275320B1BA8E00A4B6FF /* FlatTests.swift in Sources */,
 			);
@@ -625,10 +639,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0894275820B1BA8F00A4B6FF /* InnerTests.swift in Sources */,
+				088D83442349ECD600642B31 /* ZeroDecodableTests.swift in Sources */,
 				0894275B20B1BA8F00A4B6FF /* AllKeysTests.swift in Sources */,
 				08DCCEE522E9F4C100C5018D /* DecodePathTest.swift in Sources */,
 				0894275A20B1BA8F00A4B6FF /* OptionalArrayElementTests.swift in Sources */,
 				0894275D20B1BA8F00A4B6FF /* KeyedCodableTests.swift in Sources */,
+				088D83482349ECF700642B31 /* TransformersTests.swift in Sources */,
 				0894275C20B1BA8F00A4B6FF /* KeyOptionsTests.swift in Sources */,
 				0894275920B1BA8F00A4B6FF /* FlatTests.swift in Sources */,
 			);

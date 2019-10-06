@@ -102,6 +102,11 @@ let orderDataResponseJson = """
 }
 """
 
+struct Empty: Codable { }
+struct NilOnly: Codable {
+    let nilValue: Int?
+}
+
 class InnerTests: XCTestCase {
 
     override func setUp() {
@@ -112,6 +117,22 @@ class InnerTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+
+    func testEmpty() {
+        let jsonData = "{}".data(using: .utf8)!
+        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: Empty) in }
+    }
+
+    func testNilEncoding() throws {
+        let value = NilOnly(nilValue: nil)
+        let stringValue = try value.keyed.jsonString()
+        XCTAssert(stringValue == "{}")
+    }
+
+    func testEmptyNil() {
+        let jsonData = "{}".data(using: .utf8)!
+        KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: NilOnly) in }
     }
 
     func testInner() {
