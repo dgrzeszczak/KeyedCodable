@@ -74,7 +74,11 @@ struct KeyedEncoder: Encoder {
     var userInfo: [CodingUserInfoKey : Any] { return encoder.userInfo }
 
     func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key : CodingKey {
-        let cache = self.cache?() ?? KeyedEncodingContainerCache(encoder: encoder)
+        let cache = self.cache?() ?? {
+            let cache = KeyedEncodingContainerCache(encoder: encoder)
+            _ = cache.container // always initialize cotainer for top-level cache
+            return cache
+        }()
         return KeyedEncodingContainer(KeyedKeyedEncodingContainer<Key>(keyedEncoder: self, cache: cache))
     }
 
@@ -340,8 +344,8 @@ final class KeyedKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerPro
         #if swift(>=5.1)
         if (value as? Nullable)?.isNil == true  {
             // do not encode null as standard library
-        } else if type(of: value) is FlatType.Type {
-             try value.encode(to: keyedEncoder)
+        } else if let type = T.self as? FlatType.Type, !type.isArray {
+            try value.encode(to: keyedEncoder)
         } else {
             try value.encode(to: superEncoder(forKey: key))
         }

@@ -119,7 +119,7 @@ class InnerTests: XCTestCase {
         super.tearDown()
     }
 
-    func testEmpty() {
+    func testEmpty() throws {
         let jsonData = "{}".data(using: .utf8)!
         KeyedCodableTestHelper.checkEncode(data: jsonData) { (test: Empty) in }
     }

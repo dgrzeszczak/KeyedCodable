@@ -74,16 +74,15 @@ class OptionalArrayElementTests: XCTestCase {
 
     #if swift(>=5.1)
     func testOptionalArrayElementWrapper() {
-           let jsonData = jsonString.data(using: .utf8)!
+       let jsonData = jsonString.data(using: .utf8)!
 
-           KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: OptionalArrayElementsWrapperExample) in
-               // returns array with 3 elements, empty element will be omitted
-               XCTAssert(test.array.count == 3)
-               XCTAssert(test.array[0].element == 1)
-               XCTAssert(test.array[1].element == 3)
-               XCTAssert(test.array[2].element == 4)
-           }
+       KeyedCodableTestHelper.checkEncode(data: jsonData, checkString: false) { (test: OptionalArrayElementsWrapperExample) in
+           // returns array with 3 elements, empty element will be omitted
+           XCTAssert(test.array.count == 3)
+           XCTAssert(test.array[0].element == 1)
+           XCTAssert(test.array[1].element == 3)
+           XCTAssert(test.array[2].element == 4)
        }
-
+    }
     #endif
 }
