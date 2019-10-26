@@ -6,6 +6,8 @@
 //  Copyright © 2018 Dariusz Grzeszczak. All rights reserved.
 //
 
+import Foundation
+
 public struct KeyedConfig {
 
     public static var `default` = KeyedConfig()

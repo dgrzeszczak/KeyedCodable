@@ -5,6 +5,8 @@
 //  Created by Dariusz Grzeszczak on 26/03/2019.
 //
 
+import Foundation
+
 #if swift(>=5.1)
 @propertyWrapper
 public struct Zero<T: Decodable>: Decodable {

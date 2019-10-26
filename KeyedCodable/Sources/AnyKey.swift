@@ -6,6 +6,8 @@
 //  Copyright © 2018 Dariusz Grzeszczak. All rights reserved.
 //
 
+import Foundation
+
 public struct AnyKey: CodingKey, Hashable, AnyKeyedKey {
 
     public let stringValue: String
