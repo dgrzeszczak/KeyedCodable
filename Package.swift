@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "KeyedCodable",
-    platforms: [.macOS(.v10_9), .iOS(.v8), .tvOS(.v9), .watchOS(.v2)],
+    platforms: [.macOS(.v10_10), .iOS(.v8), .tvOS(.v9), .watchOS(.v2)],
     products: [
         .library(name: "KeyedCodable",
                  targets: ["KeyedCodable-iOS",
