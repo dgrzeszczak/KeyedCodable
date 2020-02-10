@@ -132,6 +132,7 @@
 		08DC29BB207BF444008B9726 /* AllKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllKeysTests.swift; sourceTree = "<group>"; };
 		08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodePathTest.swift; sourceTree = "<group>"; };
 		08FD6ED82279F5BA007E4D59 /* KeyedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedKey.swift; sourceTree = "<group>"; };
+		3720A4FF23F1A0AA000DE8E6 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +217,7 @@
 		0889DB5620699EA8008A0A13 /* KeyedCodable */ = {
 			isa = PBXGroup;
 			children = (
+				3720A4FF23F1A0AA000DE8E6 /* Package.swift */,
 				0889DB8820699FB6008A0A13 /* Sources */,
 				0889DB5720699EA8008A0A13 /* KeyedCodable.h */,
 				0889DB5820699EA8008A0A13 /* Info.plist */,
