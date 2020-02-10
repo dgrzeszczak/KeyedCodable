@@ -15,9 +15,9 @@ let package = Package(
         ),
     ],
     targets: [
-        .target(name: "KeyedCodable-iOS", path: "Sources"),
-        .target(name: "KeyedCodable-watchOS", path: "Sources"),
-        .target(name: "KeyedCodable-tvOS", path: "Sources"),
-        .target(name: "KeyedCodable-macOS", path: "Sources")
+        .target(name: "KeyedCodable-iOS", path: "KeyedCodable/Sources"),
+        .target(name: "KeyedCodable-watchOS", path: "KeyedCodable/Sources"),
+        .target(name: "KeyedCodable-tvOS", path: "KeyedCodable/Sources"),
+        .target(name: "KeyedCodable-macOS", path: "KeyedCodable/Sources")
     ]
 )
