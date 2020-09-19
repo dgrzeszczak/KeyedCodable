@@ -119,7 +119,7 @@ protocol _Optional: Nullable {
 
 extension Optional: _Optional {
     static var empty: _Optional {
-        return self.none
+        return self.none as _Optional
     }
 
     var isNil: Bool {
