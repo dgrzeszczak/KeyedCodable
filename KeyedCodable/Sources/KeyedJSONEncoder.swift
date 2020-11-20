@@ -11,15 +11,7 @@ import Foundation
 open class KeyedJSONEncoder: JSONEncoder {
 
     open override func encode<T>(_ value: T) throws -> Data where T : Encodable {
-        if let string = value as? String {
-            return try Data.from(string: string)
-        } else if let int = value as? Int {
-            return try Data.from(string: "\(int)")
-        } else if let lossless = value as? LosslessStringConvertible {
-            return try Data.from(string: lossless.description)
-        } else {
-            return try super.encode(Keyed(value))
-        }
+        return try super.encode(Keyed(value))
     }
 }
 
@@ -344,7 +336,7 @@ final class KeyedKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerPro
         #if swift(>=5.1)
         if (value as? Nullable)?.isNil == true  {
             // do not encode null as standard library
-        } else if let type = T.self as? FlatType.Type, !type.isArray {
+        } else if let type = T.self as? FlatType.Type, !type.isCollection {
             try value.encode(to: keyedEncoder)
         } else {
             try value.encode(to: superEncoder(forKey: key))

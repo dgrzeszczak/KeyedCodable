@@ -12,14 +12,12 @@ open class KeyedJSONDecoder: JSONDecoder {
 
     open override func decode<T : Decodable>(_ type: T.Type, from data: Data) throws -> T {
 
-        if T.self == String.self {
-            return try String.from(data: data) as! T
-        } else if T.self == Int.self {
-            guard let int = try Int(String.from(data: data)) else { throw KeyedCodableError.stringParseFailed }
-            return int as! T
-        } else if let type = T.self as? LosslessStringConvertible.Type {
-            guard let lossless = try type.init(String.from(data: data)) else { throw KeyedCodableError.stringParseFailed }
-            return lossless as! T
+        if T.self == String.self { // backward compatibility with 3.1.2 and before
+            if let value = try? super.decode(Keyed<T>.self, from: data).value {
+                return value
+            } else {
+                return try String.from(data: data) as! T
+            }
         } else {
             return try super.decode(Keyed<T>.self, from: data).value
         }
@@ -363,24 +361,30 @@ final class KeyedKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
     func decode<T>(_ type: T.Type, forKey key: K) throws -> T where T : Decodable {
         #if swift(>=5.1)
         if let type = type as? FlatType.Type {
-            if type.isArray {
+            if type.isCollection {
                 return try T(from: superDecoder(forKey: key))
             } else {
                 return try T(from: keyedDecoder)
             }
         } else {
-            return try decodeArray(type, forKey: key) ?? T(from: superDecoder(forKey: key))
+            return try decodeWithFlatCheck(type, forKey: key)
         }
         #else
-            return try decodeArray(type, forKey: key) ?? T(from: superDecoder(forKey: key))
+            return try decodeWithFlatCheck(type, forKey: key)
         #endif
     }
 
-    private func decodeArray<T>(_ type: T.Type, forKey key: K) throws -> T? where T : Decodable {
-        if let type = type as? _Array.Type, key.isFirstFlat {
-            return type.optionalDecode(unkeyedContainer: try nestedUnkeyedContainer(forKey: key))
+    private func decodeWithFlatCheck<T>(_ type: T.Type, forKey key: K) throws -> T where T : Decodable {
+
+        if key.isFirstFlat {
+            if let type = type as? _Array.Type {
+                return type.optionalDecode(unkeyedContainer: try nestedUnkeyedContainer(forKey: key))
+            } else if let type = type as? _Dictionary.Type {
+                return type.optionalDecode(keyedContainer: try nestedContainer(keyedBy: AnyKey.self, forKey: key))
+            }
         }
-        return nil
+
+        return try T(from: superDecoder(forKey: key))
     }
 
     func decodeIfPresent<T>(_ type: T.Type, forKey key: Key) throws -> T? where T : Decodable {

@@ -70,6 +70,9 @@ public struct Flat<T: Decodable>: Decodable {
         if let type = T.self as? _Array.Type {
             let unkeyed = try decoder.unkeyedContainer()
             wrappedValue = type.optionalDecode(unkeyedContainer: unkeyed)
+        } else if let type = T.self as? _Dictionary.Type {
+            let keyed = try decoder.container(keyedBy: AnyKey.self)
+            wrappedValue = type.optionalDecode(keyedContainer: keyed)
         } else if let type = T.self as? _Optional.Type {
             guard let value = try? T(from: decoder) else {
                 wrappedValue = type.empty as! T
@@ -89,11 +92,11 @@ extension Flat: Encodable where T: Encodable {
 }
 
 protocol FlatType {
-    static var isArray: Bool { get }
+    static var isCollection: Bool { get }
 }
 extension Flat: FlatType {
-    static var isArray: Bool {
-        return T.self is _Array.Type
+    static var isCollection: Bool {
+        return T.self is _Array.Type || T.self is _Dictionary.Type
     }
 }
 extension Flat: Nullable {

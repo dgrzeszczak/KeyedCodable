@@ -115,9 +115,14 @@ protocol Nullable {
 
 protocol _Optional: Nullable {
     static var empty: _Optional { get }
+    static var wrappedType: Any.Type { get }
 }
 
 extension Optional: _Optional {
+    static var wrappedType: Any.Type {
+        Wrapped.self
+    }
+
     static var empty: _Optional {
         return self.none as _Optional
     }

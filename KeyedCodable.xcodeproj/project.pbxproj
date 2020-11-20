@@ -65,6 +65,7 @@
 		0894275C20B1BA8F00A4B6FF /* KeyOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */; };
 		0894275D20B1BA8F00A4B6FF /* KeyedCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */; };
 		0899CEAA22354CAE000B7F9E /* KeyedCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */; };
+		08A124062566E63600BC7B1F /* OptionalDictionaryElementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A124052566E63600BC7B1F /* OptionalDictionaryElementsTests.swift */; };
 		08DCCEE322E9F4C100C5018D /* DecodePathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */; };
 		08DCCEE422E9F4C100C5018D /* DecodePathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */; };
 		08DCCEE522E9F4C100C5018D /* DecodePathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */; };
@@ -129,6 +130,7 @@
 		0894270F20B1BA0600A4B6FF /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0894271720B1BA0700A4B6FF /* KeyedCodable-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KeyedCodable-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08942A0320B1F4C700A4B6FF /* KeyedCodable.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = KeyedCodable.podspec; sourceTree = SOURCE_ROOT; };
+		08A124052566E63600BC7B1F /* OptionalDictionaryElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalDictionaryElementsTests.swift; sourceTree = "<group>"; };
 		08DC29BB207BF444008B9726 /* AllKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllKeysTests.swift; sourceTree = "<group>"; };
 		08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodePathTest.swift; sourceTree = "<group>"; };
 		08FD6ED82279F5BA007E4D59 /* KeyedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedKey.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				0823925420A56B6C006C45B2 /* InnerTests.swift */,
 				0823925620A56CED006C45B2 /* FlatTests.swift */,
 				0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */,
+				08A124052566E63600BC7B1F /* OptionalDictionaryElementsTests.swift */,
 				08DC29BB207BF444008B9726 /* AllKeysTests.swift */,
 				0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */,
 				0889DB6220699EA8008A0A13 /* KeyedCodableTests.swift */,
@@ -568,6 +571,7 @@
 				088D83422349ECD600642B31 /* ZeroDecodableTests.swift in Sources */,
 				0838E8E12267D5070010A7ED /* FlatTests.swift in Sources */,
 				0899CEAA22354CAE000B7F9E /* KeyedCodableTests.swift in Sources */,
+				08A124062566E63600BC7B1F /* OptionalDictionaryElementsTests.swift in Sources */,
 				08FD6E4F22746520007E4D59 /* OptionalArrayElementTests.swift in Sources */,
 				088D83462349ECF700642B31 /* TransformersTests.swift in Sources */,
 				0823925520A56B6C006C45B2 /* InnerTests.swift in Sources */,

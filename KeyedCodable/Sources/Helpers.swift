@@ -67,6 +67,32 @@ extension Array: _Array where Element: Decodable {
     }
 }
 
+protocol _Dictionary {
+    static func optionalDecode<T, K>(keyedContainer: KeyedDecodingContainer<K>) -> T where T: Decodable, K: CodingKey
+}
+
+extension Dictionary: _Dictionary where Value: Decodable, Key: Decodable {
+    static func optionalDecode<T, K>(keyedContainer: KeyedDecodingContainer<K>) -> T where T : Decodable, K: CodingKey {
+
+        var newObject = [Key: Value]()
+        let keyMapper: (K) -> Key?
+        if Key.self is String.Type {
+            keyMapper = { $0.stringValue as? Key }
+        } else {
+            keyMapper = { try? Key.keyed.fromJSON($0.stringValue.keyed.jsonData()) }
+        }
+        keyedContainer.allKeys.forEach { key in
+
+            if let value = try? keyedContainer.decode(Value.self, forKey: key), let key = keyMapper(key) {
+                newObject[key] = value
+            }
+        }
+        return newObject as! T
+    }
+}
+
+
+
 extension Data {
     static func from(string: String, encoding: String.Encoding = .utf8) throws -> Data {
         guard let data = string.data(using: encoding) else { throw KeyedCodableError.stringParseFailed }
