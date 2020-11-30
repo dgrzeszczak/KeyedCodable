@@ -91,6 +91,9 @@ extension Flat: Encodable where T: Encodable {
     }
 }
 
+extension Flat: Equatable where T: Equatable { }
+extension Flat: Hashable where T: Hashable { }
+
 protocol FlatType {
     static var isCollection: Bool { get }
 }

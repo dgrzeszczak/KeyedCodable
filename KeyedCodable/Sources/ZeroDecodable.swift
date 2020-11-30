@@ -40,6 +40,9 @@ extension Zero: Nullable {
         return wrapped.isNil
     }
 }
+
+extension Zero: Equatable where T: Equatable { }
+extension Zero: Hashable where T: Hashable { }
 #endif
 
 extension Keyed where Base: Decodable {
