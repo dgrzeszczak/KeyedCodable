@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0823925520A56B6C006C45B2 /* InnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925420A56B6C006C45B2 /* InnerTests.swift */; };
+		0826A40427456E7E00125065 /* QraphQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0826A40327456E7E00125065 /* QraphQLTests.swift */; };
+		0826A40527456E7E00125065 /* QraphQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0826A40327456E7E00125065 /* QraphQLTests.swift */; };
+		0826A40627456E7E00125065 /* QraphQLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0826A40327456E7E00125065 /* QraphQLTests.swift */; };
 		08276C3D232AEC0C0030C9B2 /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08276C3C232AEC0C0030C9B2 /* ExtensionTests.swift */; };
 		0838E8E12267D5070010A7ED /* FlatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925620A56CED006C45B2 /* FlatTests.swift */; };
 		0838E8EB2267D5A70010A7ED /* AllKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC29BB207BF444008B9726 /* AllKeysTests.swift */; };
@@ -69,6 +72,10 @@
 		08DCCEE322E9F4C100C5018D /* DecodePathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */; };
 		08DCCEE422E9F4C100C5018D /* DecodePathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */; };
 		08DCCEE522E9F4C100C5018D /* DecodePathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */; };
+		08EAE3D22739999000A1FCCC /* GraphQLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EAE3D12739998F00A1FCCC /* GraphQLDecoder.swift */; };
+		08EAE3D32739999000A1FCCC /* GraphQLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EAE3D12739998F00A1FCCC /* GraphQLDecoder.swift */; };
+		08EAE3D42739999000A1FCCC /* GraphQLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EAE3D12739998F00A1FCCC /* GraphQLDecoder.swift */; };
+		08EAE3D52739999100A1FCCC /* GraphQLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EAE3D12739998F00A1FCCC /* GraphQLDecoder.swift */; };
 		08FD6E4F22746520007E4D59 /* OptionalArrayElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */; };
 		08FD6E642278C92A007E4D59 /* KeyOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */; };
 		08FD6ED92279F5BA007E4D59 /* KeyedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FD6ED82279F5BA007E4D59 /* KeyedKey.swift */; };
@@ -107,6 +114,7 @@
 		0823925620A56CED006C45B2 /* FlatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatTests.swift; sourceTree = "<group>"; };
 		0823925820A56DB3006C45B2 /* OptionalArrayElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalArrayElementTests.swift; sourceTree = "<group>"; };
 		0823925A20A56EC1006C45B2 /* KeyOptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyOptionsTests.swift; sourceTree = "<group>"; };
+		0826A40327456E7E00125065 /* QraphQLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QraphQLTests.swift; sourceTree = "<group>"; };
 		08276C3C232AEC0C0030C9B2 /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		086C497320BAEBFA008DB20C /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
 		0889DB5420699EA8008A0A13 /* KeyedCodable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeyedCodable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +141,7 @@
 		08A124052566E63600BC7B1F /* OptionalDictionaryElementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalDictionaryElementsTests.swift; sourceTree = "<group>"; };
 		08DC29BB207BF444008B9726 /* AllKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllKeysTests.swift; sourceTree = "<group>"; };
 		08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodePathTest.swift; sourceTree = "<group>"; };
+		08EAE3D12739998F00A1FCCC /* GraphQLDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLDecoder.swift; sourceTree = "<group>"; };
 		08FD6ED82279F5BA007E4D59 /* KeyedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedKey.swift; sourceTree = "<group>"; };
 		3720A4FF23F1A0AA000DE8E6 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -240,6 +249,7 @@
 				08DCCEE222E9F4C100C5018D /* DecodePathTest.swift */,
 				08276C3C232AEC0C0030C9B2 /* ExtensionTests.swift */,
 				088D83412349ECD600642B31 /* ZeroDecodableTests.swift */,
+				0826A40327456E7E00125065 /* QraphQLTests.swift */,
 				088D83452349ECF700642B31 /* TransformersTests.swift */,
 				086C497320BAEBFA008DB20C /* CHANGELOG.md */,
 				0807903020A9062C0023C651 /* README.md */,
@@ -256,6 +266,7 @@
 				0889DB9C2069A2F5008A0A13 /* KeyedConfig.swift */,
 				0889DB8920699FF0008A0A13 /* KeyedJSONEncoder.swift */,
 				0889DB8B2069A01E008A0A13 /* KeyedJSONDecoder.swift */,
+				08EAE3D12739998F00A1FCCC /* GraphQLDecoder.swift */,
 				088D833723490CFF00642B31 /* Transformers.swift */,
 				088D833C23494A8600642B31 /* ZeroDecodable.swift */,
 				0889DB902069A1A3008A0A13 /* AnyKey.swift */,
@@ -551,6 +562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088D833823490CFF00642B31 /* Transformers.swift in Sources */,
+				08EAE3D22739999000A1FCCC /* GraphQLDecoder.swift in Sources */,
 				088D833D23494A8600642B31 /* ZeroDecodable.swift in Sources */,
 				0889DB8C2069A01E008A0A13 /* KeyedJSONDecoder.swift in Sources */,
 				08FD6ED92279F5BA007E4D59 /* KeyedKey.swift in Sources */,
@@ -574,6 +586,7 @@
 				08A124062566E63600BC7B1F /* OptionalDictionaryElementsTests.swift in Sources */,
 				08FD6E4F22746520007E4D59 /* OptionalArrayElementTests.swift in Sources */,
 				088D83462349ECF700642B31 /* TransformersTests.swift in Sources */,
+				0826A40427456E7E00125065 /* QraphQLTests.swift in Sources */,
 				0823925520A56B6C006C45B2 /* InnerTests.swift in Sources */,
 				08276C3D232AEC0C0030C9B2 /* ExtensionTests.swift in Sources */,
 			);
@@ -584,6 +597,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088D833923490CFF00642B31 /* Transformers.swift in Sources */,
+				08EAE3D32739999000A1FCCC /* GraphQLDecoder.swift in Sources */,
 				088D833E23494A8600642B31 /* ZeroDecodable.swift in Sources */,
 				0894272C20B1BA7100A4B6FF /* AnyKey.swift in Sources */,
 				08FD6EDA2279F5BA007E4D59 /* KeyedKey.swift in Sources */,
@@ -599,6 +613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088D833A23490CFF00642B31 /* Transformers.swift in Sources */,
+				08EAE3D42739999000A1FCCC /* GraphQLDecoder.swift in Sources */,
 				088D833F23494A8600642B31 /* ZeroDecodable.swift in Sources */,
 				0894273420B1BA7200A4B6FF /* AnyKey.swift in Sources */,
 				08FD6EDB2279F5BA007E4D59 /* KeyedKey.swift in Sources */,
@@ -622,6 +637,7 @@
 				088D83472349ECF700642B31 /* TransformersTests.swift in Sources */,
 				0894275620B1BA8E00A4B6FF /* KeyOptionsTests.swift in Sources */,
 				0894275320B1BA8E00A4B6FF /* FlatTests.swift in Sources */,
+				0826A40527456E7E00125065 /* QraphQLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088D833B23490CFF00642B31 /* Transformers.swift in Sources */,
+				08EAE3D52739999100A1FCCC /* GraphQLDecoder.swift in Sources */,
 				088D834023494A8600642B31 /* ZeroDecodable.swift in Sources */,
 				0894274420B1BA7300A4B6FF /* AnyKey.swift in Sources */,
 				08FD6EDC2279F5BA007E4D59 /* KeyedKey.swift in Sources */,
@@ -653,6 +670,7 @@
 				088D83482349ECF700642B31 /* TransformersTests.swift in Sources */,
 				0894275C20B1BA8F00A4B6FF /* KeyOptionsTests.swift in Sources */,
 				0894275920B1BA8F00A4B6FF /* FlatTests.swift in Sources */,
+				0826A40627456E7E00125065 /* QraphQLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -387,7 +387,7 @@ final class KeyedKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
         return try T(from: superDecoder(forKey: key))
     }
 
-    func decodeIfPresent<T>(_ type: T.Type, forKey key: Key) throws -> T? where T : Decodable {
+    func decodeIfPresent<T>(_ type: T.Type, forKey key: K) throws -> T? where T : Decodable {
         if key.isFlat {
             return try? decode(type, forKey: key)
         } else if try decodeNil(forKey: key) {
